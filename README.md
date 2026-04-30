@@ -20,21 +20,18 @@
 > Esta es una buena sección para el el inciso A: Introducción al conjunto de datos y al
 > problema a estudiar considerando aspectos éticos del conjunto de datos empleado.
 
+* Esta base de datos incluye todos los casos diarios asociados a COVID-19 a nivel federal. Cuenta con contenido desagregado por entidad, sexo, edad, nacionalidad, padecimientos asociados entre otros.
+* Este conjunto de datos sólo contempla casos cuyo municipio de residencia sea la Ciudad de México o casos cuya Unidad Médica sea la Ciudad de México.
+* La Secretaría de Salud de la Ciudad de México recolecta los datos. 
+* La misión principal de la Secretaría es garantizar el derecho efectivo a la salud, y sin discriminación, a los habitantes de la capital así como brindar servicios sanitarios a quienes carecen de seguridad social laboral con el objetivo de que sus habitantes tengan una vida plena y digna.
+* La base de datos comprende información correspondiente al periodo del 1 de julio de 2022 al 14 de agosto de 2022. Las actualizaciones diarias se realizaban únicamente a la base del semestre en curso y se elaboró con base en los Datos Abiertos y el Diccionario de Datos provista por el Gobierno Federal. Fue creada el 8 de agosto de 2022 y su última actualización se realizó el 14 de febrero de 2023. 
+* Identificar cuáles fueron los potenciales grupos de riesgo en la ciudad de méxico y la 
+cantidad de ocurrencias de condiciones críticas para el padecimiento de COVID-19.
+* La correlación entre ciertos fenómenos con el caso de covid no implica causalidad y puede estar sesgado a los casos concretos o a poblaciones en riesgo por factores no considerados en la base de datos.
+* La BD se puede obtener en: 
+https://datos.cdmx.gob.mx/dataset/casos-asociados-a-covid-19/resource/8deb6e03-eb3c-476e-bb9a-f9eaf6b02a08
 
-- Descripción general de los datos
-- ¿Quién los recolecta?
-- ¿Cuál es el propósito de su recolección?
-- ¿Dónde se pueden obtener?
-- ¿Con qué frecuencia se actualizan?
-- ¿Cuántas tuplas y cuántos atributos tiene el set de datos?
-- ¿Qué significa cada atributo del set?
-- ¿Qué atributos son numéricos?
-- ¿Qué atributos son categóricos?
-- ¿Qué atributos son de tipo texto?
-- ¿Qué atributos son de tipo temporal y/o fecha?
-- ¿Cuál es el objetivo buscado con el set de datos? ¿Para qué se usará por el equipo?
-- ¿Qué consideraciones éticas conlleva el análisis y explotación de dichos datos?
-  
+
 ## Descripción del Proyecto 
 * El set de datos lo obtuvimos del censo de población y vivienda del INEGI realizado en 2020. La INEGI hace la encuesta para contar con información de las carecterísticas demográficas, socioeconómicas y de vivienda de la población para poder crear planes y proyectos que beneficien su calidad de vida. Los datos del censo se actualizan cada 10 años. Obtuvimos los datos de https://www.inegi.org.mx/app/scitel/Default?ev=9. La base de datos contiene 20 atributos y ??? registros. Los atributos de entidad federativa (NOM_ENT), nombre del municipio (NOM_MUN) y nombre de la localidad (NOM_LOC) son los únicos que son de texto. Todos los demás atributos son númericos. Nuestro objetivo con estos datos es ver las diferencias de acceso a la salud y servicios básicos disponibles por edad, ocupación y zona geográfica. Lo usaremos para definir que entidades necesitan reforzar su acceso a la salud por la nueva epidemia de sarampión.
 * Dentro del proyecto consideramos solo ciertas entidades del país en el area metropolitana para evitar la menor cantidad de sesgos en las cifras reportadas, pues en otros estados donde puede haber ciertas comunidades no cuantificadas.
