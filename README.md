@@ -1,4 +1,3 @@
-# Proyecto BD: Casos Nacionales 2° Semestre 2022
 ---
 ## Descripción del Proyecto 
 * Fuente de datos
@@ -14,11 +13,17 @@
 
 
 
-# Proyecto BD: Inspecciones de Comida en Chicago
+# Proyecto BD: Casos Nacionales 2° Semestre 2022
 
 ## Integrantes
 
-> Agregar en esta sección a los integrantes del equipo. Poner nombres completos, clave
+> Cristopher Gongora Sanchez Castellanos
+* Yahya Hasen Halem Morales
+* Diego Haro Sandoval
+* Sandro Petricioli Gomez
+* Camila Velasco Ortega
+* Sofia Velazquez Velazquez
+ Poner nombres completos, clave
 > única y un link a su perfil de GitHub.
 
 ## Introducción
