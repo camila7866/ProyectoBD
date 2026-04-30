@@ -40,6 +40,7 @@
 * Dentro del proyecto consideramos solo ciertas entidades del país en el area metropolitana para evitar la menor cantidad de sesgos en las cifras reportadas, pues en otros estados donde puede haber ciertas comunidades no cuantificadas.
 El equipo debe detallar qué actividades de limpieza se deben efectuar al set de datos para su uso, siempre teniendo en mente el objetivo planteado para el proyecto. En el README se debe incluir una sección con las actividades realizadas, explicar cualquier operación no trivial usada y explicar por qué fue necesaria dicha actividad de limpieza.
 Además se debe tener en el repositorio al menos un script para efectuar la limpieza con los datos en bruto.
+
 ## Fuente de datos
 
 Para este proyecto se utilizan los datos proporcionados por el portal de datos de Chicago sobre inspecciones a restaurantes. Se puede acceder a los datos en [este link](#).
@@ -47,7 +48,9 @@ Para este proyecto se utilizan los datos proporcionados por el portal de datos d
 Las instrucciones de replicación del proyecto asumen que los datos se encuentran almacenados en formato CSV bajo el nombre `./data/raw_data.csv`.
 
 ## Documentación
-
+> El equipo debe detallar qué actividades de limpieza se deben efectuar al set de datos para su uso, siempre teniendo en mente el objetivo planteado para el proyecto. En el README se debe incluir una sección con las actividades realizadas, explicar cualquier eración no trivial usada y explicar por qué fue necesaria dicha actividad de limpieza.
+Además se debe tener en el repositorio al menos un script para efectuar la limpieza
+con los datos en bruto.
 ### Estructura del repositorio
 
     ├── README.md                                         <- Documentación para desarrolladores de este proyecto (i.e., reporte escrito)
@@ -66,6 +69,22 @@ Las instrucciones de replicación del proyecto asumen que los datos se encuentra
         ├── ...                                           <- Otras consultas en caso de ser requeridas
         └── 0N_analytical_queries.sql                     <- Consultas de interés sobre los datos normalizados (i.e., soporte de actividad E)
 
+
+> B) Carga inicial y análisis preliminar
+Se debe documentar en el repositorio cómo realizar la carga inicial del set de datos a una base de datos de tipo Postgres. Así mismo, se deben agregar los scripts
+pertinentes para la creación del esquema inicial de la carga.
+También, mediante el uso de consultas SQL, que deben ser incluidas en un script en el repositorio, se deberá realizar un análisis exploratorio de los datos. Algunas
+sugerencias son:
+- ¿Existen columnas con valores únicos?
+- Mínimos y máximos de fechas
+- Mínimos, máximos y promedios de valores numéricos
+- Duplicados en atributos categóricos
+- Columnas redundantes
+- Conteo de tuplas por cada categoría
+- Conteo de valores nulos
+- ¿Existen inconsistencias en el set de datos?
+
+  
 ## Requerimientos para replicación del proyecto
 
 1. Descargar los datos en bruto del proyecto de acuerdo a las instrucciones del apartado de [Fuente de datos](#fuente-de-datos).
