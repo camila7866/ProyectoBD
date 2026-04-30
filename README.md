@@ -17,14 +17,15 @@
 
 ## Integrantes
 
-> Cristopher Gongora Sanchez Castellanos | 218560
-> Yahya Hasen Halem Morales | 219072
-> Diego Haro Sandoval
-> Sandro Petricioli Gomez | 220971
-> Camila Velasco Ortega | 217149 | [camila7866](https://github.com/YahyaHalem)
-> Sofia Velazquez Velazquez | 222048
- Poner nombres completos, clave
-> única y un link a su perfil de GitHub.
+| Nombre Completo | Clave Única | GitHub |
+| :--- | :--- | :--- |
+| Cristopher Gongora Sanchez Castellanos | 218560 | [cristoredentor](https://github.com/cristoredentor) |
+| Sandro Petricioli Gomez | 220971 | [spetricig](https://github.com/spetricig) |
+| Yahya Hasen Halem Morales | 219072 | [YahyaHalem](https://github.com/YahyaHalem) |
+| Camila Velasco Ortega | 217149 | [camila7866](https://github.com/camila7866) |
+| Sofia Velazquez Velazquez | 222048 | [sofivelqz](https://github.com/sofivelqz) |
+| Diego Haro Sandoval | | |
+
 
 ## Introducción
 
