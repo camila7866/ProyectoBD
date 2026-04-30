@@ -17,12 +17,12 @@
 
 ## Integrantes
 
-> Cristopher Gongora Sanchez Castellanos
-* Yahya Hasen Halem Morales
-* Diego Haro Sandoval
-* Sandro Petricioli Gomez
-* Camila Velasco Ortega
-* Sofia Velazquez Velazquez
+> Cristopher Gongora Sanchez Castellanos | 218560
+> Yahya Hasen Halem Morales | 219072
+> Diego Haro Sandoval
+> Sandro Petricioli Gomez | 220971
+> Camila Velasco Ortega | 217149 | [camila7866](https://github.com/YahyaHalem)
+> Sofia Velazquez Velazquez | 222048
  Poner nombres completos, clave
 > única y un link a su perfil de GitHub.
 
