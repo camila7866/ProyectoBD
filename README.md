@@ -1,7 +1,7 @@
 ---
 
 
-# Proyecto BD: Casos Nacionales 2° Semestre 2022
+# Proyecto BD: Casos Nacionales COVID 2° Semestre 2022
 
 ## Integrantes
 
