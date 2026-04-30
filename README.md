@@ -17,9 +17,6 @@
 
 ## Introducción
 
-> Esta es una buena sección para el el inciso A: Introducción al conjunto de datos y al
-> problema a estudiar considerando aspectos éticos del conjunto de datos empleado.
-
 * Esta base de datos incluye todos los casos diarios asociados a COVID-19 a nivel federal. Cuenta con contenido desagregado por entidad, sexo, edad, nacionalidad, padecimientos asociados entre otros.
 * Este conjunto de datos sólo contempla casos cuyo municipio de residencia sea la Ciudad de México o casos cuya Unidad Médica sea la Ciudad de México.
 * La Secretaría de Salud de la Ciudad de México recolecta los datos. 
@@ -28,8 +25,8 @@
 * Identificar cuáles fueron los potenciales grupos de riesgo en la ciudad de méxico y la 
 cantidad de ocurrencias de condiciones críticas para el padecimiento de COVID-19.
 * La correlación entre ciertos fenómenos con el caso de covid no implica causalidad y puede estar sesgado a los casos concretos o a poblaciones en riesgo por factores no considerados en la base de datos.
-* La BD se puede obtener en: 
-https://datos.cdmx.gob.mx/dataset/casos-asociados-a-covid-19/resource/8deb6e03-eb3c-476e-bb9a-f9eaf6b02a08
+* La Base de Datos se puede obtener en: [Casos Nacionales 2° Semestre 2022](https://datos.cdmx.gob.mx/dataset/casos-asociados-a-covid-19/resource/8deb6e03-eb3c-476e-bb9a-f9eaf6b02a08)
+
 
 
 ## Descripción del Proyecto 
