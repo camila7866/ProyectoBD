@@ -84,16 +84,21 @@ sugerencias son:
 
 ## Carga inicial
 
-En primer lugar se deberá crear una base de datos exclusiva para este proyecto. Para ello se puede ejecutar el siguiente comando en `psql`:
-
-```sql
-CREATE DATABASE inspections;
+1. Creación de la base de datos: <br>
 ```
-
-Posteriormente, debemos conectarnos a dicha base de datos empleado:
-
-```sql
-\c inspections
+CREATE DATABASE casoscovid2022;
+```
+2. Conexión con la base de datos: <br>
+```
+\c casoscovid2022;
+```
+3. Implementación del esquema: <br>`
+```
+\i raw_data_creation_and_load.sql
+```
+4. Copy 
+```
+\copy raw.casoscovid2022(fecha_actualizacion,id_registro,origen,sector,entidad_um,sexo,entidad_nac,entidad_res,municipio_res,tipo_paciente,fecha_ingreso,fecha_sintomas,fecha_def,intubado,neumonia,edad,nacionalidad,embarazo,habla_lengua_indig,indigena,diabetes,epoc,asma,inmusupr,hipertension,otra_com,cardiovascular,obesidad,renal_cronica,tabaquismo,otro_caso,toma_muestra_lab,resultado_lab,toma_muestra_antigeno,resultado_antigeno,clasificacion_final,migrante,pais_nacionalidad,pais_origen,uci) FROM 'C:/Users/caveo/OneDrive - INSTITUTO TECNOLOGICO AUTONOMO DE MEXICO/Documents/BD/ProyectoBD/casos_nacionales_covid-19_2022_semestre2.csv' WITH (FORMAT CSV, HEADER true, DELIMITER ',', ENCODING 'LATIN1');
 ```
 
 Finalmente, para cargar los datos en bruto se debe ejecutar el siguiente comando en una sesión de línea de comandos `psql`:
