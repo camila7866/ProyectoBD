@@ -26,6 +26,49 @@
 cantidad de ocurrencias de condiciones críticas para el padecimiento de COVID-19.
 * La correlación entre ciertos fenómenos con el caso de covid no implica causalidad y puede estar sesgado a los casos concretos o a poblaciones en riesgo por factores no considerados en la base de datos.
 
+## Datos
+| Atributo | Tipo | Descripción |
+|---|---|---|
+| id_registro | hexadecimal | Es un id único para cada paciente. |
+| origen | categórico | Nos dice si la información del paciente fue dada por las unidades de salud monitoras de enfermedades respiratorias (USMER) o no. |
+| sector | categórico | Nos dice de qué sector de la población es el paciente dependiendo de su actividad. Distingue entre los trabajadores del gobierno, privados y universitarios. |
+| entidad_um | categórico | Dice de qué entidad es la unidad médica. |
+| entidad_nac | categórico | Entidad dónde nació el paciente. |
+| entidad_res | categórico | Entidad dónde reside el paciente. |
+| sexo | categórico | Sexo del paciente. |
+| municipio_res | categórico | El municipio en dónde reside el paciente. |
+| tipo_paciente | categórico | Nos indica si el paciente fue hospitalizado como "Hospitalizado" y si no como "Ambulatorio". Un paciente ambulatorio es el que recibió atención médica sin ser internado. |
+| fecha_ingreso | date | Nos indica la fecha en la que el paciente recibió la atención médica, o en la que fue internado. |
+| fecha_sintomas | date | Nos indica la fecha en la que empezaron los síntomas. |
+| fecha_def | date | Nos indica la fecha de defunción del paciente. |
+| intubado | categórico | Nos indica si el paciente fue intubado. |
+| neumonía | categórico | Nos indica si el paciente sufrió de neumonía. |
+| edad | int | Nos indica la edad del paciente. |
+| nacionalidad | categórico | Nos indica la nacionalidad del paciente. |
+| embarazo | categórico | Nos indica si la paciente estaba embarazada al momento de recibir la atención médica. |
+| habla_lengua_indigena | categórico | Nos dice si el paciente habla alguna lengua indígena. |
+| indigena | categórico | Nos dice si el paciente es de origen indígena. |
+| fecha_actualización | date | Nos dice la última fecha en la que se actualizó la información del paciente. |
+| asma | categórico | Nos indica si el paciente padece de asma. |
+| inmusupr | categórico | Nos indica si el paciente padece de inmunosupresión. |
+| hipertension | categórico | Nos indica si el paciente padece hipertensión. |
+| otra_com | categórico | Nos indica si el paciente padece de otra complicación. |
+| cardiovascular | categórico | Nos indica si el paciente padece de problemas cardiovasculares. |
+| obesidad | categórico | Nos indica si el paciente padece de obesidad. |
+| renal_cronica | categórico | Nos indica si el paciente padece de enfermedad renal crónica. |
+| tabaquismo | categórico | Nos indica si el paciente padece de tabaquismo. |
+| otro_caso | categórico | Nos indica si el paciente padece de otras adicciones. |
+| toma_muestra_lab | categórico | Nos indica si se tomó muestra para prueba PCR de SARS-COV-2. |
+| resultado_lab | categórico | Nos indica el resultado de la prueba PCR de SARS-COV-2. |
+| toma_muestra_antigeno | categórico | Nos indica si se tomó muestra para prueba de antígeno de SARS-COV-2. |
+| resultado_antigeno | categórico | Nos indica el resultado de la prueba de antígeno de SARS-COV-2. |
+| clasificacion_final | categórico | Nos indica el tipo de caso: "Caso de COVID-19 confirmado por asociación", "Caso de COVID-19 confirmado por comité", "Caso de SARS-COV-2 confirmado por prueba", "Caso sospechoso", "Inválido por laboratorio", "Negativo a SARS-COV-2 por prueba", "No realizado por laboratorio". |
+| migrante | categórico | Nos indica si el paciente es migrante. |
+| pais_nacionalidad | categórico | Nos indica el país de nacionalidad del paciente. |
+| pais_origen | categórico | Nos indica el país de nacimiento del paciente. |
+| uci | categórico | Nos indica si el paciente fue ingresado a la unidad de cuidados intensivos. |
+| diabetes | categórico | Nos indica si el paciente tiene diabetes. |
+| epoc | categórico | Nos indica si el paciente tiene la Enfermedad Pulmonar Obstructiva Crónica (EPOC). |
 ## Fuente de datos
 
 Para este proyecto se utilizan los datos proporcionados por el portal de datos abiertos del Gobierno de la Ciudad de México sobre materia de salud. Se puede acceder a los datos en [Casos Nacionales 2° Semestre 2022](https://datos.cdmx.gob.mx/dataset/casos-asociados-a-covid-19/resource/8deb6e03-eb3c-476e-bb9a-f9eaf6b02a08).
