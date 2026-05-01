@@ -36,6 +36,10 @@ Las instrucciones de replicación del proyecto asumen que los datos se encuentra
 > El equipo debe detallar qué actividades de limpieza se deben efectuar al set de datos para su uso, siempre teniendo en mente el objetivo planteado para el proyecto. En el README se debe incluir una sección con las actividades realizadas, explicar cualquier eración no trivial usada y explicar por qué fue necesaria dicha actividad de limpieza.
 Además se debe tener en el repositorio al menos un script para efectuar la limpieza
 con los datos en bruto.
+
+Para cargar los datos fue necesario poner todas las columnas en tipo text, pues varias columnas tenian NA como atributos. Por lo que lo primero que habra que hacer es cambiar los NA por nulls. Después de hacer ese proceso con todas las columnas ponemos todas las columnas en su tipo de dato correcto
+
+
 ### Estructura del repositorio
 
     ├── README.md                                         <- Documentación para desarrolladores de este proyecto (i.e., reporte escrito)
