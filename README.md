@@ -30,10 +30,7 @@ cantidad de ocurrencias de condiciones críticas para el padecimiento de COVID-1
 
 
 ## Descripción del Proyecto 
-* El set de datos lo obtuvimos del censo de población y vivienda del INEGI realizado en 2020. La INEGI hace la encuesta para contar con información de las carecterísticas demográficas, socioeconómicas y de vivienda de la población para poder crear planes y proyectos que beneficien su calidad de vida. Los datos del censo se actualizan cada 10 años. Obtuvimos los datos de https://www.inegi.org.mx/app/scitel/Default?ev=9. La base de datos contiene 20 atributos y ??? registros. Los atributos de entidad federativa (NOM_ENT), nombre del municipio (NOM_MUN) y nombre de la localidad (NOM_LOC) son los únicos que son de texto. Todos los demás atributos son númericos. Nuestro objetivo con estos datos es ver las diferencias de acceso a la salud y servicios básicos disponibles por edad, ocupación y zona geográfica. Lo usaremos para definir que entidades necesitan reforzar su acceso a la salud por la nueva epidemia de sarampión.
-* Dentro del proyecto consideramos solo ciertas entidades del país en el area metropolitana para evitar la menor cantidad de sesgos en las cifras reportadas, pues en otros estados donde puede haber ciertas comunidades no cuantificadas.
-El equipo debe detallar qué actividades de limpieza se deben efectuar al set de datos para su uso, siempre teniendo en mente el objetivo planteado para el proyecto. En el README se debe incluir una sección con las actividades realizadas, explicar cualquier operación no trivial usada y explicar por qué fue necesaria dicha actividad de limpieza.
-Además se debe tener en el repositorio al menos un script para efectuar la limpieza con los datos en bruto.
+
 
 ## Fuente de datos
 
