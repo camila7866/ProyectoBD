@@ -25,7 +25,6 @@
 * Identificar cuáles fueron los potenciales grupos de riesgo en la ciudad de méxico y la 
 cantidad de ocurrencias de condiciones críticas para el padecimiento de COVID-19.
 * La correlación entre ciertos fenómenos con el caso de covid no implica causalidad y puede estar sesgado a los casos concretos o a poblaciones en riesgo por factores no considerados en la base de datos.
-* La Base de Datos se puede obtener en: [Casos Nacionales 2° Semestre 2022](https://datos.cdmx.gob.mx/dataset/casos-asociados-a-covid-19/resource/8deb6e03-eb3c-476e-bb9a-f9eaf6b02a08)
 
 
 
