@@ -34,7 +34,7 @@ cantidad de ocurrencias de condiciones críticas para el padecimiento de COVID-1
 
 ## Fuente de datos
 
-Para este proyecto se utilizan los datos proporcionados por el portal de datos de Chicago sobre inspecciones a restaurantes. Se puede acceder a los datos en [este link](#).
+Para este proyecto se utilizan los datos proporcionados por el portal de datos abiertos del Gobierno de la Ciudad de México sobre materia de salud. Se puede acceder a los datos en [Casos Nacionales 2° Semestre 2022](https://datos.cdmx.gob.mx/dataset/casos-asociados-a-covid-19/resource/8deb6e03-eb3c-476e-bb9a-f9eaf6b02a08).
 
 Las instrucciones de replicación del proyecto asumen que los datos se encuentran almacenados en formato CSV bajo el nombre `./data/raw_data.csv`.
 
