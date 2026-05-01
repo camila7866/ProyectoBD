@@ -145,3 +145,58 @@ CREATE DATABASE casoscovid2022;
 ```
 
 Finalmente, para cargar los datos en bruto se debe ejecutar el siguiente comando en una sesión de línea de comandos `psql`:
+
+
+
+
+
+
+
+## Carga inicial
+
+En primer lugar se deberá crear una base de datos exclusiva para este proyecto. Para ello se puede ejecutar el siguiente 
+comando en `psql`:
+
+```{psql}
+CREATE DATABASE inspections;
+```
+
+Posteriormente, debemos conectarnos a dicha base de datos empleado:
+
+```{psql}
+\c inspections
+```
+
+Finalmente, para cargar los datos en bruto se debe ejecutar el siguiente comando en una sesión de línea de comandos `psql`:
+
+```{psql}
+\i pipeline_scripts/01_raw_data_schema_creation_and_load.sql
+```
+
+> Esta es una buena sección para documentar los hallazgos del inciso B:
+> Carga inicial y análisis preliminar.
+
+## Limpieza de datos
+
+El proceso de limpieza sigue una metodología de refresh destructivo, por lo que cada vez que se corra se generará desde
+cero el esquema y las tablas correspondientes. Para ejecutar el proceso de limpieza de datos se debe ejecutar el siguiente 
+comando en `psql`:
+
+```{psql}
+\i pipeline_scripts/02_data_cleaning.sql
+```
+
+> Aquí es una buena sección para documentar las actividades realizadas
+> de acuerdo a lo mencionado en el inciso C: Limpieza de datos
+
+## Normalización
+
+La normalización se realiza también mediante la estrategia de refresh destructivo. Para ejecutar el proceso de
+normalización se puede emplear el siguiente comando en `psql`:
+
+```{psql}
+\i pipeline_scripts/03_data_normalization.sql
+```
+
+>  Aquí es una buena sección para documentar la descomposición intuitiva de las tablas.
+> También un ERD del diseño final debe ser incluido.
