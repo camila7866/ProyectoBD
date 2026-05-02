@@ -136,7 +136,6 @@ En nuestro caso que tenemos muchos atributos, no analizaremos por cada uno los q
 > Tipos de datos
 En la carga inicial introducimos todos los datos de las columnas con tipo de datos TEXT, ya que era el único compatible en todos los casos, así que empezaremos por modificar los que explícitamente no corresponden a text. 
 * En fechas, la única nulleable fue fecha_def pues no en todos los casos los pacientes murieron
-* Par
 
 
 ## Normalización
