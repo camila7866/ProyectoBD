@@ -2,7 +2,8 @@ DROP SCHEMA IF EXISTS raw;
 CREATE SCHEMA raw;
 
 CREATE TABLE raw.casoscovid2022 (
-    fecha_actualizacion text, --1
+    columna text,
+    fecha_actualizacion text, 
     id_registro text,
     origen text,
     sector text,

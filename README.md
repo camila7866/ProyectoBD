@@ -1,6 +1,3 @@
----
-
-
 # Proyecto BD: Casos Nacionales COVID 2° Semestre 2022
 
 ## Integrantes
@@ -127,50 +124,24 @@ sugerencias son:
 
 ## Carga inicial
 
-1. Creación de la base de datos: <br>
+Dentro de psql:
+
+1. Creación y conexión de la base de datos: <br>
 ```
 CREATE DATABASE casoscovid2022;
 ```
-2. Conexión con la base de datos: <br>
+Después: 
 ```
 \c casoscovid2022;
 ```
-3. Implementación del esquema: <br>`
+2. Creación del esquema: <br>
+Vamos a incluir el script de creación del esquema (aquí se incluye el path absoluto de la ubicación): 
 ```
-\i raw_data_creation_and_load.sql
+\i '.../data/raw_data_creation_and_load.sql'
 ```
-4. Copy 
+3. Ingesta de datos en el esquema: <br>
 ```
-\copy raw.casoscovid2022(fecha_actualizacion,id_registro,origen,sector,entidad_um,sexo,entidad_nac,entidad_res,municipio_res,tipo_paciente,fecha_ingreso,fecha_sintomas,fecha_def,intubado,neumonia,edad,nacionalidad,embarazo,habla_lengua_indig,indigena,diabetes,epoc,asma,inmusupr,hipertension,otra_com,cardiovascular,obesidad,renal_cronica,tabaquismo,otro_caso,toma_muestra_lab,resultado_lab,toma_muestra_antigeno,resultado_antigeno,clasificacion_final,migrante,pais_nacionalidad,pais_origen,uci) FROM 'C:/Users/caveo/OneDrive - INSTITUTO TECNOLOGICO AUTONOMO DE MEXICO/Documents/BD/ProyectoBD/casos_nacionales_covid-19_2022_semestre2.csv' WITH (FORMAT CSV, HEADER true, DELIMITER ',', ENCODING 'LATIN1');
-```
-
-Finalmente, para cargar los datos en bruto se debe ejecutar el siguiente comando en una sesión de línea de comandos `psql`:
-
-
-
-
-
-
-
-## Carga inicial
-
-En primer lugar se deberá crear una base de datos exclusiva para este proyecto. Para ello se puede ejecutar el siguiente 
-comando en `psql`:
-
-```{psql}
-CREATE DATABASE inspections;
-```
-
-Posteriormente, debemos conectarnos a dicha base de datos empleado:
-
-```{psql}
-\c inspections
-```
-
-Finalmente, para cargar los datos en bruto se debe ejecutar el siguiente comando en una sesión de línea de comandos `psql`:
-
-```{psql}
-\i pipeline_scripts/01_raw_data_schema_creation_and_load.sql
+\copy raw.casoscovid2022(columna,fecha_actualizacion,id_registro,origen,sector,entidad_um,sexo,entidad_nac,entidad_res,municipio_res,tipo_paciente,fecha_ingreso,fecha_sintomas,fecha_def,intubado,neumonia,edad,nacionalidad,embarazo,habla_lengua_indig,indigena,diabetes,epoc,asma,inmusupr,hipertension,otra_com,cardiovascular,obesidad,renal_cronica,tabaquismo,otro_caso,toma_muestra_lab,resultado_lab,toma_muestra_antigeno,resultado_antigeno,clasificacion_final,migrante,pais_nacionalidad,pais_origen,uci) FROM '.../casos_nacionales_covid-19_2022_semestre2.csv' WITH (FORMAT CSV, HEADER true, DELIMITER ',', ENCODING 'LATIN1');
 ```
 
 > Esta es una buena sección para documentar los hallazgos del inciso B:
@@ -178,16 +149,14 @@ Finalmente, para cargar los datos en bruto se debe ejecutar el siguiente comando
 
 ## Limpieza de datos
 
-El proceso de limpieza sigue una metodología de refresh destructivo, por lo que cada vez que se corra se generará desde
-cero el esquema y las tablas correspondientes. Para ejecutar el proceso de limpieza de datos se debe ejecutar el siguiente 
-comando en `psql`:
+> Valores únicos
+En nuestro caso que tenemos muchos atributos, no analizaremos por cada uno los que tienen o no valores únicos, porque además es demasiado intuitivo los que claramente no serán valores únicos. De esta manera, los atributos que más probablemente tenga valores únicos, es id_registro. Lo comprobaremos. 
 
-```{psql}
-\i pipeline_scripts/02_data_cleaning.sql
-```
+> Tipos de datos
+En la carga inicial introducimos todos los datos de las columnas con tipo de datos TEXT, ya que era el único compatible en todos los casos, así que empezaremos por modificar los que explícitamente no corresponden a text. 
+* En fechas, la única nulleable fue fecha_def pues no en todos los casos los pacientes murieron
+* Par
 
-> Aquí es una buena sección para documentar las actividades realizadas
-> de acuerdo a lo mencionado en el inciso C: Limpieza de datos
 
 ## Normalización
 
