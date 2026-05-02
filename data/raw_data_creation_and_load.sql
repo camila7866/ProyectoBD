@@ -1,7 +1,7 @@
 DROP SCHEMA IF EXISTS raw;
 CREATE SCHEMA raw;
 
-CREATE TABLE raw.casoscovid2022 (
+CREATE TABLE raw.casoscovid2021 (
     columna text,
     fecha_actualizacion text, 
     id_registro text,
