@@ -109,11 +109,11 @@ Dentro de psql:
 
 1. Creación y conexión de la base de datos: <br>
 ```
-CREATE DATABASE casoscovid2022;
+CREATE DATABASE casoscovid2021;
 ```
 Después: 
 ```
-\c casoscovid2022;
+\c casoscovid2021;
 ```
 2. Creación del esquema: <br>
 Vamos a incluir el script de creación del esquema (aquí se incluye el path absoluto de la ubicación): 
@@ -122,7 +122,7 @@ Vamos a incluir el script de creación del esquema (aquí se incluye el path abs
 ```
 3. Ingesta de datos en el esquema: <br>
 ```
-\copy raw.casoscovid2022(columna,fecha_actualizacion,id_registro,origen,sector,entidad_um,sexo,entidad_nac,entidad_res,municipio_res,tipo_paciente,fecha_ingreso,fecha_sintomas,fecha_def,intubado,neumonia,edad,nacionalidad,embarazo,habla_lengua_indig,indigena,diabetes,epoc,asma,inmusupr,hipertension,otra_com,cardiovascular,obesidad,renal_cronica,tabaquismo,otro_caso,toma_muestra_lab,resultado_lab,toma_muestra_antigeno,resultado_antigeno,clasificacion_final,migrante,pais_nacionalidad,pais_origen,uci) FROM '.../casos_nacionales_covid-19_2022_semestre2.csv' WITH (FORMAT CSV, HEADER true, DELIMITER ',', ENCODING 'LATIN1');
+\copy raw.casoscovid2021(columna,fecha_actualizacion,id_registro,origen,sector,entidad_um,sexo,entidad_nac,entidad_res,municipio_res,tipo_paciente,fecha_ingreso,fecha_sintomas,fecha_def,intubado,neumonia,edad,nacionalidad,embarazo,habla_lengua_indig,indigena,diabetes,epoc,asma,inmusupr,hipertension,otra_com,cardiovascular,obesidad,renal_cronica,tabaquismo,otro_caso,toma_muestra_lab,resultado_lab,toma_muestra_antigeno,resultado_antigeno,clasificacion_final,migrante,pais_nacionalidad,pais_origen,uci) FROM '.../casos_nacionales_covid-19_2022_semestre2.csv' WITH (FORMAT CSV, HEADER true, DELIMITER ',', ENCODING 'LATIN1');
 ```
 
 > Esta es una buena sección para documentar los hallazgos del inciso B:
