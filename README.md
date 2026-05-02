@@ -73,14 +73,10 @@ cantidad de ocurrencias de condiciones críticas para el padecimiento de COVID-1
 
 Para este proyecto se utilizan los datos proporcionados por el portal de datos abiertos del Gobierno de la Ciudad de México sobre materia de salud. Se puede acceder a los datos en [Casos Nacionales 2° Semestre 2022](https://datos.cdmx.gob.mx/dataset/casos-asociados-a-covid-19/resource/8deb6e03-eb3c-476e-bb9a-f9eaf6b02a08).
 
-Las instrucciones de replicación del proyecto asumen que los datos se encuentran almacenados en formato CSV bajo el nombre `./data/raw_data.csv`.
+Las instrucciones de replicación del proyecto asumen que los datos se encuentran almacenados en formato CSV bajo el nombre 'raw_data.csv'.
 
-## Documentación
-> El equipo debe detallar qué actividades de limpieza se deben efectuar al set de datos para su uso, siempre teniendo en mente el objetivo planteado para el proyecto. En el README se debe incluir una sección con las actividades realizadas, explicar cualquier eración no trivial usada y explicar por qué fue necesaria dicha actividad de limpieza.
-Además se debe tener en el repositorio al menos un script para efectuar la limpieza
-con los datos en bruto.
 
-Para cargar los datos fue necesario poner todas las columnas en tipo text, pues varias columnas tenian NA como atributos. Por lo que lo primero que habra que hacer es cambiar los NA por nulls. Después de hacer ese proceso con todas las columnas ponemos todas las columnas en su tipo de dato correcto
+Para cargar los datos fue necesario poner todas las columnas en tipo text, lo cual se puede observar en el archivo de raw_data_creation_and_load.sql en la carpeta data, pues varias columnas tenian NA como atributos. Por lo que lo primero que habra que hacer es cambiar los NA por nulls. Después de hacer ese proceso con todas las columnas ponemos todas las columnas en su tipo de dato correcto. Otra consideración importante a considerar es que al descargar los datos existe una columna con los índices de cada fila, la cual es totalmente inecesaria para nuestro análisis, por lo cual tuvimos que eliminarla, tanto para poder cargar los datos (pues esa columna no tenía originalmente nombre y generaba problemas) como porque no nos da ninguna información relevante.
 
 
 ### Estructura del repositorio
@@ -88,7 +84,7 @@ Para cargar los datos fue necesario poner todas las columnas en tipo text, pues 
     ├── README.md                                         <- Documentación para desarrolladores de este proyecto (i.e., reporte escrito)
     ├── data
     │   ├── .gitignore
-    │   └── raw_data.csv                                  <- Datos en formato CSV como vienen de la fuente original
+    │   └── raw_data_creation_and_load.sql                                  <-  Script de carga inicial
     │
     ├── pipeline_scripts                                  <- Scripts de SQL para ejecución del pipeline de datos
     │   ├── 01_raw_data_schema_creation_and_load.sql      <- Script de carga inicial (i.e., actividad B)
@@ -101,26 +97,11 @@ Para cargar los datos fue necesario poner todas las columnas en tipo text, pues 
         ├── ...                                           <- Otras consultas en caso de ser requeridas
         └── 0N_analytical_queries.sql                     <- Consultas de interés sobre los datos normalizados (i.e., soporte de actividad E)
 
-
-> B) Carga inicial y análisis preliminar
-Se debe documentar en el repositorio cómo realizar la carga inicial del set de datos a una base de datos de tipo Postgres. Así mismo, se deben agregar los scripts
-pertinentes para la creación del esquema inicial de la carga.
-También, mediante el uso de consultas SQL, que deben ser incluidas en un script en el repositorio, se deberá realizar un análisis exploratorio de los datos. Algunas
-sugerencias son:
-- ¿Existen columnas con valores únicos?
-- Mínimos y máximos de fechas
-- Mínimos, máximos y promedios de valores numéricos
-- Duplicados en atributos categóricos
-- Columnas redundantes
-- Conteo de tuplas por cada categoría
-- Conteo de valores nulos
-- ¿Existen inconsistencias en el set de datos?
-
   
 ## Requerimientos para replicación del proyecto
 
 1. Descargar los datos en bruto del proyecto de acuerdo a las instrucciones del apartado de [Fuente de datos](#fuente-de-datos).
-2. Contar con `postgres 16` o superior instalado en la computadora o servidor donde se replicará el proyecto.
+2. Contar con 'postgres 16' o superior instalado en la computadora o servidor donde se replicará el proyecto.
 3. Contar con una base de datos exclusiva para este proyecto. Todas las instrucciones del proyecto asumen que la sesión está conectada a la misma base de datos.
 4. ...
 5. El resto de las instrucciones asumen que el directorio de trabajo para `psql` es la raíz de este proyecto.
@@ -139,10 +120,30 @@ CREATE DATABASE casoscovid2022;
 ```
 \i raw_data_creation_and_load.sql
 ```
-4. Copy 
+4. Copy
+
+Es importante cambiar el FROM con el archivo csv recien descargado y con la primera columna quitada como se menciona arriba, de lo contrario el siguiente código no funcionara.
 ```
-\copy raw.casoscovid2022(fecha_actualizacion,id_registro,origen,sector,entidad_um,sexo,entidad_nac,entidad_res,municipio_res,tipo_paciente,fecha_ingreso,fecha_sintomas,fecha_def,intubado,neumonia,edad,nacionalidad,embarazo,habla_lengua_indig,indigena,diabetes,epoc,asma,inmusupr,hipertension,otra_com,cardiovascular,obesidad,renal_cronica,tabaquismo,otro_caso,toma_muestra_lab,resultado_lab,toma_muestra_antigeno,resultado_antigeno,clasificacion_final,migrante,pais_nacionalidad,pais_origen,uci) FROM 'C:/Users/caveo/OneDrive - INSTITUTO TECNOLOGICO AUTONOMO DE MEXICO/Documents/BD/ProyectoBD/casos_nacionales_covid-19_2022_semestre2.csv' WITH (FORMAT CSV, HEADER true, DELIMITER ',', ENCODING 'LATIN1');
+\copy raw.casoscovid2022(fecha_actualizacion,id_registro,origen,sector,entidad_um,sexo,entidad_nac,entidad_res,municipio_res,tipo_paciente,fecha_ingreso,fecha_sintomas,fecha_def,intubado,neumonia,edad,nacionalidad,embarazo,habla_lengua_indig,indigena,diabetes,epoc,asma,inmusupr,hipertension,otra_com,cardiovascular,obesidad,renal_cronica,tabaquismo,otro_caso,toma_muestra_lab,resultado_lab,toma_muestra_antigeno,resultado_antigeno,clasificacion_final,migrante,pais_nacionalidad,pais_origen,uci) FROM 'path_to_downloaded_csv/raw_data.csv' WITH (FORMAT CSV, HEADER true, DELIMITER ',', ENCODING 'LATIN1');
 ```
+
+
+
+
+> B) Carga inicial y análisis preliminar
+Se debe documentar en el repositorio cómo realizar la carga inicial del set de datos a una base de datos de tipo Postgres. Así mismo, se deben agregar los scripts
+pertinentes para la creación del esquema inicial de la carga.
+También, mediante el uso de consultas SQL, que deben ser incluidas en un script en el repositorio, se deberá realizar un análisis exploratorio de los datos. Algunas
+sugerencias son:
+- ¿Existen columnas con valores únicos?
+- Mínimos y máximos de fechas
+- Mínimos, máximos y promedios de valores numéricos
+- Duplicados en atributos categóricos
+- Columnas redundantes
+- Conteo de tuplas por cada categoría
+- Conteo de valores nulos
+- ¿Existen inconsistencias en el set de datos?
+
 
 Finalmente, para cargar los datos en bruto se debe ejecutar el siguiente comando en una sesión de línea de comandos `psql`:
 
