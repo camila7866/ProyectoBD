@@ -131,6 +131,21 @@ Se deberán cargar  1745431 registros
 
 ## Limpieza de datos
 
+Lo primero que hicimos fue transformar todas las columnas a su tipo de datos correspondiente pues para cargarlos originalmente cargamos todos los datos como tipo text, eso fue así pues varias columnas tenían NA como valor, por lo que volvimos NULLS esos valores y posteriormente los cambiamos. 
+
+Eliminamos 4 columnas que considerabamos irrelevantes para nuestro análisis: 
+- toma_muestra_lab
+- toma_muestra_antigeno
+- otro_caso
+- habla_lengua_indigena
+
+toma_muestra_lab y toma_muestra_antigeno las eliminamos pues nos daba información ya existente con las columnas resultado_antigeno y resultado_lab, nos dimos cuenta de que el resultado aparecia como No aplica en los casos que no habia muestra y en todos los demas casos decia sí y como la información que nos interesa es el resultado podemos quitar esas columnas.
+
+habla_lengua_indigena lo eliminamos pues ya teníamos la columna indigena y otro caso no lo consideramos pues no lo consideramos relevante para nuestro análisis.
+
+Después checamos si había inconsistencias con los datos, con lo cual nos dimos cuenta de que había registros con personas que habían fallecido antes de sentir síntomas o antes de ingresar al hospital, lo cual no tenía sentido, por lo que eliminamos esos registros.
+
+
 > Valores únicos
 En nuestro caso que tenemos muchos atributos, no analizaremos por cada uno los que tienen o no valores únicos, porque además es demasiado intuitivo los que claramente no serán valores únicos. De esta manera, los atributos que más probablemente tenga valores únicos, es id_registro. Lo comprobaremos. 
 
