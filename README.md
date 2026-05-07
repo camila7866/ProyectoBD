@@ -120,7 +120,7 @@ Vamos a incluir el script de creación del esquema (aquí se incluye el path abs
 ```
 \i '.../data/raw_data_creation_and_load.sql'
 ```
-3. Ingesta de datos en el esquema: <br>
+3. Ingesta de datos en el esquema. Se debe cambiar el FROM con la base de datos descargados<br>
 ```
 \copy raw.casoscovid2021(columna,fecha_actualizacion,id_registro,origen,sector,entidad_um,sexo,entidad_nac,entidad_res,municipio_res,tipo_paciente,fecha_ingreso,fecha_sintomas,fecha_def,intubado,neumonia,edad,nacionalidad,embarazo,habla_lengua_indig,indigena,diabetes,epoc,asma,inmusupr,hipertension,otra_com,cardiovascular,obesidad,renal_cronica,tabaquismo,otro_caso,toma_muestra_lab,resultado_lab,toma_muestra_antigeno,resultado_antigeno,clasificacion_final,migrante,pais_nacionalidad,pais_origen,uci) FROM '.../casos_nacionales_covid-19_2022_semestre2.csv' WITH (FORMAT CSV, HEADER true, DELIMITER ',', ENCODING 'LATIN1');
 ```
