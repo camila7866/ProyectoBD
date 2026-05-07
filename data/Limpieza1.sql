@@ -1,10 +1,12 @@
 ALTER TABLE raw.casoscovid2021 
-
-DROP COLUMN IF EXISTS dummy,                 
+   
+DROP COLUMN IF EXISTS column,                 
 DROP COLUMN IF EXISTS habla_lengua_indig,   
 DROP COLUMN IF EXISTS otro_caso, 
 DROP COLUMN IF EXISTS toma_muestra_lab,
-DROP COLUMN IF EXISTS toma_muestra_antigeno;
+DROP COLUMN IF EXISTS toma_muestra_antigeno,
+DROP COLUMN IF EXISTS fecha_actualizacion,
+DROP COLUMN IF EXISTS id_registro;
 
 
 --Cambiamos las fechas que dicen NA por NULL
@@ -12,23 +14,11 @@ UPDATE raw.casoscovid2021
 SET fecha_def = NULL 
 WHERE fecha_def = 'NA';
 
---Buscamos si hay alguna fecha con formato invalido
-
-SELECT fecha_actualizacion, fecha_ingreso, fecha_sintomas, fecha_def
-FROM raw.casoscovid2021
-WHERE fecha_actualizacion !~ '^\d{4}-\d{2}-\d{2}$'
-   OR fecha_ingreso !~ '^\d{4}-\d{2}-\d{2}$'
-   OR fecha_sintomas !~ '^\d{4}-\d{2}-\d{2}$'
-   OR fecha_def !~ '^\d{4}-\d{2}-\d{2}$'
-LIMIT 10;
-
-
 
 START TRANSACTION
 
 -- 1. Convertir columnas de fecha
 ALTER TABLE raw.casoscovid2021 
-ALTER COLUMN fecha_actualizacion TYPE DATE USING fecha_actualizacion::DATE,
 ALTER COLUMN fecha_ingreso TYPE DATE USING fecha_ingreso::DATE,
 ALTER COLUMN fecha_sintomas TYPE DATE USING fecha_sintomas::DATE,
 ALTER COLUMN fecha_def TYPE DATE USING fecha_def::DATE;
@@ -59,13 +49,15 @@ ALTER COLUMN cardiovascular TYPE estado_categorico USING cardiovascular::estado_
 ALTER COLUMN obesidad TYPE estado_categorico USING obesidad::estado_categorico,
 ALTER COLUMN renal_cronica TYPE estado_categorico USING renal_cronica::estado_categorico,
 ALTER COLUMN tabaquismo TYPE estado_categorico USING tabaquismo::estado_categorico,
-ALTER COLUMN embarazo TYPE estado_categorico USING embarazo::estado_categorico;
+ALTER COLUMN embarazo TYPE estado_categorico USING embarazo::estado_categorico,
+ALTER COLUMN migrante  TYPE estado_categorico USING migrante::estado_categorico;
+ALTER COLUMN uci  TYPE estado_categorico USING uci::estado_categorico
+
 
 COMMIT;
 
 START TRANSACTION;
 ALTER TABLE raw.casoscovid2021 
-ALTER COLUMN id_registro TYPE VARCHAR(50),
 ALTER COLUMN origen TYPE VARCHAR(100),
 ALTER COLUMN sector TYPE VARCHAR(100),
 ALTER COLUMN entidad_um TYPE VARCHAR(100),
@@ -74,7 +66,7 @@ ALTER COLUMN entidad_nac TYPE VARCHAR(100),
 ALTER COLUMN entidad_res TYPE VARCHAR(100),
 ALTER COLUMN municipio_res TYPE VARCHAR(100),
 ALTER COLUMN tipo_paciente TYPE VARCHAR(50),
-ALTER COLUMN nacionalidad TYPE VARCHAR(50),
+ALTER COLUMN nacionalidad TYPE VARCHAR(50), 
 ALTER COLUMN resultado_lab TYPE VARCHAR(100),
 ALTER COLUMN resultado_antigeno TYPE VARCHAR(100),
 ALTER COLUMN clasificacion_final TYPE VARCHAR(100),
