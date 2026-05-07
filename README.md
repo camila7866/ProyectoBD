@@ -14,9 +14,9 @@
 
 ## Introducción
 
-* Esta base de datos incluye todos los casos diarios asociados a COVID-19 a nivel federal. Cuenta con contenido desagregado por entidad, sexo, edad, nacionalidad, padecimientos asociados entre otros.
-* Este conjunto de datos sólo contempla casos cuyo municipio de residencia sea la Ciudad de México o casos cuya Unidad Médica sea la Ciudad de México.
-* La Secretaría de Salud de la Ciudad de México recolecta los datos. 
+* Esta base de datos incluye todos los casos diarios asociados a COVID-19 a nivel federal. Cuenta con contenido dividido por entidad, sexo, edad, nacionalidad, padecimientos asociados entre otros.
+* Este conjunto de datos sólo contempla casos cuyo municipio de residencia o Unidad Médica sea la Ciudad de México.
+* La Secretaría de Salud de la Ciudad de México recolecta los datos, muchos de ellos proporcionados por Unidades de Salud Monitoras de Enfermedades Respiratorias en México. 
 * La misión principal de la Secretaría es garantizar el derecho efectivo a la salud, y sin discriminación, a los habitantes de la capital así como brindar servicios sanitarios a quienes carecen de seguridad social laboral con el objetivo de que sus habitantes tengan una vida plena y digna.
 * La base de datos comprende información correspondiente al periodo del 1 de julio de 2022 al 14 de agosto de 2022. Las actualizaciones diarias se realizaban únicamente a la base del semestre en curso y se elaboró con base en los Datos Abiertos y el Diccionario de Datos provista por el Gobierno Federal. Fue creada el 8 de agosto de 2022 y su última actualización se realizó el 14 de febrero de 2023. 
 * Identificar cuáles fueron los potenciales grupos de riesgo en la ciudad de méxico y la 
