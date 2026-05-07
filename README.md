@@ -131,19 +131,31 @@ Se deberán cargar  1745431 registros
 
 ## Limpieza de datos
 
-Lo primero que hicimos fue transformar todas las columnas a su tipo de datos correspondiente pues para cargarlos originalmente cargamos todos los datos como tipo text, eso fue así pues varias columnas tenían NA como valor, por lo que volvimos NULLS esos valores y posteriormente los cambiamos. 
+Lo primero que hicimos fue transformar todas las columnas a su tipo de datos correspondiente pues originalmente estaban todos los datos como tipo text, eso fue así pues varias columnas tenían NA como valor, por lo que volvimos NULLS esos valores y posteriormente los cambiamos. 
+
+Para iniciar la limpieza descarga el archivo Limpieza1.sql en data y ejecuta el siguiente programa en tu terminal cambiando lo que esta después de la i por la ruta donde tienes descargado el archivo 
+
+```
+\i '.../Limpieza1.sql'
+```
 
 Eliminamos 4 columnas que considerabamos irrelevantes para nuestro análisis: 
 - toma_muestra_lab
 - toma_muestra_antigeno
 - otro_caso
-- habla_lengua_indigena
+- habla_lengua_indig
+- id_registro
+- fecha_actualizacion
+- column
 
 toma_muestra_lab y toma_muestra_antigeno las eliminamos pues nos daba información ya existente con las columnas resultado_antigeno y resultado_lab, nos dimos cuenta de que el resultado aparecia como No aplica en los casos que no habia muestra y en todos los demas casos decia sí y como la información que nos interesa es el resultado podemos quitar esas columnas.
 
 habla_lengua_indigena lo eliminamos pues ya teníamos la columna indigena y otro caso no lo consideramos pues no lo consideramos relevante para nuestro análisis.
 
 Después checamos si había inconsistencias con los datos, con lo cual nos dimos cuenta de que había registros con personas que habían fallecido antes de sentir síntomas o antes de ingresar al hospital, lo cual no tenía sentido, por lo que eliminamos esos registros.
+
+
+
 
 
 > Valores únicos
