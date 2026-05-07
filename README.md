@@ -9,7 +9,7 @@
 | Yahya Hasen Halem Morales | 219072 | [YahyaHalem](https://github.com/YahyaHalem) |
 | Camila Velasco Ortega | 217149 | [camila7866](https://github.com/camila7866) |
 | Sofia Velazquez Velazquez | 222048 | [sofivelqz](https://github.com/sofivelqz) |
-| Diego Haro Sandoval | | |
+| Diego Haro Sandoval | 209688| [DiegoHaroS](https://github.com/DiegoHaroS) | 
 
 
 ## Introducción
