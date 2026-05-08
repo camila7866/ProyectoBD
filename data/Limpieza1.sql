@@ -5,7 +5,7 @@ DROP COLUMN IF EXISTS otro_caso,
 DROP COLUMN IF EXISTS toma_muestra_lab,
 DROP COLUMN IF EXISTS toma_muestra_antigeno,
 DROP COLUMN IF EXISTS fecha_actualizacion,
-DROP COLUMN IF EXISTS id_registro
+DROP COLUMN IF EXISTS id_registro,
 DROP COLUMN IF EXISTS entidad_nac, 
 DROP COLUMN IF EXISTS pais_nacionalidad, 
 DROP COLUMN IF EXISTS pais_origen;
@@ -69,7 +69,7 @@ ALTER COLUMN embarazo TYPE estado_categorico USING embarazo::estado_categorico,
 ALTER COLUMN migrante TYPE estado_categorico USING migrante::estado_categorico,
 ALTER COLUMN uci TYPE estado_categorico USING uci::estado_categorico, 
 ALTER COLUMN sexo TYPE sexoT USING sexo::sexoT,
-ALTER COLUMN sexo TYPE tipo_pacienteT USING tipo_paciente::tipo_pacienteT,    ;
+ALTER COLUMN sexo TYPE tipo_pacienteT USING tipo_paciente::tipo_pacienteT;
 
 COMMIT;
 
