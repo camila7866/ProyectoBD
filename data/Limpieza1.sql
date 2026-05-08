@@ -5,7 +5,10 @@ DROP COLUMN IF EXISTS otro_caso,
 DROP COLUMN IF EXISTS toma_muestra_lab,
 DROP COLUMN IF EXISTS toma_muestra_antigeno,
 DROP COLUMN IF EXISTS fecha_actualizacion,
-DROP COLUMN IF EXISTS id_registro;
+DROP COLUMN IF EXISTS id_registro
+DROP COLUMN IF EXISTS entidad_nac, 
+DROP COLUMN IF EXISTS pais_nacionalidad, 
+DROP COLUMN IF EXISTS pais_origen;
 
 -- Cambiamos las fechas que dicen NA por NULL
 UPDATE raw.casoscovid2021
@@ -35,6 +38,17 @@ CREATE TYPE estado_categorico AS ENUM (
     'NO APLICA'
 );
 
+CREATE TYPE sexoT AS ENUM (
+    'HOMBRE', 
+    'MUJER'
+);
+
+CREATE TYPE tipo_pacienteT AS ENUM (
+    'AMBULATORIO', 
+    'HOSPITALIZADO'
+);
+
+
 START TRANSACTION;
 
 ALTER TABLE raw.casoscovid2021
@@ -53,9 +67,13 @@ ALTER COLUMN renal_cronica TYPE estado_categorico USING renal_cronica::estado_ca
 ALTER COLUMN tabaquismo TYPE estado_categorico USING tabaquismo::estado_categorico,
 ALTER COLUMN embarazo TYPE estado_categorico USING embarazo::estado_categorico,
 ALTER COLUMN migrante TYPE estado_categorico USING migrante::estado_categorico,
-ALTER COLUMN uci TYPE estado_categorico USING uci::estado_categorico;
+ALTER COLUMN uci TYPE estado_categorico USING uci::estado_categorico, 
+ALTER COLUMN sexo TYPE sexoT USING sexo::sexoT,
+ALTER COLUMN sexo TYPE tipo_pacienteT USING tipo_paciente::tipo_pacienteT,    ;
 
 COMMIT;
+
+
 
 START TRANSACTION;
 
