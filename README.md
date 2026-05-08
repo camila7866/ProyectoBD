@@ -29,11 +29,11 @@ cantidad de ocurrencias de condiciones críticas para el padecimiento de COVID-1
 | id_registro | hexadecimal | Es un id único para cada paciente. |
 | origen | categórico | Nos dice si la información del paciente fue dada por las unidades de salud monitoras de enfermedades respiratorias (USMER) o no. |
 | sector | categórico | Nos dice de qué sector de la población es el paciente dependiendo de su actividad. Distingue entre los trabajadores del gobierno, privados y universitarios. |
-| entidad_um | categórico | Dice de qué entidad es la unidad médica. |
-| entidad_nac | categórico | Entidad dónde nació el paciente. |
-| entidad_res | categórico | Entidad dónde reside el paciente. |
+| entidad_um | texto | Dice de qué entidad es la unidad médica. |
+| entidad_nac | texto | Entidad dónde nació el paciente. |
+| entidad_res | texto | Entidad dónde reside el paciente. |
 | sexo | categórico | Sexo del paciente. |
-| municipio_res | categórico | El municipio en dónde reside el paciente. |
+| municipio_res | texto | El municipio en dónde reside el paciente. |
 | tipo_paciente | categórico | Nos indica si el paciente fue hospitalizado como "Hospitalizado" y si no como "Ambulatorio". Un paciente ambulatorio es el que recibió atención médica sin ser internado. |
 | fecha_ingreso | date | Nos indica la fecha en la que el paciente recibió la atención médica, o en la que fue internado. |
 | fecha_sintomas | date | Nos indica la fecha en la que empezaron los síntomas. |
@@ -49,12 +49,12 @@ cantidad de ocurrencias de condiciones críticas para el padecimiento de COVID-1
 | asma | categórico | Nos indica si el paciente padece de asma. |
 | inmusupr | categórico | Nos indica si el paciente padece de inmunosupresión. |
 | hipertension | categórico | Nos indica si el paciente padece hipertensión. |
-| otra_com | categórico | Nos indica si el paciente padece de otra complicación. |
+| otra_com | texto | Nos indica si el paciente padece de otra complicación. |
 | cardiovascular | categórico | Nos indica si el paciente padece de problemas cardiovasculares. |
 | obesidad | categórico | Nos indica si el paciente padece de obesidad. |
 | renal_cronica | categórico | Nos indica si el paciente padece de enfermedad renal crónica. |
 | tabaquismo | categórico | Nos indica si el paciente padece de tabaquismo. |
-| otro_caso | categórico | Nos indica si el paciente padece de otras adicciones. |
+| otro_caso | texto | Nos indica si el paciente padece de otras adicciones. |
 | toma_muestra_lab | categórico | Nos indica si se tomó muestra para prueba PCR de SARS-COV-2. |
 | resultado_lab | texto | Nos indica el resultado de la prueba PCR de SARS-COV-2. |
 | toma_muestra_antigeno | categórico | Nos indica si se tomó muestra para prueba de antígeno de SARS-COV-2. |
