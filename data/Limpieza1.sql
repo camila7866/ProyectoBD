@@ -10,6 +10,10 @@ DROP COLUMN IF EXISTS entidad_nac,
 DROP COLUMN IF EXISTS pais_nacionalidad, 
 DROP COLUMN IF EXISTS pais_origen;
 
+DROP TYPE IF EXISTS estado_categorico CASCADE;
+DROP TYPE IF EXISTS sexoT CASCADE;
+DROP TYPE IF EXISTS tipo_pacienteT CASCADE;
+
 -- Cambiamos las fechas que dicen NA por NULL
 UPDATE raw.casoscovid2021
 SET fecha_def = NULL
