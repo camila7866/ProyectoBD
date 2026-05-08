@@ -1,5 +1,5 @@
 ALTER TABLE raw.casoscovid2021 
-DROP COLUMN IF EXISTS "column",
+DROP COLUMN IF EXISTS columna,
 DROP COLUMN IF EXISTS habla_lengua_indig,
 DROP COLUMN IF EXISTS otro_caso,
 DROP COLUMN IF EXISTS toma_muestra_lab,
