@@ -69,7 +69,7 @@ ALTER COLUMN embarazo TYPE estado_categorico USING embarazo::estado_categorico,
 ALTER COLUMN migrante TYPE estado_categorico USING migrante::estado_categorico,
 ALTER COLUMN uci TYPE estado_categorico USING uci::estado_categorico, 
 ALTER COLUMN sexo TYPE sexoT USING sexo::sexoT,
-ALTER COLUMN sexo TYPE tipo_pacienteT USING tipo_paciente::tipo_pacienteT;
+ALTER COLUMN tipo_paciente TYPE tipo_pacienteT USING tipo_paciente::tipo_pacienteT;
 
 COMMIT;
 
@@ -81,16 +81,11 @@ ALTER TABLE raw.casoscovid2021
 ALTER COLUMN origen TYPE VARCHAR(100),
 ALTER COLUMN sector TYPE VARCHAR(100),
 ALTER COLUMN entidad_um TYPE VARCHAR(100),
-ALTER COLUMN sexo TYPE VARCHAR(10),
-ALTER COLUMN entidad_nac TYPE VARCHAR(100),
 ALTER COLUMN entidad_res TYPE VARCHAR(100),
 ALTER COLUMN municipio_res TYPE VARCHAR(100),
-ALTER COLUMN tipo_paciente TYPE VARCHAR(50),
 ALTER COLUMN nacionalidad TYPE VARCHAR(50),
 ALTER COLUMN resultado_lab TYPE VARCHAR(100),
 ALTER COLUMN resultado_antigeno TYPE VARCHAR(100),
-ALTER COLUMN clasificacion_final TYPE VARCHAR(100),
-ALTER COLUMN pais_nacionalidad TYPE VARCHAR(100),
-ALTER COLUMN pais_origen TYPE VARCHAR(100);
+ALTER COLUMN clasificacion_final TYPE VARCHAR(100);
 
 COMMIT;
