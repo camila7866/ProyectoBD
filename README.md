@@ -116,28 +116,28 @@ Después:
 \c casoscovid2021;
 ```
 2. Creación del esquema: <br>
-Vamos a incluir el script de creación del esquema (aquí se incluye el path absoluto de la ubicación): 
+En la carpeta de data del repositorio vas a poder encontrar el archivo raw_data_creation_and_load.sql, para crear el esquema descgalo y ejecuta el siguiente comando cambiando lo que está entre comillas por la ruta de tu archivo: 
 ```
 \i '.../data/raw_data_creation_and_load.sql'
 ```
-3. Ingesta de datos en el esquema. Se debe cambiar el FROM con la base de datos descargados<br>
+3. Ahora vamos a cargar los datos dentro del esquema, pera eso ten a la mano el archivo csv de casos_nacionales_covid-19_2021_semestre1, el cual puedes encontrar en la página de [Casos Nacionales 1° Semestre 2021](https://datos.cdmx.gob.mx/dataset/casos-asociados-a-covid-19/resource/a8236652-a729-49bd-958a-5615ea609397?inner_span=True). Se debe cambiar el FROM con tu ruta personal<br>
 ```
 \copy raw.casoscovid2021(columna,fecha_actualizacion,id_registro,origen,sector,entidad_um,sexo,entidad_nac,entidad_res,municipio_res,tipo_paciente,fecha_ingreso,fecha_sintomas,fecha_def,intubado,neumonia,edad,nacionalidad,embarazo,habla_lengua_indig,indigena,diabetes,epoc,asma,inmusupr,hipertension,otra_com,cardiovascular,obesidad,renal_cronica,tabaquismo,otro_caso,toma_muestra_lab,resultado_lab,toma_muestra_antigeno,resultado_antigeno,clasificacion_final,migrante,pais_nacionalidad,pais_origen,uci) FROM '.../casos_nacionales_covid-19_2021_semestre1.csv' WITH (FORMAT CSV, HEADER true, DELIMITER ',', ENCODING 'LATIN1');
 ```
 Se deberán cargar  1745431 registros
 
-> Esta es una buena sección para documentar los hallazgos del inciso B:
-> Carga inicial y análisis preliminar.
 
 ## Limpieza de datos
 
-Lo primero que hicimos fue transformar todas las columnas a su tipo de datos correspondiente pues originalmente estaban todos los datos como tipo text, eso fue así pues varias columnas tenían NA como valor, por lo que volvimos NULLS esos valores y posteriormente los cambiamos. 
+Lo primero que hicimos fue transformar todas las columnas a su tipo de datos correspondiente pues originalmente hicimos todos los datos como tipo text, eso fue así por si había inconsistencia con los datos. 
 
 Para iniciar la limpieza descarga el archivo Limpieza1.sql en data y ejecuta el siguiente programa en tu terminal cambiando lo que esta después de la i por la ruta donde tienes descargado el archivo 
 
 ```
 \i '.../Limpieza1.sql'
 ```
+
+A continuación esta todo el proceso de lo que hacemos en ese archivo:
 
 Eliminamos 4 columnas que considerabamos irrelevantes para nuestro análisis: 
 - toma_muestra_lab
@@ -154,6 +154,8 @@ habla_lengua_indigena lo eliminamos pues ya teníamos la columna indigena y otro
 
 Después checamos si había inconsistencias con los datos, con lo cual nos dimos cuenta de que había registros con personas que habían fallecido antes de sentir síntomas o antes de ingresar al hospital, lo cual no tenía sentido, por lo que eliminamos esos registros.
 
+
+# Creación de tablas
 
 
 
