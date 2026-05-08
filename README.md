@@ -41,7 +41,7 @@ cantidad de ocurrencias de condiciones críticas para el padecimiento de COVID-1
 | intubado | categórico | Nos indica si el paciente fue intubado. |
 | neumonía | categórico | Nos indica si el paciente sufrió de neumonía. |
 | edad | int | Nos indica la edad del paciente. |
-| nacionalidad | categórico | Nos indica la nacionalidad del paciente. |
+| nacionalidad | texto | Nos indica la nacionalidad del paciente. |
 | embarazo | categórico | Nos indica si la paciente estaba embarazada al momento de recibir la atención médica. |
 | habla_lengua_indigena | categórico | Nos dice si el paciente habla alguna lengua indígena. |
 | indigena | categórico | Nos dice si el paciente es de origen indígena. |
@@ -56,13 +56,13 @@ cantidad de ocurrencias de condiciones críticas para el padecimiento de COVID-1
 | tabaquismo | categórico | Nos indica si el paciente padece de tabaquismo. |
 | otro_caso | categórico | Nos indica si el paciente padece de otras adicciones. |
 | toma_muestra_lab | categórico | Nos indica si se tomó muestra para prueba PCR de SARS-COV-2. |
-| resultado_lab | categórico | Nos indica el resultado de la prueba PCR de SARS-COV-2. |
+| resultado_lab | texto | Nos indica el resultado de la prueba PCR de SARS-COV-2. |
 | toma_muestra_antigeno | categórico | Nos indica si se tomó muestra para prueba de antígeno de SARS-COV-2. |
-| resultado_antigeno | categórico | Nos indica el resultado de la prueba de antígeno de SARS-COV-2. |
-| clasificacion_final | categórico | Nos indica el tipo de caso: "Caso de COVID-19 confirmado por asociación", "Caso de COVID-19 confirmado por comité", "Caso de SARS-COV-2 confirmado por prueba", "Caso sospechoso", "Inválido por laboratorio", "Negativo a SARS-COV-2 por prueba", "No realizado por laboratorio". |
+| resultado_antigeno | texto | Nos indica el resultado de la prueba de antígeno de SARS-COV-2. |
+| clasificacion_final | texto | Nos indica el tipo de caso: "Caso de COVID-19 confirmado por asociación", "Caso de COVID-19 confirmado por comité", "Caso de SARS-COV-2 confirmado por prueba", "Caso sospechoso", "Inválido por laboratorio", "Negativo a SARS-COV-2 por prueba", "No realizado por laboratorio". |
 | migrante | categórico | Nos indica si el paciente es migrante. |
-| pais_nacionalidad | categórico | Nos indica el país de nacionalidad del paciente. |
-| pais_origen | categórico | Nos indica el país de nacimiento del paciente. |
+| pais_nacionalidad | texto | Nos indica el país de nacionalidad del paciente. |
+| pais_origen | texto | Nos indica el país de nacimiento del paciente. |
 | uci | categórico | Nos indica si el paciente fue ingresado a la unidad de cuidados intensivos. |
 | diabetes | categórico | Nos indica si el paciente tiene diabetes. |
 | epoc | categórico | Nos indica si el paciente tiene la Enfermedad Pulmonar Obstructiva Crónica (EPOC). |
