@@ -5,7 +5,6 @@ DROP COLUMN IF EXISTS otro_caso,
 DROP COLUMN IF EXISTS toma_muestra_lab,
 DROP COLUMN IF EXISTS toma_muestra_antigeno,
 DROP COLUMN IF EXISTS fecha_actualizacion,
-DROP COLUMN IF EXISTS id_registro,
 DROP COLUMN IF EXISTS entidad_nac, 
 DROP COLUMN IF EXISTS pais_nacionalidad, 
 DROP COLUMN IF EXISTS pais_origen;
