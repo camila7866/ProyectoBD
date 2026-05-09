@@ -1,3 +1,27 @@
+-- Eliminamos duplicados considerando como criterio de duplicados todos los atributos menos el registro_id
+-- Paso 1: Crear una tabla temporal con los registros únicos
+CREATE TABLE raw.casoscovid2021_sin_duplicados AS
+SELECT DISTINCT ON (origen, sector, entidad_um, sexo, entidad_res, municipio_res, 
+                    tipo_paciente, fecha_ingreso, fecha_sintomas, fecha_def, 
+                    intubado, neumonia, edad, nacionalidad, embarazo, indigena, 
+                    diabetes, epoc, asma, inmusupr, hipertension, otra_com, 
+                    cardiovascular, obesidad, renal_cronica, tabaquismo, 
+                    resultado_lab, resultado_antigeno, clasificacion_final, 
+                    migrante, uci)
+    *  
+FROM raw.casoscovid2021
+ORDER BY origen, sector, entidad_um, sexo, entidad_res, municipio_res, 
+         tipo_paciente, fecha_ingreso, fecha_sintomas, fecha_def, 
+         intubado, neumonia, edad, nacionalidad, embarazo, indigena, 
+         diabetes, epoc, asma, inmusupr, hipertension, otra_com, 
+         cardiovascular, obesidad, renal_cronica, tabaquismo, 
+         resultado_lab, resultado_antigeno, clasificacion_final, 
+         migrante, uci, id_registro; 
+
+-- Paso 2: Reemplazar la tabla original
+DROP TABLE raw.casoscovid2021;
+ALTER TABLE raw.casoscovid2021_sin_duplicados RENAME TO casoscovid2021;
+
 -- 1. Inconsistencias con fechas
 
 -- 1.1 Fecha de síntomas después de fecha de ingreso
