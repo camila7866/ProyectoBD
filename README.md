@@ -80,14 +80,12 @@ Para cargar los datos fue necesario poner todas las columnas en tipo text, lo cu
 
     ├── README.md                                         <- Documentación para desarrolladores de este proyecto (i.e., reporte escrito)
     ├── data
-    │   ├── .gitignore
     │   └── raw_data_creation_and_load.sql                                  <-  Script de carga inicial
     │
     ├── pipeline_scripts                                  <- Scripts de SQL para ejecución del pipeline de datos
-    │   ├── 01_raw_data_schema_creation_and_load.sql      <- Script de carga inicial (i.e., actividad B)
-    │   ├── 02_data_cleaning.sql                          <- Script de limpieza de datos (i.e., actividad C)
-    │   ├── 03_data_normalization.sql                     <- Script de normalización de relaciones (i.e., actividad D)
-    │   └── 04_analytical_attributes_creation.sql         <- Script de creación de atributos analíticos (i.e., actividad E)
+    │   ├── Limpieza1.sql                                 <- Script de limpieza de datos (i.e., actividad C)
+    │   ├── Limpieza2.sql                                 <- Script de limpieza de datos (i.e., actividad C)
+    │   └── CreacionTablas.sql                            <- Script de creación de tablas (i.e., actividad *)
     │
     └── exploration_queries                               <- Scripts de SQL para exploración de datos
         ├── 01_raw_data_exploration.sql                   <- Consultas de exploración de datos en bruto (i.e., soporte de actividad B)
@@ -129,8 +127,6 @@ En caso de que no se carguen correctamente los acentos modificar el encoding man
 
 ## Limpieza de datos
 
-Lo primero que hicimos fue transformar todas las columnas a su tipo de datos correspondiente pues originalmente hicimos todos los datos como tipo text, eso fue así por si había inconsistencia con los datos. 
-
 Para iniciar la limpieza descarga el archivo Limpieza1.sql en data y ejecuta el siguiente programa en tu terminal cambiando lo que esta después de la i por la ruta donde tienes descargado el archivo 
 
 ```
@@ -138,6 +134,8 @@ Para iniciar la limpieza descarga el archivo Limpieza1.sql en data y ejecuta el 
 ```
 
 A continuación esta todo el proceso de lo que hacemos en ese archivo:
+
+Lo primero que hicimos fue transformar todas las columnas a su tipo de datos correspondiente pues originalmente hicimos todos los datos como tipo text, eso fue así por si había inconsistencia con los datos. 
 
 Eliminamos 4 columnas que considerabamos irrelevantes para nuestro análisis: 
 - toma_muestra_lab
@@ -157,11 +155,20 @@ Después checamos si había inconsistencias con los datos, con lo cual nos dimos
 
 # Creación de tablas
 
+> ERD
 
+Para tener los datos divididos en las tablas mostradas en el ERD descarga el archivo CreacionTablas en data y ejecuta en terminal el siguiente código cambiando lo que esta entre comillas después de la i por la ruta de tu archivo descargado.
 
+```
+\i '.../CreacionTablas.sql'
+```
 
 > Valores únicos
-En nuestro caso que tenemos muchos atributos, no analizaremos por cada uno los que tienen o no valores únicos, porque además es demasiado intuitivo los que claramente no serán valores únicos. De esta manera, los atributos que más probablemente tenga valores únicos, es id_registro. Lo comprobaremos. 
+A continuación esta un listado con los valores unicos de algunas columnas. Columnas como municipio_res no la mostraremos completa debido a la gran cantidad de datos diferentes
+
+
+
+ 
 
 > Tipos de datos
 En la carga inicial introducimos todos los datos de las columnas con tipo de datos TEXT, ya que era el único compatible en todos los casos, así que empezaremos por modificar los que explícitamente no corresponden a text. 
