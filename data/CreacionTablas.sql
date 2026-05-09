@@ -99,7 +99,7 @@ nombre VARCHAR(100)
 --Llenado de tabla enfermedad
 
 INSERT INTO raw.enfermedad (nombre) VALUES
-('diabetes') , ('epoc'), ('asma'), ('inmusupr'), ('hipertension'),('neumonia'), ('hipertension'), ('otra_com'), ('cardiovascular'), ('renal_cronica')
+('diabetes') , ('epoc'), ('asma'), ('inmusupr'), ('hipertension'),('neumonia'), ('hipertension'), ('otra_com'), ('cardiovascular'), ('renal_cronica');
 
 
 ------------------------------------------------------------------------- TABLA PACIENTE_ENFERMEDAD---------------------------------------------------------------------------------------
