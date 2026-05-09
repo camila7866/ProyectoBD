@@ -99,7 +99,8 @@ Para cargar los datos fue necesario poner todas las columnas en tipo text, lo cu
 4. ...
 5. El resto de las instrucciones asumen que el directorio de trabajo para `psql` es la raíz de este proyecto.
 
-⚠️Tomar en cuenta que debido a la gran cantidad de datos ejecutar todas las consultas para obtener los mismos resultados puede tomar tiempo. En nuestro caso toma aproximadamente 10 minutos ejecutar los códigos desde la carga inicial hasta la creación de tablas. El tiempo puede variar según el dispositivo⚠️
+⚠️Tomar en cuenta que debido a la gran cantidad de datos a ejecutar,  las consultas pueden tomar tiempo. En nuestro caso toma aproximadamente 10 minutos ejecutar los códigos desde la carga inicial hasta la creación de tablas. El tiempo puede variar según el dispositivo⚠️
+
 ## Carga inicial
 
 Dentro de la terminal de psql:
