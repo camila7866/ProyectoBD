@@ -103,7 +103,7 @@ Para cargar los datos fue necesario poner todas las columnas en tipo text, lo cu
 
 ## Carga inicial
 
-Dentro de psql:
+Dentro de la terminal de psql:
 
 1. Creación y conexión de la base de datos: <br>
 ```
@@ -114,15 +114,20 @@ Después:
 \c casoscovid2021;
 ```
 2. Creación del esquema: <br>
-En la carpeta de data del repositorio vas a poder encontrar el archivo raw_data_creation_and_load.sql, para crear el esquema descgalo y ejecuta el siguiente comando cambiando lo que está entre comillas por la ruta de tu archivo: 
+
+En la carpeta de data del repositorio vas a poder encontrar el archivo raw_data_creation_and_load.sql, para crear el esquema descargalo y ejecuta el siguiente comando cambiando lo que está entre comillas por la ruta de tu archivo: 
 ```
 \i '.../data/raw_data_creation_and_load.sql'
 ```
-3. Ahora vamos a cargar los datos dentro del esquema, pera eso ten a la mano el archivo csv de casos_nacionales_covid-19_2021_semestre1, el cual puedes encontrar en la página de [Casos Nacionales 1° Semestre 2021](https://datos.cdmx.gob.mx/dataset/casos-asociados-a-covid-19/resource/a8236652-a729-49bd-958a-5615ea609397?inner_span=True). Se debe cambiar el FROM con tu ruta personal<br>
+3. Copia de los datos de archivo csv a sql: <br>
+
+Para cargar los datos dentro del esquema ten a la mano el archivo csv de casos_nacionales_covid-19_2021_semestre1, el cual puedes encontrar en la página de [Casos Nacionales 1° Semestre 2021](https://datos.cdmx.gob.mx/dataset/casos-asociados-a-covid-19/resource/a8236652-a729-49bd-958a-5615ea609397?inner_span=True). Se debe cambiar el códigoentre comilals después FROM con tu ruta personal donde descargaste el csv <br>
+
 ```
 \copy raw.casoscovid2021(columna,fecha_actualizacion,id_registro,origen,sector,entidad_um,sexo,entidad_nac,entidad_res,municipio_res,tipo_paciente,fecha_ingreso,fecha_sintomas,fecha_def,intubado,neumonia,edad,nacionalidad,embarazo,habla_lengua_indig,indigena,diabetes,epoc,asma,inmusupr,hipertension,otra_com,cardiovascular,obesidad,renal_cronica,tabaquismo,otro_caso,toma_muestra_lab,resultado_lab,toma_muestra_antigeno,resultado_antigeno,clasificacion_final,migrante,pais_nacionalidad,pais_origen,uci) FROM '.../casos_nacionales_covid-19_2021_semestre1.csv' WITH (FORMAT CSV, HEADER true, DELIMITER ',', ENCODING 'LATIN1');
 ```
 Se deberán cargar  1745431 registros
+
 En caso de que no se carguen correctamente los acentos modificar el encoding manualmente en menu -> connection -> view using encoding y modificar por un encoding que permita acentos
 
 ## Limpieza de datos
