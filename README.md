@@ -71,7 +71,7 @@ Para este proyecto se utilizan los datos proporcionados por el portal de datos a
 Las instrucciones de replicación del proyecto asumen que los datos se encuentran almacenados en formato CSV bajo el nombre 'raw_data.csv'.
 
 
-Para cargar los datos fue necesario poner todas las columnas en tipo text, lo cual se puede observar en el archivo de raw_data_creation_and_load.sql en la carpeta data, pues varias columnas tenian NA como atributos. Por lo que lo primero que había que hacer era cambiar los NA por nulls. Después de hacer ese proceso con todas las columnas, pusimos todas las columnas con su tipo de dato correcto. Otra consideración importante fue que al descargar los datos existía una columna con los índices de cada fila, la cual era totalmente innecesaria para nuestro análisis, por lo cual la eliminamos. Esto sirvió tanto para poder cargar los datos (pues esa columna no tenía originalmente nombre y generaba problemas) como porque no nos da ninguna información relevante. 
+Para cargar los datos fue necesario poner todas las columnas en tipo text, lo cual se puede observar en el archivo de raw_data_creation_and_load.sql en la carpeta data, pues varias columnas tenian NA como atributos. Lo primero que hubo que hacer fue cambiar los NA por nulls. Después de hacer ese proceso con todas las columnas, pusimos todas las columnas con su tipo de dato correcto. Otra consideración importante fue que al descargar los datos existía una columna con los índices de cada fila que además no contaba con un nombre de atributo. Al cargar los datos, esta nos generó problemas y ya que no aportaba información, era completamente irrelevante para nuestro análisis, así que fue eliminada.
 
 
 ### Estructura del repositorio
