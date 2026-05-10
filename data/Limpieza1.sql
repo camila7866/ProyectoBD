@@ -46,18 +46,6 @@ ALTER COLUMN fecha_def TYPE DATE USING fecha_def::DATE;
 ALTER TABLE raw.casoscovid2021
 ALTER COLUMN edad TYPE INTEGER USING edad::INTEGER;
 
-START TRANSACTION;
-
--- 1. Convertir columnas de fecha
-ALTER TABLE raw.casoscovid2021
-ALTER COLUMN fecha_ingreso TYPE DATE USING fecha_ingreso::DATE,
-ALTER COLUMN fecha_sintomas TYPE DATE USING fecha_sintomas::DATE,
-ALTER COLUMN fecha_def TYPE DATE USING fecha_def::DATE;
-
--- 2. Convertir edad a número
-ALTER TABLE raw.casoscovid2021
-ALTER COLUMN edad TYPE INTEGER USING edad::INTEGER;
-
 COMMIT;
 
 -- Crear ENUM
