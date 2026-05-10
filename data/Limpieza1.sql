@@ -18,6 +18,34 @@ UPDATE raw.casoscovid2021
 SET fecha_def = NULL
 WHERE fecha_def = 'NA';
 
+UPDATE raw.casoscovid2021
+SET entidad_res = NULL
+WHERE entidad_res= 'NA';
+
+UPDATE raw.casoscovid2021
+SET municipio_res = NULL
+WHERE municipio_res= 'NA';
+
+
+--Contamos nulos
+SELECT COUNT(*)
+FROM raw.casoscovid2021
+WHERE fecha_def IS NULL;
+
+SELECT * FROM raw.casoscovid2021;
+
+START TRANSACTION;
+
+-- 1. Convertir columnas de fecha
+ALTER TABLE raw.casoscovid2021
+ALTER COLUMN fecha_ingreso TYPE DATE USING fecha_ingreso::DATE,
+ALTER COLUMN fecha_sintomas TYPE DATE USING fecha_sintomas::DATE,
+ALTER COLUMN fecha_def TYPE DATE USING fecha_def::DATE;
+
+-- 2. Convertir edad a número
+ALTER TABLE raw.casoscovid2021
+ALTER COLUMN edad TYPE INTEGER USING edad::INTEGER;
+
 START TRANSACTION;
 
 -- 1. Convertir columnas de fecha
