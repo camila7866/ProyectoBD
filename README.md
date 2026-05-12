@@ -186,11 +186,25 @@ Posteriormente, revisamos los distintos valores de las columnas restantes para v
 En general, no se encontraron valores repetidos, pero a continuación se describen los descubrimientos relevantes:
 * La columna entidad_nac contiene 11018 veces el resultado 'NO ESPECIFICADO', por lo que hay 33 y no 32 valores distintos.
 * Difieren en cantidad de posibles valores resultado_lab y resultado_antigeno porque la primera puede arrojar un 'RESULTADO NO ADECUADO'.
-* Notamos que la columna pais_origen tiene registrado 1,924 veces ‘NA’ y 1,743,507 ‘NO APLICA’ como únicos resultados, que además de ser repetidos no dan información alguna.
 * La columna otro_caso da como resultado 936,368 veces ‘NO’, 2,283 ‘NO ESPECIFICADO’ y 786,260 ‘SI’, por lo que tampoco aporta información relevante.
-  
+
+Después, verificamos la cantidad de veces que aparecía 'NA', 'NO APLICA' y 'NO ESPECIFICADO' en las columnas categóricas que pueden dar esos resultados. Las cantidades más altas pueden observarse en la siguiente tabla:
+
+| Columna | NA | NO ESPECIFICADO | NO APLICA
+| :--- | :--- | :--- | :--- |
+| entidad_res | 1,501,056 |||
+| municipio_res | 1,501,056 |||
+| fecha_def | 1,723,067 |||
+| migrante || 1,734,910 ||
+| pais_origen | 1924 || 1,743,507 |
+
+Notamos que la columna pais_origen tiene registrado 1,924 veces ‘NA’ y 1,743,507 ‘NO APLICA’ como únicos resultados, que además de ser repetidos no dan información alguna.
+Los atributos entidad_res y municipio_res tienen pocos datos ya que la mayoría fueron 'NA'.
+La columna fecha_def es en su mayoría 'NA' pero esto tiene sentido ya que no todos los pacientes en el registro murieron por COVID-19.
+La columna migrante también es prácticamente 'NA', además de que ya contamos con otras columnas que nos aportan información sobre la nacionalidad o nacimiento de un paciente.
+
 Finalmente, buscamos inconsistencias tales como una fecha de ingreso antes del inicio de síntomas, o fecha de ingreso después de la fecha del registro, hombres embarazados, migrantes mexicanos, confirmados sin pruebas positivas, entre otras que no fueron encontradas.
-Las inconsistencias que sí encontramos fueron casos con fecha_def anterior a fecha_ingreso y casos con fecha_def anterior a fecha_sintomas. 
+Las inconsistencias que sí encontramos fueron casos con fecha_def anterior a fecha_ingreso y casos con fecha_def anterior a fecha_sintomas, lo cual es lógicamente imposible. 
 
 
 ## Limpieza de datos
