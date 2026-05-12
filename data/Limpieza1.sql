@@ -13,7 +13,7 @@ DROP TYPE IF EXISTS estado_categorico CASCADE;
 DROP TYPE IF EXISTS sexoT CASCADE;
 DROP TYPE IF EXISTS tipo_pacienteT CASCADE;
 
--- Cambiamos las fechas que dicen NA por NULL
+-- Cambiamos los valores que dicen NA por NULL
 UPDATE raw.casoscovid2021
 SET fecha_def = NULL
 WHERE fecha_def = 'NA';
