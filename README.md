@@ -132,7 +132,7 @@ En caso de que no se carguen correctamente los acentos modificar el encoding man
 
 La columna id_registro es un valor único por cada registro, pero vamos a cambiarlo por nuestro propio id por lo que resulta redundante.
 
-Las columnas fecha_def, fecha_ingreso y fecha_sintomas tienen registros a lo largo del primer semestre de 2021, aunque fecha_def y fecha_sintomas cuentan con algunos registros del 2020 también.
+Las columnas fecha_def, fecha_ingreso y fecha_sintomas tienen registros a lo largo del primer semestre de 2021, aunque fecha_def y fecha_sintomas cuentan con algunos registros del 2020 también.  Todos los registros tienen el mismo valor en fecha_actualizacion.
 
 | Columna | MAX | MIN |
 | :--- | :--- | :--- |
