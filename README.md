@@ -274,4 +274,4 @@ normalización se puede emplear el siguiente comando en `psql`:
 
 ## Resultados
 Aquí podemos ver un mapa que nos da una idea de los lugares dónde viven las personas que forman la base de datos
-![Mapa de México](imagenes/mapa_mexico.png)
+![Mapa de México](imagenes/mapa_mexico (3).png)
