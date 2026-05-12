@@ -214,12 +214,12 @@ Para iniciar la limpieza descarga el archivo Limpieza1.sql en data y ejecuta el 
 ```
 
 A continuación esta todo el proceso de lo que hacemos en ese archivo:
-*   **Estandarización de valores nulos:** Reemplazamos los valores faltantes (que originalmente aparecían como `'NA'`) por valores nulos (`NULL`) en las columnas `fecha_def`, `entidad_res` y `municipio_res`. Posteriormente, contabilizamos la cantidad de registros nulos en cada una de ellas.
-*   **Creación de tipos de datos personalizados (ENUM):** Dado que gran parte de las columnas contenían información categórica, decidimos aplicar integridad de dominio creando los siguientes tipos de datos enumerados:
-    *   `estado_categorico`: Es el tipo de dato más frecuente en la base. Sus valores permitidos son: `'SI'`, `'NO'`, `'SE IGNORA'`, `'NO ESPECIFICADO'` y `'NO APLICA'`.
-    *   `sexoT`: Sus valores permitidos son `'HOMBRE'` y `'MUJER'`.
-    *   `tipo_pacienteT`: Sus valores permitidos son `'AMBULATORIO'` y `'HOSPITALIZADO'`.
-*   **Asignación de tipos de datos:** Finalmente, actualizamos la estructura de la tabla para asignar a cada columna su tipo de dato correspondiente (incluyendo los ENUMs recién creados), asegurando así la consistencia de la información.
+*   **Estandarización de valores nulos:** Reemplazamos los valores faltantes (que originalmente aparecían como NA) por valores nulos (NULL) en las columnas fecha_def, entidad_res y municipio_res. Posteriormente, contabilizamos la cantidad de registros nulos en cada una de ellas.
+*   **Creación de tipos de datos personalizados (ENUM):** Dado que gran parte de las columnas contenían información categórica, decidimos crear tres tipos de datos 
+    *   estado_categorico: Es el tipo de dato más frecuente en la base. Sus valores permitidos son: 'SI', 'NO', 'SE IGNORA', 'NO ESPECIFICADO' y 'NO APLICA'.
+    *   sexoT: Sus valores permitidos son 'HOMBRE' y 'MUJER'.
+    *   tipo_pacienteT: Sus valores permitidos son 'AMBULATORIO' y 'HOSPITALIZADO'.
+*   **Asignación de tipos de datos:** Finalmente, actualizamos la estructura de la tabla para asignar a cada columna su tipo de dato correspondiente (incluyendo los ENUMs recién creados). 
 
 # Eliminación de columnas
 
