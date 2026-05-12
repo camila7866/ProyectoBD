@@ -90,7 +90,7 @@ SELECT
      'Caso de SARS-COV-2 confirmado por prueba sin prueba' as problema,
      COUNT(*) as total 
 FROM raw.casoscovid2021
-WHERE  clasificacion_final = 'CASO DE SARS-COV-2  CONFIRMADO' AND (resultado_lab != 'POSITIVO A SARS-COV-2' OR resultado_antigeno != 'POSITIVO A SARS-COV-2')
+WHERE  clasificacion_final = 'CASO DE SARS-COV-2  CONFIRMADO' AND (resultado_lab != 'POSITIVO A SARS-COV-2' and resultado_antigeno != 'POSITIVO A SARS-COV-2');
 
 -- 3.1 Confirmados sin NINGUNA prueba positiva
 
