@@ -142,14 +142,14 @@ En el conjunto de datos se cuenta con 4 columnas de tipo fecha. En seguida hay u
 | fecha_actualizacion | 2021-11-29 | 2021-11-29 |
 
 Las columnas fecha_def, fecha_ingreso y fecha_sintomas tienen registros a lo largo del primer semestre de 2021, aunque fecha_def y fecha_sintomas cuentan con algunos registros del 2020 también.  
-Todos los registros tienen el mismo valor en fecha_actualizacion.
+Todos los registros tienen el mismo valor en fecha_actualizacion por lo que resulta redundante la columna.
+No hay más atributos numéricos que analizar en el conjunto de datos.
 
 Por otro lado, buscamos redundancia en los atributos:
 * Detectamos que las columnas toma_muestra_lab y toma_muestra_antigeno no aportan información adicional ya que si dan el resultado ‘NO’, resultado_lab y resultado_antigeno indican ‘No aplica’, y si la toma es ‘SI’, el resultado es distinto a ‘No aplica’. 
-* También notamos que la columna pais_origen tiene registrado 1,924 veces ‘NA’ y 1,743,507 ‘NO APLICA’.
-* La columna otro_caso 936,368 veces  ‘NO’, 2283 ‘NO ESPECIFICADO’ y 786260 ‘SI’, por lo ninguna de las dos aporta información relevante.
 
-En las demás columnas de tipo categórico no encontramos valores duplicados,la mayoría teniendo como posibles categorías ‘SI’, ‘NO’, ‘SE IGNORA’, o alguna variación, y todas ellas aportando información relevante: 
+Luego, revisamos los diferentes valores de las siguientes columnas de tipo categórico relacionadas con alguna enfermedad:
+
 * intubado
 * neumonia
 * indigena
@@ -163,7 +163,33 @@ En las demás columnas de tipo categórico no encontramos valores duplicados,la 
 * renal_cronica
 * tabaquimo
 
-Luego, buscamos inconsistencias tales como una fecha de ingreso antes del inicio de síntomas, o fecha de ingreso después de la fecha del registro, hombres embarazados, migrantes mexicanos, confirmados sin pruebas positivas, entre otras que no fueron encontradas.
+No encontramos valores duplicados,la mayoría teniendo como posibles categorías ‘SI’, ‘NO’, ‘SE IGNORA’, o alguna variación, y todas ellas aportando información relevante.
+
+Posteriormente, revisamos los distintos valores de las columnas restantes para verificar que no haya repeticiones. A continuación se puede ver el atrubuto junto con el número de valores distintos:
+
+| Columna | Valores Distintos|
+| :--- | :--- |
+| sector | 12 |
+| entidad_um | 32 |
+| sexo | 2 |
+| entidad_nac | 33 |
+| entidad_res | 24 |
+| municipio_res | 1253 |
+| tipo_paciente | 2 |
+| nacionalidad | 2 |
+| resultado_lab | 4 |
+| resultado_antigeno | 3 |
+| clasificacion_final | 7 |
+| pais_nacionalidad | 128 |
+| pais_origen | 2 |
+
+En general, no se encontraron valores repetidos, pero a continuación se describen los descubrimientos relevantes:
+* La columna entidad_nac contiene 11018 veces el resultado 'NO ESPECIFICADO', por lo que hay 33 y no 32 valores distintos.
+* Difieren en cantidad de posibles valores resultado_lab y resultado_antigeno porque la primera puede arrojar un 'RESULTADO NO ADECUADO'.
+* Notamos que la columna pais_origen tiene registrado 1,924 veces ‘NA’ y 1,743,507 ‘NO APLICA’ como únicos resultados, que además de ser repetidos no dan información alguna.
+* La columna otro_caso da como resultado 936,368 veces ‘NO’, 2,283 ‘NO ESPECIFICADO’ y 786,260 ‘SI’, por lo que tampoco aporta información relevante.
+  
+Finalmente, buscamos inconsistencias tales como una fecha de ingreso antes del inicio de síntomas, o fecha de ingreso después de la fecha del registro, hombres embarazados, migrantes mexicanos, confirmados sin pruebas positivas, entre otras que no fueron encontradas.
 Las inconsistencias que sí encontramos fueron casos con fecha_def anterior a fecha_ingreso y casos con fecha_def anterior a fecha_sintomas. 
 
 
