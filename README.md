@@ -274,10 +274,18 @@ normalización se puede emplear el siguiente comando en `psql`:
 > También un ERD del diseño final debe ser incluido.
 
 ## Resultados
-Zonas con mayor contiagio de COVID
+
+# 1. Zonas con mayor contiagio de COVID
+
 ⚠️Para el siguiente mapa es importante considerar que no todas las personas a las que se les hizo prueba dieron su lugar de residencia, por lo que los lugares pueden no ser tan representativos de los lugares con mayor contagio⚠️
 ![Mapa de México](images/mapa_mexico.png)
 
 Para realizar este mapa lo hicimos a través de Jupyter notebook descargando un archivo shp con la información georeferencial de los municipios en ![ShapeFileMunicipiosMexico](http://geoportal.conabio.gob.mx/metadatos/doc/html/mun22gw.html)
 
-Luego ejecutamos el codigo que se encuentra en MapaCorpletico.py
+Luego ejecutamos el codigo que se encuentra en MapaCorpletico.ipynb
+
+Los demás resultados los ejecutamos en postgres y las gráficas las realizamos con Excel
+
+# 2. Tasa de mortalidad por rango de edad
+
+# 3. 
