@@ -32,6 +32,16 @@ SELECT COUNT(*)
 FROM raw.casoscovid2021
 WHERE fecha_def IS NULL;
 
+SELECT COUNT(*)
+FROM raw.casoscovid2021
+WHERE entidad_res IS NULL;
+
+SELECT COUNT(*)
+FROM raw.casoscovid2021
+WHERE municipio_res IS NULL;
+
+
+
 SELECT * FROM raw.casoscovid2021;
 
 START TRANSACTION;
