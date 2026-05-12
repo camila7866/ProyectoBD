@@ -58,7 +58,7 @@ FROM raw.casoscovid2021
 WHERE fecha_sintomas > CURRENT_DATE;
 
 -- Veamos ahora el máximo y mínimo de todas las fechas para ver si tiene sentido
-SELECT max(fecha_def) AS Max_fecha_def, min(fecha_def) AS Min_fecha_def, max(fecha_ingreso) AS Max_fecha_ingreso, min(fecha_ingreso) AS Min_fecha_ingreso, min(fecha_sintomas) AS Min_fecha_sintomas, max(fecha_sintomas) AS Max_fecha_sintomas
+SELECT max(fecha_def) AS Max_fecha_def, min(fecha_def) AS Min_fecha_def, max(fecha_ingreso) AS Max_fecha_ingreso, min(fecha_ingreso) AS Min_fecha_ingreso, min(fecha_sintomas) AS Min_fecha_sintomas, max(fecha_sintomas) AS Max_fecha_sintomas, min(fecha_actualizacion) AS Min_fecha_actualizacion, max(fecha_actualizacion) AS Max_fecha_actualizacion
 FROM raw.casoscovid2021;
 
 
