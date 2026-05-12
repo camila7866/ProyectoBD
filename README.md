@@ -198,10 +198,11 @@ Después, verificamos la cantidad de veces que aparecía 'NA', 'NO APLICA' y 'NO
 | migrante || 1,734,910 ||
 | pais_origen | 1924 || 1,743,507 |
 
-Notamos que la columna pais_origen tiene registrado 1,924 veces ‘NA’ y 1,743,507 ‘NO APLICA’ como únicos resultados, que además de ser repetidos no dan información alguna.
-Los atributos entidad_res y municipio_res tienen pocos datos ya que la mayoría fueron 'NA'.
-La columna fecha_def es en su mayoría 'NA' pero esto tiene sentido ya que no todos los pacientes en el registro murieron por COVID-19.
-La columna migrante también es prácticamente 'NA', además de que ya contamos con otras columnas que nos aportan información sobre la nacionalidad o nacimiento de un paciente.
+La mayoría de columnas tenían valores o muy bajos o muy altos de esos resultados:
+* Notamos que la columna pais_origen tiene registrado 1,924 veces ‘NA’ y 1,743,507 ‘NO APLICA’ como únicos resultados, que además de ser repetidos no dan información alguna.
+*Los atributos entidad_res y municipio_res tienen pocos datos ya que la mayoría fueron 'NA'.
+*La columna fecha_def es en su mayoría 'NA' pero esto tiene sentido ya que no todos los pacientes en el registro murieron por COVID-19.
+*La columna migrante también es prácticamente 'NA', además de que ya contamos con otras columnas que nos aportan información sobre la nacionalidad o nacimiento de un paciente.
 
 Finalmente, buscamos inconsistencias tales como una fecha de ingreso antes del inicio de síntomas, o fecha de ingreso después de la fecha del registro, hombres embarazados, migrantes mexicanos, confirmados sin pruebas positivas, entre otras que no fueron encontradas.
 Las inconsistencias que sí encontramos fueron casos con fecha_def anterior a fecha_ingreso y casos con fecha_def anterior a fecha_sintomas, lo cual es lógicamente imposible. 
