@@ -128,7 +128,19 @@ Para cargar los datos dentro del esquema ten a la mano el archivo csv de casos_n
 ```
 Se deberán cargar  1745431 registros
 
-En caso de que no se carguen correctamente los acentos modificar el encoding manualmente en menu -> connection -> view using encoding y modificar por un encoding que permita acentos
+En caso de que no se carguen correctamente los acentos modificar el encoding manualmente en menu -> connection -> view using encoding y modificar por un encoding que permita acentos.
+
+La columna id_registro es un valor único por cada registro, pero vamos a cambiarlo por nuestro propio id por lo que resulta redundante.
+
+Las columnas fecha_def, fecha_ingreso y fecha_sintomas tienen registros a lo largo del primer semestre de 2021, aunque fecha_def y fecha_sintomas cuentan con algunos registros del 2020 también.
+
+Por otro lado, buscamos redundancia en los atributos y detectamos que las columnas toma_muestra_lab y toma_muestra_antigeno no aportan información adicional ya que si dan el resultado ‘NO’, resultado_lab y resultado_antigeno indican ‘No aplica’, y si la toma es ‘SI’, el resultado es distinto a ‘No aplica’. 
+También notamos que la columna pais_origen tiene registrado 1,924 veces ‘NA’ y 1,743,507 ‘NO APLICA’, y la columna otro_caso 936,368 veces  ‘NO’, 2283 ‘NO ESPECIFICADO’ y 786260 ‘SI’, por lo ninguna de las dos aporta información relevante.
+ En las demás columnas de tipo categórico no encontramos valores duplicados,la mayoría teniendo como posibles categorías ‘SI’, ‘NO’, ‘SE IGNORA’ y todas ellas aportando información relevante.
+
+Luego, buscamos inconsistencias tales como una fecha de ingreso antes del inicio de síntomas, o fecha de ingreso después de la fecha del registro, hombres embarazados, migrantes mexicanos, confirmados sin pruebas positivas, entre otras que no fueron encontradas.
+Las inconsistencias que sí encontramos fueron casos con fecha_def anterior a fecha_ingreso y casos con fecha_def anterior a fecha_sintomas. 
+
 
 ## Limpieza de datos
 
