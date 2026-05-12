@@ -24,7 +24,7 @@
 ## Datos
 | Atributo | Tipo | Descripción |
 |---|---|---|
-| id_registro | hexadecimal | Es un id único para cada paciente. |
+| id_registro | hexadecimal | Es un id único para cada registro. |
 | origen | categórico | Nos dice si la información del paciente fue dada por las unidades de salud monitoras de enfermedades respiratorias (USMER) o no. |
 | sector | categórico | Nos dice de qué sector de la población es el paciente dependiendo de su actividad. Distingue entre los trabajadores del gobierno, privados y universitarios. |
 | entidad_um | texto | Dice de qué entidad es la unidad médica. |
