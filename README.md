@@ -134,6 +134,13 @@ La columna id_registro es un valor único por cada registro, pero vamos a cambia
 
 Las columnas fecha_def, fecha_ingreso y fecha_sintomas tienen registros a lo largo del primer semestre de 2021, aunque fecha_def y fecha_sintomas cuentan con algunos registros del 2020 también.
 
+| Columna | MAX | MIN |
+| :--- | :--- | :--- |
+| fecha_def | NA | 2020-05-06 |
+| fecha_ingreso | 2021-06-30 | 2021-01-01 |
+| fecha_sintomas | 2020-06-12 | 2021-06-30 |
+| fecha_actualizacion | 2021-11-29 | 2021-11-29 |
+
 Por otro lado, buscamos redundancia en los atributos y detectamos que las columnas toma_muestra_lab y toma_muestra_antigeno no aportan información adicional ya que si dan el resultado ‘NO’, resultado_lab y resultado_antigeno indican ‘No aplica’, y si la toma es ‘SI’, el resultado es distinto a ‘No aplica’. 
 También notamos que la columna pais_origen tiene registrado 1,924 veces ‘NA’ y 1,743,507 ‘NO APLICA’, y la columna otro_caso 936,368 veces  ‘NO’, 2283 ‘NO ESPECIFICADO’ y 786260 ‘SI’, por lo ninguna de las dos aporta información relevante.
  En las demás columnas de tipo categórico no encontramos valores duplicados,la mayoría teniendo como posibles categorías ‘SI’, ‘NO’, ‘SE IGNORA’ y todas ellas aportando información relevante.
