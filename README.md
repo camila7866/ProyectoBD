@@ -163,7 +163,7 @@ Luego, revisamos los diferentes valores de las siguientes columnas de tipo categ
 * renal_cronica
 * tabaquimo
 
-No encontramos valores duplicados,la mayoría teniendo como posibles categorías ‘SI’, ‘NO’, ‘SE IGNORA’, o alguna variación, y todas ellas aportando información relevante.
+No encontramos valores duplicados,la mayoría teniendo como posibles categorías ‘SI’, ‘NO’, ‘SE IGNORA’, o alguna variación como 'NO', 'NO APLICA', 'NO ESPECIFICADO', 'SI'. No son resultados redundantes porque aportan información relevante para el historial médico de los pacientes.
 
 Posteriormente, revisamos los distintos valores de las columnas restantes para verificar que no haya repeticiones. A continuación se puede ver el atrubuto junto con el número de valores distintos:
 
