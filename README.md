@@ -132,7 +132,7 @@ En caso de que no se carguen correctamente los acentos modificar el encoding man
 
 La columna id_registro es un valor único por cada registro, pero vamos a cambiarlo por nuestro propio id por lo que resulta redundante.
 
-Las columnas fecha_def, fecha_ingreso y fecha_sintomas tienen registros a lo largo del primer semestre de 2021, aunque fecha_def y fecha_sintomas cuentan con algunos registros del 2020 también.  Todos los registros tienen el mismo valor en fecha_actualizacion.
+En el conjunto de datos se cuenta con 4 columnas de tipo fecha. En seguida hay una tabla que presenta sus valores mínimos y máximos: 
 
 | Columna | MAX | MIN |
 | :--- | :--- | :--- |
@@ -141,9 +141,27 @@ Las columnas fecha_def, fecha_ingreso y fecha_sintomas tienen registros a lo lar
 | fecha_sintomas | 2020-06-12 | 2021-06-30 |
 | fecha_actualizacion | 2021-11-29 | 2021-11-29 |
 
-Por otro lado, buscamos redundancia en los atributos y detectamos que las columnas toma_muestra_lab y toma_muestra_antigeno no aportan información adicional ya que si dan el resultado ‘NO’, resultado_lab y resultado_antigeno indican ‘No aplica’, y si la toma es ‘SI’, el resultado es distinto a ‘No aplica’. 
-También notamos que la columna pais_origen tiene registrado 1,924 veces ‘NA’ y 1,743,507 ‘NO APLICA’, y la columna otro_caso 936,368 veces  ‘NO’, 2283 ‘NO ESPECIFICADO’ y 786260 ‘SI’, por lo ninguna de las dos aporta información relevante.
- En las demás columnas de tipo categórico no encontramos valores duplicados,la mayoría teniendo como posibles categorías ‘SI’, ‘NO’, ‘SE IGNORA’ y todas ellas aportando información relevante.
+Las columnas fecha_def, fecha_ingreso y fecha_sintomas tienen registros a lo largo del primer semestre de 2021, aunque fecha_def y fecha_sintomas cuentan con algunos registros del 2020 también.  
+Todos los registros tienen el mismo valor en fecha_actualizacion.
+
+Por otro lado, buscamos redundancia en los atributos:
+* Detectamos que las columnas toma_muestra_lab y toma_muestra_antigeno no aportan información adicional ya que si dan el resultado ‘NO’, resultado_lab y resultado_antigeno indican ‘No aplica’, y si la toma es ‘SI’, el resultado es distinto a ‘No aplica’. 
+* También notamos que la columna pais_origen tiene registrado 1,924 veces ‘NA’ y 1,743,507 ‘NO APLICA’.
+* La columna otro_caso 936,368 veces  ‘NO’, 2283 ‘NO ESPECIFICADO’ y 786260 ‘SI’, por lo ninguna de las dos aporta información relevante.
+
+En las demás columnas de tipo categórico no encontramos valores duplicados,la mayoría teniendo como posibles categorías ‘SI’, ‘NO’, ‘SE IGNORA’, o alguna variación, y todas ellas aportando información relevante: 
+* intubado
+* neumonia
+* indigena
+* diabetes
+* epoc
+* asma
+* inmusupr
+* hipertension
+* cardiovascular
+* obesidad
+* renal_cronica
+* tabaquimo
 
 Luego, buscamos inconsistencias tales como una fecha de ingreso antes del inicio de síntomas, o fecha de ingreso después de la fecha del registro, hombres embarazados, migrantes mexicanos, confirmados sin pruebas positivas, entre otras que no fueron encontradas.
 Las inconsistencias que sí encontramos fueron casos con fecha_def anterior a fecha_ingreso y casos con fecha_def anterior a fecha_sintomas. 
