@@ -214,23 +214,24 @@ Para iniciar la limpieza descarga el archivo Limpieza1.sql en data y ejecuta el 
 ```
 
 A continuación esta todo el proceso de lo que hacemos en ese archivo:
+*   **Estandarización de valores nulos:** Reemplazamos los valores faltantes (que originalmente aparecían como `'NA'`) por valores nulos (`NULL`) en las columnas `fecha_def`, `entidad_res` y `municipio_res`. Posteriormente, contabilizamos la cantidad de registros nulos en cada una de ellas.
+*   **Creación de tipos de datos personalizados (ENUM):** Dado que gran parte de las columnas contenían información categórica, decidimos aplicar integridad de dominio creando los siguientes tipos de datos enumerados:
+    *   `estado_categorico`: Es el tipo de dato más frecuente en la base. Sus valores permitidos son: `'SI'`, `'NO'`, `'SE IGNORA'`, `'NO ESPECIFICADO'` y `'NO APLICA'`.
+    *   `sexoT`: Sus valores permitidos son `'HOMBRE'` y `'MUJER'`.
+    *   `tipo_pacienteT`: Sus valores permitidos son `'AMBULATORIO'` y `'HOSPITALIZADO'`.
+*   **Asignación de tipos de datos:** Finalmente, actualizamos la estructura de la tabla para asignar a cada columna su tipo de dato correspondiente (incluyendo los ENUMs recién creados), asegurando así la consistencia de la información.
 
-Lo primero que hicimos fue transformar todas las columnas a su tipo de datos correspondiente pues originalmente hicimos todos los datos como tipo text, eso fue así por si había inconsistencia con los datos. 
+# Eliminación de columnas
 
-Eliminamos 4 columnas que considerabamos irrelevantes para nuestro análisis: 
-- toma_muestra_lab
-- toma_muestra_antigeno
-- otro_caso
-- habla_lengua_indig
-- id_registro
-- fecha_actualizacion
-- column
+Eliminamos las siguientes columnas que consideramos irrelevantes para nuestro análisis:
 
-toma_muestra_lab y toma_muestra_antigeno las eliminamos pues nos daba información ya existente con las columnas resultado_antigeno y resultado_lab, nos dimos cuenta de que el resultado aparecia como No aplica en los casos que no habia muestra y en todos los demas casos decia sí y como la información que nos interesa es el resultado podemos quitar esas columnas.
+*   `toma_muestra_lab` y `toma_muestra_antigeno`: Resultaban redundantes, ya que esta información se puede deducir de las columnas `resultado_lab` y `resultado_antigeno`. Previamente verificamos la consistencia de los datos y confirmamos que no había casos contradictorios (por ejemplo: que se hubiera tomado la prueba sin haber un resultado, o que hubiera un resultado sin toma de muestra).
+*   `otro_caso`: Sus valores eran únicamente 'Sí', 'No' y 'No aplica', los cuales no aportaban información útil para el objetivo del proyecto.
+*   `habla_lengua_indig`: Para evaluar el impacto del virus por sector poblacional, conservamos la columna `indigena`. Saber si el paciente hablaba o no la lengua no era de nuestro interés para este análisis en particular.
+*   `id_registro`: Se descartó para poder generar nuestras propias llaves primarias en cada relación durante el proceso de normalización.
+*   `fecha_actualizacion`: Contenía la misma fecha para todas las tuplas (la última actualización de la base de datos), por lo que era un valor constante e irrelevante.
+*   `column`: Solo representaba el número de cada tupla. Como nos presentó problemas durante la carga inicial, decidimos eliminarla desde esa etapa.
 
-habla_lengua_indigena lo eliminamos pues ya teníamos la columna indigena y otro caso no lo consideramos pues no lo consideramos relevante para nuestro análisis.
-
-Después checamos si había inconsistencias con los datos, con lo cual nos dimos cuenta de que había registros con personas que habían fallecido antes de sentir síntomas o antes de ingresar al hospital, lo cual no tenía sentido, por lo que eliminamos esos registros.
 
 
 # Creación de tablas
