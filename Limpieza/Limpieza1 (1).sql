@@ -164,3 +164,13 @@ SELECT COUNT(*) as registros_eliminados FROM raw.casoscovid2021;
 COMMIT;
 
 -- ROLLBACK;
+
+-- Limpiamos clasificacion_final que tiene espacios extra
+
+UPDATE raw.casoscovid2021
+SET clasificacion_final = REPLACE(clasificacion_final, '  ', ' ');
+
+
+
+
+
