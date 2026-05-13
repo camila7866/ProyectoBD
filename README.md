@@ -18,8 +18,13 @@
 * Para nuestro análisis usamos una base de datos que tiene un historial médico de personas afectadas por COVID-19 en unidades médicas de la Ciudad de México. Cuenta con contenido dividido por entidad, sexo, edad, nacionalidad, resultado de pruebas de antígeno, entre otros.
 * La Secretaría de Salud de la Ciudad de México recolecta los datos, muchos de ellos proporcionados por Unidades de Salud Monitoras de Enfermedades Respiratorias en México. 
 * La misión principal de la Secretaría es garantizar el derecho efectivo a la salud, sin discriminación, a los habitantes de la capital, así como brindar servicios sanitarios a quienes carecen de seguridad social laboral con el objetivo de que sus habitantes tengan una vida plena y digna.
-* La base de datos comprende información correspondiente al primer semestre de 2021. Las actualizaciones diarias se realizaban únicamente a la base del semestre en curso y se elaboró con base en los Datos Abiertos y el Diccionario de Datos provista por el Gobierno Federal. Fue creada el 6 de diciembre de 2021 y su última actualización se realizó el 14 de febrero de 2023. 
+* La base de datos comprende información correspondiente al primer semestre de 2021. Las actualizaciones diarias se realizaban únicamente a la base del semestre en curso y se elaboró con base en los Datos Abiertos y el Diccionario de Datos provista por el Gobierno Federal. Fue creada el 6 de diciembre de 2021. 
+
+
+### Consideraciones éticas
 * La correlación entre ciertos fenómenos con el caso de covid no implica causalidad y puede estar sesgado a los casos concretos o a poblaciones en riesgo por factores no considerados en la base de datos.
+* Estos datos solo representan en su mayoría a la ciudad de México y el centro de México, por lo que los indicadores podrían cambiar en otras partes del país.
+* Hay que recordar que aunque aquí la información sea usada con propósitos estadísticos, cada dato aquí representa a una persona. 
 
 ## Datos
 | Atributo | Tipo | Descripción |
