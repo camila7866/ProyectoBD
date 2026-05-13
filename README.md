@@ -351,7 +351,7 @@ Los demás resultados los ejecutamos en postgres y las gráficas las realizamos 
 
 La siguiente consulta ayuda a identificar los casos positivos de COVID-19 por entidad de residencia. Se puede ver que la Ciudad de México es la entidad con más casos.
 
-```` sql
+``` sql
 -- CASOS POSITIVOS POR ENTIDAD DE RESIDENCIA
 SELECT residencia.entidad_res, COUNT(*)
 FROM raw.residencia
