@@ -141,7 +141,7 @@ En el conjunto de datos se cuenta con 4 columnas de tipo fecha. En seguida hay u
 
 Las columnas fecha_def, fecha_ingreso y fecha_sintomas tienen registros a lo largo del primer semestre de 2021, aunque fecha_def y fecha_sintomas cuentan con algunos registros del 2020 también.  
 Todos los registros tienen el mismo valor en fecha_actualizacion por lo que resulta redundante la columna.
-No hay más atributos numéricos que analizar en el conjunto de datos.
+
 
 Por otro lado, buscamos redundancia en los atributos y detectamos que las columnas toma_muestra_lab y toma_muestra_antigeno no aportan información adicional ya que si dan el resultado ‘NO’, resultado_lab y resultado_antigeno indican ‘No aplica’, y si la toma es ‘SI’, el resultado es distinto a ‘No aplica’. 
 
@@ -198,8 +198,10 @@ Después, verificamos la cantidad de veces que aparecía 'NA', 'NO APLICA' y 'NO
 La mayoría de columnas tenían valores o muy bajos o muy altos de esos resultados:
 * Notamos que la columna pais_origen tiene registrado 1,924 veces ‘NA’ y 1,743,507 ‘NO APLICA’ como únicos resultados, que además de ser repetidos no dan información alguna.
 * Los atributos entidad_res y municipio_res tienen pocos datos ya que la mayoría fueron 'NA'.
-* La columna fecha_def es en su mayoría 'NA' pero esto tiene sentido ya que no todos los pacientes en el registro murieron por COVID-19.
+* La columna fecha_def es en su mayoría 'NA' pero esto tiene sentido ya que no todos los pacientes en el registro murieron por COVID-19 (afortunadamente).
 * La columna migrante también es prácticamente 'NA', además de que ya contamos con otras columnas que nos aportan información sobre la nacionalidad o nacimiento de un paciente.
+* El rango de edad de los pacientes va de 0 a 121 años, con el promedio siendo 39-40 años.
+
 
 Finalmente, buscamos inconsistencias tales como una fecha de ingreso antes del inicio de síntomas, o fecha de ingreso después de la fecha del registro, hombres embarazados, migrantes mexicanos, confirmados sin pruebas positivas, entre otras que no fueron encontradas.
 Las inconsistencias que sí encontramos fueron casos con fecha_def anterior a fecha_ingreso y casos con fecha_def anterior a fecha_sintomas, lo cual es lógicamente imposible. 
