@@ -60,9 +60,7 @@ origen VARCHAR(100),
 entidad_um VARCHAR(100),
 tipo_paciente tipo_pacienteT,
 fecha_ingreso date,
-fecha_sintomas date, 
-intubado ESTADO_CATEGORICO, 
-uci ESTADO_CATEGORICO,
+fecha_sintomas date,
 
 FOREIGN KEY (persona_id) references raw.persona (id) ON DELETE RESTRICT
 
@@ -98,7 +96,7 @@ nombre VARCHAR(100) UNIQUE
 
 --Llenado de tabla complicaciones
 INSERT INTO raw.complicacion (nombre) VALUES
- ('epoc'), ('inmusupr'),('neumonia'), ('otra_com');
+('inmusupr'),('neumonia'), ('otra_com'), ('intubado'), ('uci');
 
 
 ------------------------------------------------------------------------- TABLA PACIENTE_COMPLICACION---------------------------------------------------------------------------------------
@@ -120,11 +118,6 @@ CONSTRAINT _un_paciente_complicacion UNIQUE (paciente_id, complicacion_id)
 WITH complicaciones AS (
     -- Primero: relacionar paciente con sus complicaciones (solo donde valor = 'SI')
     
-    SELECT c.id_registro, 'epoc' AS complicacion_nombre
-    FROM raw.casoscovid2021 c
-    WHERE c.epoc = 'SI'
-    
-    UNION ALL
     
     SELECT c.id_registro, 'inmusupr' AS complicacion_nombre
     FROM raw.casoscovid2021 c
@@ -139,6 +132,18 @@ WITH complicaciones AS (
     UNION ALL
     
     SELECT c.id_registro, 'otra_com' AS complicacion_nombre
+    FROM raw.casoscovid2021 c
+    WHERE c.otra_com = 'SI'
+
+	UNION ALL
+    
+    SELECT c.id_registro, 'intubado' AS complicacion_nombre
+    FROM raw.casoscovid2021 c
+    WHERE c.otra_com = 'SI'
+
+	UNION ALL
+    
+    SELECT c.id_registro, 'uci' AS complicacion_nombre
     FROM raw.casoscovid2021 c
     WHERE c.otra_com = 'SI'
     
@@ -166,7 +171,7 @@ nombre VARCHAR(100) UNIQUE
 -- Insercion
 
 INSERT INTO raw.condicion (nombre) VALUES
-('embarazo'), ('obesidad'), ('tabaquismo'), ('diabetes') ,  ('asma'), ('hipertension'), ('cardiovascular'), ('renal_cronica');
+('epoc'),('embarazo'), ('obesidad'), ('tabaquismo'), ('diabetes') ,  ('asma'), ('hipertension'), ('cardiovascular'), ('renal_cronica');
 
 ------------------------------------------------------------------------- TABLA PACIENTE_CONDICION ---------------------------------------------------------------------------------------
 
@@ -182,6 +187,12 @@ CONSTRAINT _un_paciente_condicion UNIQUE (paciente_id, condicion_id)
 
 
 WITH condicion_paciente AS (
+	
+	SELECT c.id_registro, 'epoc' AS condicion_nombre
+    FROM raw.casoscovid2021 c
+    WHERE c.epoc = 'SI'
+    
+    UNION ALL
 	SELECT c.id_registro,
 	        'embarazo' as condicion_nombre
 	    FROM raw.casoscovid2021 c
