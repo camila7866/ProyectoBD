@@ -118,22 +118,22 @@ Después:
 ```
 2. Creación del esquema: <br>
 
-En la carpeta de data del repositorio vas a poder encontrar el archivo raw_data_creation_and_load.sql, para crear el esquema descargalo y ejecuta el siguiente comando cambiando lo que está entre comillas por la ruta de tu archivo: 
+En la carpeta de CreaciónTablasyEsquemas encontraremos el archivo raw_data_creation_and_load.sql, para crear el esquema hay que descargarlo y ejecutarlo con el siguiente comando, cambiando lo que está entre comillas por la ruta del archivo: 
 ```
 \i '.../data/raw_data_creation_and_load.sql'
 ```
 3. Copia de los datos de archivo csv a sql: <br>
 
-Para cargar los datos dentro del esquema ten a la mano el archivo csv de casos_nacionales_covid-19_2021_semestre1, el cual puedes encontrar en la página de [Casos Nacionales 1° Semestre 2021](https://datos.cdmx.gob.mx/dataset/casos-asociados-a-covid-19/resource/a8236652-a729-49bd-958a-5615ea609397?inner_span=True). Se debe cambiar el código entre comillas después FROM con tu ruta personal donde descargaste el csv <br>
+Para cargar los datos dentro del esquema hay que tener a la mano el archivo csv de casos_nacionales_covid-19_2021_semestre1, el cual podemos encontrar en la página de [Casos Nacionales 1° Semestre 2021](https://datos.cdmx.gob.mx/dataset/casos-asociados-a-covid-19/resource/a8236652-a729-49bd-958a-5615ea609397?inner_span=True). Se debe cambiar el código entre comillas después del FROM con tu ruta personal donde descargaste el csv <br>
 
 ```
 \copy raw.casoscovid2021(columna,fecha_actualizacion,id_registro,origen,sector,entidad_um,sexo,entidad_nac,entidad_res,municipio_res,tipo_paciente,fecha_ingreso,fecha_sintomas,fecha_def,intubado,neumonia,edad,nacionalidad,embarazo,habla_lengua_indig,indigena,diabetes,epoc,asma,inmusupr,hipertension,otra_com,cardiovascular,obesidad,renal_cronica,tabaquismo,otro_caso,toma_muestra_lab,resultado_lab,toma_muestra_antigeno,resultado_antigeno,clasificacion_final,migrante,pais_nacionalidad,pais_origen,uci) FROM '.../casos_nacionales_covid-19_2021_semestre1.csv' WITH (FORMAT CSV, HEADER true, DELIMITER ',', ENCODING 'LATIN1');
 ```
 Se deberán cargar  1745431 registros
 
-En caso de que no se carguen correctamente los acentos modificar el encoding manualmente en menu -> connection -> view using encoding y modificar por un encoding que permita acentos.
+En caso de que no se carguen correctamente los acentos hay que modificar el encoding manualmente en menu -> connection -> view using encoding y cambiarlo por un encoding que permita acentos.
 
-La columna id_registro es la única columna con valores únicos ya que es un id hexadecimal para cada registro.
+La columna id_registro es la única columna con valores únicos ya que es un id en hexadecimal para cada registro.
 
 En el conjunto de datos se cuenta con 4 columnas de tipo fecha. En seguida hay una tabla que presenta sus valores mínimos y máximos: 
 
@@ -230,12 +230,11 @@ Eliminamos las siguientes columnas que consideramos irrelevantes para nuestro an
 *   toma_muestra_lab y toma_muestra_antigeno: Resultaban redundantes, ya que esta información se puede deducir de las columnas resultado_lab y resultado_antigeno. Previamente verificamos la consistencia de los datos y confirmamos que no había casos contradictorios (por ejemplo: que se hubiera tomado la prueba sin haber un resultado, o que hubiera un resultado sin toma de muestra).
 *   otro_caso: Sus valores eran únicamente 'Sí', 'No' y 'No aplica', los cuales no aportaban información útil para el objetivo del proyecto.
 *   habla_lengua_indig: Para evaluar el impacto del virus por sector poblacional, conservamos la columna indigena. Saber si el paciente hablaba o no la lengua no era de nuestro interés para este análisis en particular.
-*   id_registro: Se descartó para poder generar nuestras propias llaves primarias en cada relación durante el proceso de normalización.
 *   fecha_actualizacion: Contenía la misma fecha para todas las tuplas (la última actualización de la base de datos), por lo que era un valor constante e irrelevante.
 *   column: Solo representaba el número de cada tupla. Como nos presentó problemas durante la carga inicial, decidimos eliminarla desde esa etapa.
 
 
-*   **Estandarización de valores nulos:** Reemplazamos los valores faltantes (que originalmente aparecían como NA) por valores nulos (NULL) en las columnas fecha_def, entidad_res y municipio_res. Posteriormente, contabilizamos la cantidad de registros nulos en cada una de ellas. Posteriormente nos dimos cuenta que al hacer esto, por la forma que separamos las tablas, nos eliminaba la mayor parte de los registros. Esto fue porque nuestra tabla residencia contiene a la tabla persona, que a su vez contiene a paciente. Por lo que al hacerlos nulos, borrabamos gran parte de los datos. Así que revertimos esta operación. 
+*   **Estandarización de valores nulos:** Reemplazamos los valores faltantes (que originalmente aparecían como NA) por valores nulos (NULL) en las columnas fecha_def, entidad_res y municipio_res. Posteriormente, contabilizamos la cantidad de registros nulos en cada una de ellas. No obstante nos dimos cuenta que al hacer esto, por la forma que separamos las tablas, nos eliminaba la mayor parte de las tuplas. Esto fue porque nuestra tabla residencia contiene a la tabla persona, que a su vez contiene a paciente. Por lo que al hacerlos nulos, borrabamos gran parte de los datos. Así que revertimos esta operación. 
 *   **Creación de tipos de datos personalizados (ENUM):** Dado que gran parte de las columnas contenían información categórica, decidimos crear tres tipos de datos 
     *   estado_categorico: Es el tipo de dato más frecuente en la base. Sus valores permitidos son: 'SI', 'NO', 'SE IGNORA', 'NO ESPECIFICADO' y 'NO APLICA'.
     *   sexoT: Sus valores permitidos son 'HOMBRE' y 'MUJER'.
@@ -299,20 +298,6 @@ Se aisló de `PACIENTE` para separar *lo que ocurrió en la atención* de *lo qu
 
 ## Normalización
 
-La normalización se realiza también mediante la estrategia de refresh destructivo. Para ejecutar el proceso de
-normalización se puede emplear el siguiente comando en `psql`:
-
-
-
-
-
-
-```{psql}
-\i pipeline_scripts/03_data_normalization.sql
-```
-
->  Aquí es una buena sección para documentar la descomposición intuitiva de las tablas.
-> También un ERD del diseño final debe ser incluido.
 
 Se realiza la descomposición intuitiva de datos para el diseño del modelo entidad-relación (ERD). El sistema registra información sobre personas, su condición clínica, diagnósticos de laboratorio y enfermedades preexistentes, con el objetivo de apoyar el análisis estadístico y la toma de decisiones en salud pública.
 
