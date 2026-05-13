@@ -243,9 +243,45 @@ Eliminamos las siguientes columnas que consideramos irrelevantes para nuestro an
 
 ## Creación de tablas
 
+
+
+```
+\i '.../CreacionTablas.sql'
+```
+
+> Valores únicos
+A continuación esta un listado con los valores unicos de algunas columnas. Columnas como municipio_res no la mostraremos completa debido a la gran cantidad de datos diferentes
+
+
+
+ 
+
+> Tipos de datos
+En la carga inicial introducimos todos los datos de las columnas con tipo de datos TEXT, ya que era el único compatible en todos los casos, así que empezaremos por modificar los que explícitamente no corresponden a text. 
+* En fechas, la única nulleable fue fecha_def pues no en todos los casos los pacientes murieron
+
+
+## Normalización
+
+La normalización se realiza también mediante la estrategia de refresh destructivo. Para ejecutar el proceso de
+normalización se puede emplear el siguiente comando en `psql`:
+
+
+
+
+
+
+```{psql}
+\i pipeline_scripts/03_data_normalization.sql
+```
+
+>  Aquí es una buena sección para documentar la descomposición intuitiva de las tablas.
+> También un ERD del diseño final debe ser incluido.
+
 Se realiza la descomposición intuitiva de datos para el diseño del modelo entidad-relación (ERD). El sistema registra información sobre personas, su condición clínica, diagnósticos de laboratorio y enfermedades preexistentes, con el objetivo de apoyar el análisis estadístico y la toma de decisiones en salud pública.
 
 La descomposición se guió por tres principios fundamentales:
+
 •	Separación de responsabilidades: cada entidad modela un único concepto del dominio.
 
 •	Minimización de redundancia: los datos se almacenan una sola vez y se referencian mediante claves foráneas.
@@ -302,39 +338,6 @@ Para tener los datos divididos en las tablas mostradas en el ERD descarga el arc
 # Diagrama Entidad-Relación
 El siguiente diagrama representa gráficamente la descomposición descrita en las secciones anteriores.
 ![ERD](images/ERD.png)
-
-```
-\i '.../CreacionTablas.sql'
-```
-
-> Valores únicos
-A continuación esta un listado con los valores unicos de algunas columnas. Columnas como municipio_res no la mostraremos completa debido a la gran cantidad de datos diferentes
-
-
-
- 
-
-> Tipos de datos
-En la carga inicial introducimos todos los datos de las columnas con tipo de datos TEXT, ya que era el único compatible en todos los casos, así que empezaremos por modificar los que explícitamente no corresponden a text. 
-* En fechas, la única nulleable fue fecha_def pues no en todos los casos los pacientes murieron
-
-
-## Normalización
-
-La normalización se realiza también mediante la estrategia de refresh destructivo. Para ejecutar el proceso de
-normalización se puede emplear el siguiente comando en `psql`:
-
-
-
-
-
-
-```{psql}
-\i pipeline_scripts/03_data_normalization.sql
-```
-
->  Aquí es una buena sección para documentar la descomposición intuitiva de las tablas.
-> También un ERD del diseño final debe ser incluido.
 
 ## Resultados
 
