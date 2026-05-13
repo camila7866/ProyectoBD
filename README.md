@@ -236,6 +236,7 @@ Eliminamos las siguientes columnas que consideramos irrelevantes para nuestro an
 *   habla_lengua_indig: Para evaluar el impacto del virus por sector poblacional, conservamos la columna indigena. Saber si el paciente hablaba o no la lengua no era de nuestro interés para este análisis en particular.
 *   fecha_actualizacion: Contenía la misma fecha para todas las tuplas (la última actualización de la base de datos), por lo que era un valor constante e irrelevante.
 *   column: Solo representaba el número de cada tupla. Como nos presentó problemas durante la carga inicial, decidimos eliminarla desde esa etapa.
+*   pais_origen: Esta columna solo tenía 'NA' o 'No aplica' como valores, por lo que no aportaba información.
 
 
 *   **Estandarización de valores nulos:** Reemplazamos los valores faltantes (que originalmente aparecían como NA) por valores nulos (NULL) en las columnas fecha_def, entidad_res y municipio_res. Posteriormente, contabilizamos la cantidad de registros nulos en cada una de ellas. No obstante nos dimos cuenta que al hacer esto, por la forma que separamos las tablas, nos eliminaba la mayor parte de las tuplas. Esto fue porque nuestra tabla residencia contiene a la tabla persona, que a su vez contiene a paciente. Por lo que al hacerlos nulos, borrabamos gran parte de los datos. Así que revertimos esta operación. 
@@ -244,10 +245,11 @@ Eliminamos las siguientes columnas que consideramos irrelevantes para nuestro an
     *   sexoT: Sus valores permitidos son 'HOMBRE' y 'MUJER'.
     *   tipo_pacienteT: Sus valores permitidos son 'AMBULATORIO' y 'HOSPITALIZADO'.
 *   **Asignación de tipos de datos:** Actualizamos la estructura de la tabla para asignar a cada columna su tipo de dato correspondiente (incluyendo los ENUMs recién creados).
+*   **Limpieza de datos**: La columna clasificacion_final tenía espacios dobles que eliminamos. 
   
 *  **Eliminación de duplicados**: Creamos una tabla y la poblamos con los valores únicos de cada tupla. Luego remplazamos la tabla original por esta nueva tabla, para asegurarnos que nada esté duplicado.
 
-*   **Eliminación de inconsistencias**: Finalmente, eliminamos las inconsistencias que encontramos en el análisis preliminar. 
+*   **Eliminación de inconsistencias**: Finalmente, eliminamos las inconsistencias que encontramos en el análisis preliminar.
 
 
 
