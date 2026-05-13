@@ -282,7 +282,7 @@ Modela el episodio de atención médica separado de la identidad de la persona, 
 
 ---
 
-* ENFERMEDAD y PACIENTE_ENFERMEDAD
+* COMPLICACION y PACIENTE_COMPLICACION
 En la fuente, cada enfermedad era una columna booleana independiente (`diabetes`, `epoc`, `asma`…), lo que hace el esquema rígido ante nuevas categorías. Se normalizó a un catálogo de 9 entradas y una tabla intermedia que resuelve la relación muchos-a-muchos. El poblado usa un CTE con `UNION ALL` que pivota las columnas booleanas a filas, insertando únicamente los registros donde el valor es `'SI'`.
 
 ---
@@ -299,7 +299,7 @@ Se aisló de `PACIENTE` para separar *lo que ocurrió en la atención* de *lo qu
 ## Normalización
 
 
-Se realiza la descomposición intuitiva de datos para el diseño del modelo entidad-relación (ERD). El sistema registra información sobre personas, su condición clínica, diagnósticos de laboratorio y enfermedades preexistentes, con el objetivo de apoyar el análisis estadístico y la toma de decisiones en salud pública.
+Se realiza la descomposición intuitiva de datos para el diseño del modelo entidad-relación (ERD). El sistema registra información sobre personas, su condición clínica, diagnósticos de laboratorio y complicaciones preexistentes, con el objetivo de apoyar el análisis estadístico y la toma de decisiones en salud pública.
 
 La descomposición se guió por tres principios fundamentales:
 
@@ -333,14 +333,14 @@ Contiene los desenlaces diagnósticos y clínicos asociados a cada episodio de a
 > Aislar los resultados facilita consultas analíticas puras (tasas de mortalidad, positividad) sin escanear toda la tabla PACIENTE, mejorando el rendimiento en conjuntos de datos de gran volumen.
 
 
-* ENFERMEDAD
+* COMPLICACION
   
   Es un catálogo normalizado de diagnósticos.
   
-* PACIENTE_ENFERMEDAD
+* PACIENTE_COMPLICACION
   
-La relación muchos-a-muchos de PACIENTE con ENFERMEDAD se resuelve mediante la tabla intermedia PACIENTE_ENFERMEDAD.
-> Un paciente puede presentar múltiples enfermedades concomitantes, y una enfermedad puede afectar a múltiples pacientes. El uso de un catálogo permite añadir nuevas enfermedades sin modificar el esquema.
+La relación muchos-a-muchos de PACIENTE con COMPLICACION se resuelve mediante la tabla intermedia PACIENTE_COMPLICACION.
+> Un paciente puede presentar múltiples complicaciones concomitantes, y una complicacion puede afectar a múltiples pacientes. El uso de un catálogo permite añadir nuevas complicaciones sin modificar el esquema.
 
 
 * CONDICION
