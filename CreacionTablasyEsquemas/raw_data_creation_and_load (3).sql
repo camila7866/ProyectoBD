@@ -1,0 +1,48 @@
+SET CLIENT_ENCODING TO 'UTF8';
+
+DROP SCHEMA IF EXISTS raw;
+CREATE SCHEMA raw;
+
+CREATE TABLE raw.casoscovid2021 (
+    columna text,
+    fecha_actualizacion text, 
+    id_registro text,
+    origen text,
+    sector text,
+    entidad_um text,
+    sexo text,
+    entidad_nac text,
+    entidad_res text,
+    municipio_res text,
+    tipo_paciente text,
+    fecha_ingreso text,
+    fecha_sintomas text,
+    fecha_def text,
+    intubado text,
+    neumonia text,
+    edad text,
+    nacionalidad text,
+    embarazo text,
+    habla_lengua_indig text,
+    indigena text,
+    diabetes text,
+    epoc text,
+    asma text,
+    inmusupr text,
+    hipertension text,
+    otra_com text,
+    cardiovascular text,
+    obesidad text,
+    renal_cronica text,
+    tabaquismo text,
+    otro_caso text,
+    toma_muestra_lab text,
+    resultado_lab text,
+    toma_muestra_antigeno text,
+    resultado_antigeno text,
+    clasificacion_final text,
+    migrante text,
+    pais_nacionalidad text,
+    pais_origen text,
+    uci text
+);
