@@ -285,13 +285,13 @@ Modela el episodio de atención médica separado de la identidad de la persona, 
 
 * COMPLICACION y PACIENTE_COMPLICACION
   
-En la fuente, cada enfermedad era una columna booleana independiente (`diabetes`, `epoc`, `asma`…), lo que hace el esquema rígido ante nuevas categorías. Se normalizó a un catálogo de 9 entradas y una tabla intermedia que resuelve la relación muchos-a-muchos. El poblado usa un CTE con `UNION ALL` que pivota las columnas booleanas a filas, insertando únicamente los registros donde el valor es `'SI'`.
+En la fuente, cada complicación era una columna booleana independiente (`diabetes`, `epoc`, `asma`…), lo que hace el esquema rígido ante nuevas categorías. Se normalizó a un catálogo de 9 entradas y una tabla intermedia que resuelve la relación muchos-a-muchos. El poblado usa un CTE con `UNION ALL` que pivota las columnas booleanas a filas, insertando únicamente los registros donde el valor es `'SI'`.
 
 ---
 
 * CONDICION y PACIENTE_CONDICION
   
-Misma lógica que enfermedades, pero separada intencionalmente porque `embarazo`, `obesidad` y `tabaquismo` representan **factores de riesgo o estado del paciente**, no diagnósticos de la enfermedad en curso. Mezclarlos en un solo catálogo dificultaría el análisis diferenciado de comorbilidades vs. condiciones predisponentes.
+Misma lógica que complicaciones, pero separada intencionalmente porque `embarazo`, `obesidad` y `tabaquismo` representan **factores de riesgo o estado del paciente**, no diagnósticos de la complicación en curso. Mezclarlos en un solo catálogo dificultaría el análisis diferenciado de comorbilidades vs. condiciones predisponentes.
 
 ---
 
