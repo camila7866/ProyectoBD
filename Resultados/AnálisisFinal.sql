@@ -124,4 +124,139 @@ SELECT COUNT(*)
 FROM raw.paciente;
 
 SELECT DISTINCT clasificacion_final
+
+-------------------------------------------------------ANALISIS DE MORTALIDAD---------------------------------------------------------------------------
+    
+-- 1. TASA DE LETALIDAD POR ENTIDAD DE RESIDENCIA CORREGIDA
+WITH casos_confirmados AS (
+    SELECT 
+        res.entidad_res,
+        pa.id AS paciente_id,
+        -- Validamos que no sea nulo y que tampoco sea la fecha de los sobrevivientes
+        CASE 
+            WHEN resu.fecha_def IS NOT NULL THEN 1 
+            ELSE 0 
+        END AS fallecido
+    FROM raw.residencia res
+    LEFT JOIN raw.persona per ON per.residencia_id = res.id
+    LEFT JOIN raw.paciente pa ON pa.persona_id = per.id
+    LEFT JOIN raw.resultado resu ON resu.paciente_id = pa.id
+    WHERE resu.clasificacion_final IN (
+        'CASO DE COVID-19 CONFIRMADO POR ASOCIACIÓN CLÍNICA EPIDEMIOLÓGICA',
+        'CASO DE COVID-19 CONFIRMADO POR COMITÉ DE DICTAMINACIÓN', -- Con doble espacio
+        'CASO DE SARS-COV-2 CONFIRMADO' -- Con doble espacio
+    )
+)
+SELECT 
+    entidad_res,
+    COUNT(DISTINCT paciente_id) AS total_casos_confirmados,
+    SUM(fallecido) AS total_defunciones,
+    (SUM(fallecido) * 100.0 / COUNT(DISTINCT paciente_id)) AS tasa_letalidad_porcentaje
+FROM casos_confirmados
+WHERE entidad_res IS NOT NULL
+GROUP BY entidad_res
+ORDER BY tasa_letalidad_porcentaje DESC;
+
+
+-- 2. TASA DE LETALIDAD POR SEXO CORREGIDA
+WITH casos_confirmados_sexo AS (
+    SELECT 
+        per.sexo,
+        pa.id AS paciente_id,
+        CASE 
+            WHEN resu.fecha_def IS NOT NULL THEN 1 
+            ELSE 0 
+        END AS fallecido
+    FROM raw.persona per
+    LEFT JOIN raw.paciente pa ON pa.persona_id = per.id
+    LEFT JOIN raw.resultado resu ON resu.paciente_id = pa.id
+    WHERE resu.clasificacion_final IN (
+        'CASO DE COVID-19 CONFIRMADO POR ASOCIACIÓN CLÍNICA EPIDEMIOLÓGICA',
+        'CASO DE COVID-19 CONFIRMADO POR COMITÉ DE  DICTAMINACIÓN', -- Con doble espacio
+        'CASO DE SARS-COV-2  CONFIRMADO' -- Con doble espacio
+    )
+)
+SELECT 
+    sexo,
+    COUNT(DISTINCT paciente_id) AS total_casos_confirmados,
+    SUM(fallecido) AS total_defunciones,
+    (SUM(fallecido) * 100.0 / COUNT(DISTINCT paciente_id)) AS tasa_letalidad_porcentaje
+FROM casos_confirmados_sexo
+WHERE sexo IS NOT NULL
+GROUP BY sexo
+ORDER BY tasa_letalidad_porcentaje DESC;
+
+WITH total_muertos AS(
+	SELECT COUNT(fecha_def)
+	FROM resultado
+	);
+	
+-- 3. TASA DE LETALIDAD POR COMORBILIDAD (ENFERMEDAD)
+-- Analiza el porcentaje de muerte en pacientes positivos a COVID-19 que padecían cada enfermedad
+
+WITH pacientes_con_enfermedad AS (
+    SELECT 
+        enf.nombre AS enfermedad,
+        pa.id AS paciente_id,
+        CASE 
+            -- Contabiliza como muerte si la fecha no es nula Y tampoco es '9999-99-99'
+            WHEN resu.fecha_def IS NOT NULL THEN 1 
+            ELSE 0 
+        END AS fallecido
+    FROM raw.enfermedad enf
+    -- Conectamos la enfermedad con la tabla intermedia
+    LEFT JOIN raw.paciente_enfermedad pe ON pe.enfermedad_id = enf.id
+    -- Conectamos la tabla intermedia con el paciente
+    LEFT JOIN raw.paciente pa ON pa.id = pe.paciente_id
+    -- Conectamos al paciente con sus resultados
+    LEFT JOIN raw.resultado resu ON resu.paciente_id = pa.id
+    WHERE resu.clasificacion_final IN (
+        'CASO DE COVID-19 CONFIRMADO POR ASOCIACIÓN CLÍNICA EPIDEMIOLÓGICA',
+        'CASO DE COVID-19 CONFIRMADO POR COMITÉ DE DICTAMINACIÓN', 
+        'CASO DE SARS-COV-2 CONFIRMADO'
+    )
+)
+SELECT 
+    enfermedad,
+    COUNT(DISTINCT paciente_id) AS total_pacientes_confirmados,
+    SUM(fallecido) AS total_defunciones,
+    (SUM(fallecido) * 100.0 / NULLIF(COUNT(DISTINCT paciente_id), 0)) AS tasa_letalidad_porcentaje
+FROM pacientes_con_enfermedad
+GROUP BY enfermedad
+ORDER BY tasa_letalidad_porcentaje DESC;
+
+-- 4. TASA DE LETALIDAD POR CONDICIÓN DEL PACIENTE
+-- Analiza el porcentaje de muerte en pacientes positivos a COVID-19 bajo diferentes condiciones (ej. UCI, Intubado, Embarazo)
+
+WITH pacientes_con_condicion AS (
+    SELECT 
+        con.nombre AS condicion,
+        pa.id AS paciente_id,
+        CASE 
+            -- Contabiliza como muerte si la fecha no es nula Y tampoco es '9999-99-99'
+            WHEN resu.fecha_def IS NOT NULL THEN 1 
+            ELSE 0 
+        END AS fallecido
+    FROM raw.condicion con
+    -- Conectamos la condición con la tabla intermedia
+    JOIN raw.paciente_condicion pc ON pc.condicion_id = con.id
+    -- Conectamos la tabla intermedia con el paciente
+    JOIN raw.paciente pa ON pa.id = pc.paciente_id
+    -- Conectamos al paciente con sus resultados
+    JOIN raw.resultado resu ON resu.paciente_id = pa.id
+    WHERE resu.clasificacion_final IN (
+        'CASO DE COVID-19 CONFIRMADO POR ASOCIACIÓN CLÍNICA EPIDEMIOLÓGICA',
+        'CASO DE COVID-19 CONFIRMADO POR COMITÉ DE DICTAMINACIÓN', 
+        'CASO DE SARS-COV-2 CONFIRMADO'
+    )
+)
+SELECT 
+    condicion,
+    COUNT(DISTINCT paciente_id) AS total_pacientes_confirmados,
+    SUM(fallecido) AS total_defunciones,
+    (SUM(fallecido) * 100.0 / NULLIF(COUNT(DISTINCT paciente_id), 0)) AS tasa_letalidad_porcentaje
+FROM pacientes_con_condicion
+GROUP BY condicion
+ORDER BY tasa_letalidad_porcentaje DESC;
+	
 FROM raw.resultado;
