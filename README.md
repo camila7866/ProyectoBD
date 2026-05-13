@@ -521,13 +521,13 @@ La siguiente consulta ayuda a identificar los casos positivos de COVID-19 por en
 -- CASOS POSITIVOS POR ENTIDAD DE RESIDENCIA
 SELECT residencia.entidad_res, COUNT(*)
 FROM raw.residencia
-LEFT JOIN raw.persona ON 
+LEFT JOIN raw.persona ON
 persona.residencia_id = residencia.id
-LEFT JOIN raw.paciente ON 
+LEFT JOIN raw.paciente ON
 paciente.persona_id = persona.id
-LEFT JOIN raw.resultado ON 
+LEFT JOIN raw.resultado ON
 resultado.paciente_id = paciente.id
-WHERE raw.resultado.clasificacion_final IN ('CASO DE COVID-19 CONFIRMADO POR ASOCIACIÓN CLÍNICA EPIDEMIOLÓGICA', 'CASO DE COVID-19 CONFIRMADO POR COMITÉ DE  DICTAMINACIÓN', 'CASO DE SARS-COV-2  CONFIRMADO')
+WHERE raw.resultado.clasificacion_final IN ('CASO DE COVID-19 CONFIRMADO POR ASOCIACIÓN CLÍNICA EPIDEMIOLÓGICA', 'CASO DE COVID-19 CONFIRMADO POR COMITÉ DE DICTAMINACIÓN', 'CASO DE SARS-COV-2 CONFIRMADO')
 GROUP BY raw.residencia.entidad_res;
 ```
 Lo mismo hacemos para ver los casos negativos y nuevamente Ciudad de México es la entidad de residencia más repetida. Podemos notar que a la población que reside en CDMX fue la que mas pruebas se hizo en la CDMX.
