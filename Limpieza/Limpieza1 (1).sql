@@ -118,6 +118,12 @@ ALTER COLUMN resultado_antigeno TYPE VARCHAR(100),
 ALTER COLUMN clasificacion_final TYPE VARCHAR(100);
 
 COMMIT;
+-- Minimos y maximos de columnas numericas
+SELECT MAX(edad) FROM raw.casoscovid2021;
+
+SELECT MIN(edad) FROM raw.casoscovid2021;
+
+SELECT AVG(edad) FROM raw.casoscovid2021;
 
 -- Eliminamos duplicados considerando como criterio de duplicados todos los atributos menos el registro_id
 -- Paso 1: Crear una tabla temporal con los registros únicos
