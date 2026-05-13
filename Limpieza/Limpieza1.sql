@@ -7,8 +7,7 @@ DROP COLUMN IF EXISTS toma_muestra_antigeno,
 DROP COLUMN IF EXISTS fecha_actualizacion,
 DROP COLUMN IF EXISTS entidad_nac, 
 DROP COLUMN IF EXISTS pais_nacionalidad, 
-DROP COLUMN IF EXISTS pais_origen, 
-DROP COLUMN IF EXISTS migrante;
+DROP COLUMN IF EXISTS pais_origen;
 
 DROP TYPE IF EXISTS estado_categorico CASCADE;
 DROP TYPE IF EXISTS sexoT CASCADE;
