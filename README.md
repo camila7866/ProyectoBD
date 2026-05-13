@@ -128,7 +128,7 @@ Se deberán cargar  1745431 registros
 
 En caso de que no se carguen correctamente los acentos modificar el encoding manualmente en menu -> connection -> view using encoding y modificar por un encoding que permita acentos.
 
-La columna id_registro es un valor único por cada registro, pero vamos a cambiarlo por nuestro propio id por lo que resulta redundante.
+La columna id_registro es la única columna con valores únicos ya que es un id hexadecimal para cada registro.
 
 En el conjunto de datos se cuenta con 4 columnas de tipo fecha. En seguida hay una tabla que presenta sus valores mínimos y máximos: 
 
