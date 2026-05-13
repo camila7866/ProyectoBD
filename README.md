@@ -323,13 +323,13 @@ Almacena la ubicación geográfica donde habita una persona. Se desacopla de PER
 * PERSONA
   
 Representa al individuo biológico con sus características demográficas y socioeconómicas. Es el núcleo del modelo; todas las demás entidades se relacionan directa o indirectamente con ella.
-> Centralizar los atributos demográficos en PERSONA permite reutilizarlos en múltiples episodios de atención (PACIENTE) sin duplicar información. Un mismo individuo puede generar varios registros de paciente a lo largo del tiempo.
+> Centralizar los atributos demográficos en PERSONA permite reutilizarlos en múltiples episodios de atención (PACIENTE) sin duplicar información.
 
 
 * PACIENTE
   
 Modela un episodio de atención médica específico.
-> Se distingue de PERSONA porque un individuo puede ser atendido en múltiples ocasiones, en distintas unidades médicas o con diferentes diagnósticos.
+> Se distingue de PERSONA porque un individuo puede no ser necesariamente un paciente.
 
 
 * RESULTADO
