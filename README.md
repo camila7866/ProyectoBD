@@ -365,110 +365,126 @@ El siguiente diagrama representa gráficamente la descomposición descrita en la
 ### Normalización de Datos 4FN
 A continuación se listan, para cada relvar, sus dependencias funcionales no triviales y sus dependencias multivaluadas no triviales.
 
+---
+
 * RESIDENCIA
   
 Atributos
     {id, entidad_res, municipio_res}
 
-Dependencias funcionales no triviales
+* Dependencias funcionales no triviales
 
 {id} → {entidad_res, municipio_res}
 
-Dependencias multivaluadas no triviales
+* Dependencias multivaluadas no triviales
 
 Ninguna
 
+---
 
 * PERSONA
+  
 Atributos
     {id, registro_id, edad, sexo, migrante, indigena, sector, residencia_id}
   
-Dependencias funcionales no triviales
+* Dependencias funcionales no triviales
 
 {id} → {registro_id, edad, sexo, migrante, indigena, sector, residencia_id}
 
-Dependencias multivaluadas no triviales
+* Dependencias multivaluadas no triviales
 
 Ninguna
 
+---
 
 * PACIENTE
+  
 Atributos
     {id, registro_id, persona_id, origen, entidad_um, tipo_paciente, fecha_ingreso, fecha_sintomas}
   
-Dependencias funcionales no triviales
+* Dependencias funcionales no triviales
 
 {id} → {registro_id, persona_id, origen, entidad_um, tipo_paciente, fecha_ingreso, fecha_sintomas}
 
-Dependencias multivaluadas no triviales
+* Dependencias multivaluadas no triviales
 
 Ninguna
 
+---
 
 * RESULTADO
+  
 Atributos
     {id, paciente_id, fecha_def, resultado_lab, resultado_antig, clasificacion_final}
   
-Dependencias funcionales no triviales
+* Dependencias funcionales no triviales
 
 {id} → {paciente_id, fecha_def, resultado_lab, resultado_antig, clasificacion_final}
 
-Dependencias multivaluadas no triviales
+* Dependencias multivaluadas no triviales
 
 Ninguna
 
+---
 
 * COMPLICACION
+  
 Atributos
     {id, nombre}
   
-Dependencias funcionales no triviales
+* Dependencias funcionales no triviales
 
 {id} → {nombre}
 
-Dependencias multivaluadas no triviales
+* Dependencias multivaluadas no triviales
 
 Ninguna
 
+---
 
 * CONDICION
 Atributos
     {id, nombre}
   
-Dependencias funcionales no triviales
+* Dependencias funcionales no triviales
 
 {id} → {nombre}
 
-Dependencias multivaluadas no triviales
+* Dependencias multivaluadas no triviales
 
 Ninguna
 
+---
 
 * PACIENTE_COMPLICACION
+  
 Atributos
     {id, paciente_id, enfermedad_id}
   
-Dependencias funcionales no triviales
+* Dependencias funcionales no triviales
 
 {id} → {paciente_id, enfermedad_id}
 
-Dependencias multivaluadas no triviales
+* Dependencias multivaluadas no triviales
 
 Ninguna
 
+---
 
 * PACIENTE_CONDICION
+  
 Atributos
     {id, paciente_id, condicion_id}
   
-Dependencias funcionales no triviales
+* Dependencias funcionales no triviales
 
 {id} → {paciente_id, condicion_id}
 
-Dependencias multivaluadas no triviales
+* Dependencias multivaluadas no triviales
 
 Ninguna
 
+---
 
 Al no existir dependencias multivaluadas no triviales en ninguna relvar, todas las tablas cumplen automáticamente con la condición de 4FN.
 
