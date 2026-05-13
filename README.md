@@ -104,7 +104,7 @@ Para cargar los datos fue necesario poner todas las columnas en tipo text, lo cu
 
 1. Descargar los datos en bruto del proyecto de acuerdo a las instrucciones del apartado de [Fuente de datos](#fuente-de-datos).
 2. Contar con 'postgres 16' o superior instalado en la computadora o servidor donde se replicará el proyecto.
-3. Contar con una base de datos exclusiva para este proyecto. Todas las instrucciones del proyecto asumen que la sesión está conectada a la misma base de datos.
+3. Contar con una base de datos exclusiva para este proyecto. Todas las instrucciones del proyecto asumen que la sesión está conectada a la misma base de datos y que la terminal de psql se encuentra en la carpeta con el repositorio.
 
 ⚠️Es de suma importancia seguir los pasos en el orden indicado para replicarlo. A su vez tomar en cuenta que debido a la gran cantidad de datos a ejecutar las consultas pueden tomar tiempo. En nuestro caso toma aproximadamente 10 minutos ejecutar los códigos desde la carga inicial hasta la creación de tablas. El tiempo puede variar según el dispositivo⚠️
 
