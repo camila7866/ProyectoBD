@@ -17,7 +17,7 @@ DROP TYPE IF EXISTS tipo_pacienteT CASCADE;
 UPDATE raw.casoscovid2021
 SET fecha_def = NULL
 WHERE fecha_def = 'NA';
-
+/* Esta sección fue eliminada ya que causaba problemas al crear las tablas pues borraba la mayoría de los registros
 UPDATE raw.casoscovid2021
 SET entidad_res = NULL
 WHERE entidad_res= 'NA';
@@ -25,13 +25,13 @@ WHERE entidad_res= 'NA';
 UPDATE raw.casoscovid2021
 SET municipio_res = NULL
 WHERE municipio_res= 'NA';
-
+*/
 
 --Contamos nulos
 SELECT COUNT(*)
 FROM raw.casoscovid2021
 WHERE fecha_def IS NULL;
-
+/*
 SELECT COUNT(*)
 FROM raw.casoscovid2021
 WHERE entidad_res IS NULL;
@@ -39,7 +39,7 @@ WHERE entidad_res IS NULL;
 SELECT COUNT(*)
 FROM raw.casoscovid2021
 WHERE municipio_res IS NULL;
-
+*/
 
 
 SELECT * FROM raw.casoscovid2021;
