@@ -695,8 +695,8 @@ WITH casos_confirmados_sexo AS (
     LEFT JOIN raw.resultado resu ON resu.paciente_id = pa.id
     WHERE resu.clasificacion_final IN (
         'CASO DE COVID-19 CONFIRMADO POR ASOCIACIÓN CLÍNICA EPIDEMIOLÓGICA',
-        'CASO DE COVID-19 CONFIRMADO POR COMITÉ DE  DICTAMINACIÓN', -- Con doble espacio
-        'CASO DE SARS-COV-2  CONFIRMADO' -- Con doble espacio
+        'CASO DE COVID-19 CONFIRMADO POR COMITÉ DE DICTAMINACIÓN', 
+        'CASO DE SARS-COV-2 CONFIRMADO'
     )
 )
 SELECT 
