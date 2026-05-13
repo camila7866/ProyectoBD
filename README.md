@@ -237,6 +237,13 @@ Eliminamos las siguientes columnas que consideramos irrelevantes para nuestro an
 # Creación de tablas
 
 > ERD
+Se realiza la descomposición intuitiva de datos para el diseño del modelo entidad-relación (ERD). El sistema registra información sobre personas, su condición clínica, diagnósticos de laboratorio y enfermedades preexistentes, con el objetivo de apoyar el análisis estadístico y la toma de decisiones en salud pública.
+>
+> La descomposición se guió por tres principios fundamentales:
+•	Separación de responsabilidades: cada entidad modela un único concepto del dominio.
+•	Minimización de redundancia: los datos se almacenan una sola vez y se referencian mediante claves foráneas.
+•	Extensibilidad: el diseño permite añadir nuevas enfermedades, condiciones y resultados sin alterar la estructura central.
+
 
 Para tener los datos divididos en las tablas mostradas en el ERD descarga el archivo CreacionTablas en data y ejecuta en terminal el siguiente código cambiando lo que esta entre comillas después de la i por la ruta de tu archivo descargado.
 
