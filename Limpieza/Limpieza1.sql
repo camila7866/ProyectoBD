@@ -17,6 +17,7 @@ DROP TYPE IF EXISTS tipo_pacienteT CASCADE;
 UPDATE raw.casoscovid2021
 SET fecha_def = NULL
 WHERE fecha_def = 'NA';
+
 /* Esta sección fue eliminada ya que causaba problemas al crear las tablas pues borraba la mayoría de los registros
 UPDATE raw.casoscovid2021
 SET entidad_res = NULL
@@ -27,22 +28,6 @@ SET municipio_res = NULL
 WHERE municipio_res= 'NA';
 */
 
---Contamos nulos
-SELECT COUNT(*)
-FROM raw.casoscovid2021
-WHERE fecha_def IS NULL;
-/*
-SELECT COUNT(*)
-FROM raw.casoscovid2021
-WHERE entidad_res IS NULL;
-
-SELECT COUNT(*)
-FROM raw.casoscovid2021
-WHERE municipio_res IS NULL;
-*/
-
-
-SELECT * FROM raw.casoscovid2021;
 
 START TRANSACTION;
 
@@ -168,8 +153,12 @@ COMMIT;
 -- Limpiamos clasificacion_final que tiene espacios extra
 
 UPDATE raw.casoscovid2021
-SET clasificacion_final = REPLACE(clasificacion_final, '  ', ' ');
-
+SET clasificacion_final = REGEXP_REPLACE(
+    clasificacion_final,
+    '\s+',
+    ' ',
+    'g'
+);
 
 
 
