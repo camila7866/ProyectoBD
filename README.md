@@ -367,7 +367,7 @@ A continuación se listan, para cada relvar, sus dependencias funcionales no tri
 
 ---
 
-* RESIDENCIA
+### RESIDENCIA
   
 Atributos
     {id, entidad_res, municipio_res}
@@ -382,7 +382,7 @@ Ninguna
 
 ---
 
-* PERSONA
+### PERSONA
   
 Atributos
     {id, registro_id, edad, sexo, migrante, indigena, sector, residencia_id}
@@ -397,7 +397,7 @@ Ninguna
 
 ---
 
-* PACIENTE
+### PACIENTE
   
 Atributos
     {id, registro_id, persona_id, origen, entidad_um, tipo_paciente, fecha_ingreso, fecha_sintomas}
@@ -412,7 +412,7 @@ Ninguna
 
 ---
 
-* RESULTADO
+### RESULTADO
   
 Atributos
     {id, paciente_id, fecha_def, resultado_lab, resultado_antig, clasificacion_final}
@@ -427,7 +427,7 @@ Ninguna
 
 ---
 
-* COMPLICACION
+### COMPLICACION
   
 Atributos
     {id, nombre}
@@ -442,7 +442,8 @@ Ninguna
 
 ---
 
-* CONDICION
+### CONDICION
+  
 Atributos
     {id, nombre}
   
@@ -456,7 +457,7 @@ Ninguna
 
 ---
 
-* PACIENTE_COMPLICACION
+### PACIENTE_COMPLICACION
   
 Atributos
     {id, paciente_id, enfermedad_id}
@@ -471,7 +472,7 @@ Ninguna
 
 ---
 
-* PACIENTE_CONDICION
+### PACIENTE_CONDICION
   
 Atributos
     {id, paciente_id, condicion_id}
