@@ -299,6 +299,10 @@ La relación muchos-a-muchos de PACIENTE con CONDICION se resuelve mediante la t
 
 Para tener los datos divididos en las tablas mostradas en el ERD descarga el archivo CreacionTablas en data y ejecuta en terminal el siguiente código cambiando lo que esta entre comillas después de la i por la ruta de tu archivo descargado.
 
+# Diagrama Entidad-Relación
+El siguiente diagrama representa gráficamente la descomposición descrita en las secciones anteriores.
+![ERD](images/ERD.png)
+
 ```
 \i '.../CreacionTablas.sql'
 ```
