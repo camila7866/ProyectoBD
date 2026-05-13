@@ -261,6 +261,35 @@ En la carga inicial introducimos todos los datos de las columnas con tipo de dat
 * En fechas, la única nulleable fue fecha_def pues no en todos los casos los pacientes murieron
 
 
+# `RESIDENCIA`
+La tabla fuente `casoscovid2021` repetía la combinación `entidad_res / municipio_res` en cada fila. Se extrajo a una tabla propia con `DISTINCT` para eliminar esa redundancia y permitir consultas geográficas agregadas. Se creó un índice compuesto sobre ambas columnas para acelerar el JOIN durante la carga de `PERSONA`.
+
+---
+
+# `PERSONA`
+Centraliza los atributos demográficos del individuo (edad, sexo, sector, condición migrante e indígena). No se usó `DISTINCT` en el INSERT porque se asumió que cada `id_registro` de la fuente corresponde a una persona única — no existe criterio claro para fusionar registros duplicados. Se añadió un `CHECK` en `edad` para descartar valores biológicamente implausibles. La FK con `RESIDENCIA` usa `ON DELETE CASCADE` porque si se elimina una localidad, los registros de personas asociados pierden validez geográfica.
+
+---
+
+# `PACIENTE`
+Modela el episodio de atención médica separado de la identidad de la persona, permitiendo que en un futuro un mismo individuo pueda tener múltiples ingresos. La FK hacia `PERSONA` usa `ON DELETE RESTRICT` deliberadamente: no tiene sentido eliminar una persona si aún existen episodios clínicos vinculados. Se añadió `UNIQUE (persona_id)` para reflejar que, en este dataset, cada persona tiene exactamente un episodio registrado.
+
+---
+
+# `ENFERMEDAD` y `PACIENTE_ENFERMEDAD`
+En la fuente, cada enfermedad era una columna booleana independiente (`diabetes`, `epoc`, `asma`…), lo que hace el esquema rígido ante nuevas categorías. Se normalizó a un catálogo de 9 entradas y una tabla intermedia que resuelve la relación muchos-a-muchos. El poblado usa un CTE con `UNION ALL` que pivota las columnas booleanas a filas, insertando únicamente los registros donde el valor es `'SI'`.
+
+---
+
+# `CONDICION` y `PACIENTE_CONDICION`
+Misma lógica que enfermedades, pero separada intencionalmente porque `embarazo`, `obesidad` y `tabaquismo` representan **factores de riesgo o estado del paciente**, no diagnósticos de la enfermedad en curso. Mezclarlos en un solo catálogo dificultaría el análisis diferenciado de comorbilidades vs. condiciones predisponentes.
+
+---
+
+# `RESULTADO`
+Se aisló de `PACIENTE` para separar *lo que ocurrió en la atención* de *lo que se encontró clínicamente*. Esto permite actualizar resultados de laboratorio que llegan de forma diferida sin modificar el registro del episodio, y simplifica consultas analíticas como tasas de positividad o mortalidad sin escanear toda la tabla de pacientes.
+
+
 ## Normalización
 
 La normalización se realiza también mediante la estrategia de refresh destructivo. Para ejecutar el proceso de
