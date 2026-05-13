@@ -22,8 +22,8 @@
 
 
 ### Consideraciones éticas
-* La correlación entre ciertos fenómenos con el caso de covid no implica causalidad y puede estar sesgado a los casos concretos o a poblaciones en riesgo por factores no considerados en la base de datos.
-* Estos datos solo representan en su mayoría a la ciudad de México y el centro de México, por lo que los indicadores podrían cambiar en otras partes del país.
+* La correlación entre ciertos fenómenos con el caso de covid no implica causalidad y puede estar sesgado a los casos concretos o a poblaciones en riesgo por factores no considerados en la base de datos, igual los datos se pueden ver alterados por la falta de información de algunas entidades.
+* Estos datos solo representan en su mayoría datos enfocados en el centro de México, por lo que los indicadores podrían cambiar en otras partes del país.
 * Hay que recordar que aunque aquí la información sea usada con propósitos estadísticos, cada dato aquí representa a una persona. 
 
 ## Datos
@@ -82,18 +82,22 @@ Para cargar los datos fue necesario poner todas las columnas en tipo text, lo cu
 ### Estructura del repositorio
 
     ├── README.md                                         <- Documentación para desarrolladores de este proyecto (i.e., reporte escrito)
-    ├── data
-    │   └── raw_data_creation_and_load.sql                                  <-  Script de carga inicial
+    ├── CreacionTablasyEsquemas
+    │   ├── CreacionTablas.sql                               
+    │   └── raw_data_creation_and_load.sql                <-  Script de carga inicial
     │
-    ├── pipeline_scripts                                  <- Scripts de SQL para ejecución del pipeline de datos
-    │   ├── Limpieza1.sql                                 <- Script de limpieza de datos (i.e., actividad C)
-    │   ├── Limpieza2.sql                                 <- Script de limpieza de datos (i.e., actividad C)
-    │   └── CreacionTablas.sql                            <- Script de creación de tablas (i.e., actividad *)
+    ├── Exploracion                                       <- Scripts de SQL para revisión de datos
+    │   ├── ExploracionInconsistencias                    <- Consultas de exploración de datos en bruto (i.e., soporte de actividad B)
+    │   └── PostCreacionTablas                               
     │
-    └── exploration_queries                               <- Scripts de SQL para exploración de datos
-        ├── 01_raw_data_exploration.sql                   <- Consultas de exploración de datos en bruto (i.e., soporte de actividad B)
-        ├── ...                                           <- Otras consultas en caso de ser requeridas
-        └── 0N_analytical_queries.sql                     <- Consultas de interés sobre los datos normalizados (i.e., soporte de actividad E)
+    ├── Limpieza                           
+    │   └── Limpieza1.sql
+    │
+    ├── Resultados                           
+    │   └── AnalisisFinal.sql
+    └── images
+        ├── ERD.png     
+        └── mapa_mexico.png
 
   
 ## Requerimientos para replicación del proyecto
