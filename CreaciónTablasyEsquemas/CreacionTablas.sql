@@ -139,13 +139,13 @@ WITH complicaciones AS (
     
     SELECT c.id_registro, 'intubado' AS complicacion_nombre
     FROM raw.casoscovid2021 c
-    WHERE c.otra_com = 'SI'
+    WHERE c.itubado = 'SI'
 
 	UNION ALL
     
     SELECT c.id_registro, 'uci' AS complicacion_nombre
     FROM raw.casoscovid2021 c
-    WHERE c.otra_com = 'SI'
+    WHERE c.uci = 'SI'
     
 )
 
@@ -280,4 +280,4 @@ SELECT
 p.id, c.fecha_def, c.resultado_lab, c.resultado_antigeno, c.clasificacion_final
 FROM raw.casoscovid2021 c
 JOIN raw.paciente p 
-ON c.id_registro = p.registro_id
+ON c.id_registro = p.registro_id;
