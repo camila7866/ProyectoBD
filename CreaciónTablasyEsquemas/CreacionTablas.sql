@@ -87,101 +87,71 @@ JOIN raw.persona p
 ALTER TABLE raw.paciente ADD CONSTRAINT paciente_persona_unique UNIQUE (persona_id);
 
 
------------------------------------------------------------------------------- TABLA ENFERMEDAD ------------------------------------------------------------------------------------------
---DROP TABLE raw.enfermedad CASCADE;
+------------------------------------------------------------------------------ TABLA COMPLICACION ------------------------------------------------------------------------------------------
+--DROP TABLE raw.complicacion CASCADE;
 
-CREATE TABLE raw.enfermedad (
+CREATE TABLE raw.complicacion (
 id BIGSERIAL PRIMARY KEY,
-nombre VARCHAR(100)
+nombre VARCHAR(100) UNIQUE 
 
 );
 
---Llenado de tabla enfermedad
+--Llenado de tabla complicaciones
+INSERT INTO raw.complicacion (nombre) VALUES
+ ('epoc'), ('inmusupr'),('neumonia'), ('otra_com');
 
-INSERT INTO raw.enfermedad (nombre) VALUES
-('diabetes') , ('epoc'), ('asma'), ('inmusupr'), ('hipertension'),('neumonia'), ('otra_com'), ('cardiovascular'), ('renal_cronica');
 
+------------------------------------------------------------------------- TABLA PACIENTE_COMPLICACION---------------------------------------------------------------------------------------
+-- DROP TABLE raw.paciente_complicaciones
 
-------------------------------------------------------------------------- TABLA PACIENTE_ENFERMEDAD---------------------------------------------------------------------------------------
--- DROP TABLE raw.paciente_enfermedad
-
-CREATE TABLE raw.paciente_enfermedad (
+CREATE TABLE raw.paciente_complicacion (
 id BIGSERIAL PRIMARY KEY,
-paciente_id BIGINT, 
-enfermedad_id BIGINT,
+paciente_id BIGINT NOT NULL, 
+complicacion_id BIGINT NOT NULL,
 
 
 FOREIGN KEY (paciente_id) references raw.paciente (id) ON DELETE CASCADE,
-FOREIGN KEY (enfermedad_id) references raw.enfermedad (id) ON DELETE CASCADE
+FOREIGN KEY (complicacion_id) references raw.complicacion (id) ON DELETE CASCADE, 
+CONSTRAINT _un_paciente_complicacion UNIQUE (paciente_id, complicacion_id)
 );
 
 -- poblado de tabla
 
-WITH enfermedades_paciente AS (
-    -- Primero: relacionar paciente con sus enfermedades (solo donde valor = 'SI')
-    SELECT 
-        c.id_registro,
-        'diabetes' as enfermedad_nombre
-    FROM raw.casoscovid2021 c
-    WHERE c.diabetes = 'SI'
+WITH complicaciones AS (
+    -- Primero: relacionar paciente con sus complicaciones (solo donde valor = 'SI')
     
-    UNION ALL
-    
-    SELECT c.id_registro, 'epoc'
+    SELECT c.id_registro, 'epoc' AS complicacion_nombre
     FROM raw.casoscovid2021 c
     WHERE c.epoc = 'SI'
     
     UNION ALL
     
-    SELECT c.id_registro, 'asma'
-    FROM raw.casoscovid2021 c
-    WHERE c.asma = 'SI'
-    
-    UNION ALL
-    
-    SELECT c.id_registro, 'inmusupr'
+    SELECT c.id_registro, 'inmusupr' AS complicacion_nombre
     FROM raw.casoscovid2021 c
     WHERE c.inmusupr = 'SI'
-    
+
     UNION ALL
     
-    SELECT c.id_registro, 'hipertension'
-    FROM raw.casoscovid2021 c
-    WHERE c.hipertension = 'SI'
-    
-    UNION ALL
-    
-    SELECT c.id_registro, 'neumonia'
+    SELECT c.id_registro, 'neumonia' AS complicacion_nombre
     FROM raw.casoscovid2021 c
     WHERE c.neumonia = 'SI'
     
     UNION ALL
     
-    SELECT c.id_registro, 'otra_com'
+    SELECT c.id_registro, 'otra_com' AS complicacion_nombre
     FROM raw.casoscovid2021 c
     WHERE c.otra_com = 'SI'
     
-    UNION ALL
-    
-    SELECT c.id_registro, 'cardiovascular'
-    FROM raw.casoscovid2021 c
-    WHERE c.cardiovascular = 'SI'
-    
-    UNION ALL
-    
-    SELECT c.id_registro, 'renal_cronica'
-    FROM raw.casoscovid2021 c
-    WHERE c.renal_cronica = 'SI'
 )
 
 -- Insertar en la tabla de asociación
-INSERT INTO raw.paciente_enfermedad (paciente_id, enfermedad_id)
+INSERT INTO raw.paciente_complicacion (paciente_id, complicacion_id)
 SELECT 
     p.id as paciente_id,
-    e.id as enfermedad_id
-FROM enfermedades_paciente ep
-JOIN raw.paciente p ON p.registro_id = ep.id_registro
-JOIN raw.enfermedad e ON e.nombre = ep.enfermedad_nombre;
+    c.id as complicacion_id
+FROM complicaciones cp
+JOIN raw.paciente p ON p.registro_id = cp.id_registro
+JOIN raw.complicacion c ON c.nombre = cp.complicacion_nombre;
 
 
 ------------------------------------------------------------------------------- TABLA CONDICION ----------------------------------------------------------------------------------------
@@ -190,23 +160,24 @@ JOIN raw.enfermedad e ON e.nombre = ep.enfermedad_nombre;
 
 CREATE TABLE raw.condicion (
 id BIGSERIAL PRIMARY KEY,
-nombre VARCHAR(100)
+nombre VARCHAR(100) UNIQUE 
 );
 
 -- Insercion
 
 INSERT INTO raw.condicion (nombre) VALUES
-('embarazo'), ('obesidad'), ('tabaquismo');
+('embarazo'), ('obesidad'), ('tabaquismo'), ('diabetes') ,  ('asma'), ('hipertension'), ('cardiovascular'), ('renal_cronica');
 
 ------------------------------------------------------------------------- TABLA PACIENTE_CONDICION ---------------------------------------------------------------------------------------
 
 CREATE TABLE raw.paciente_condicion (
 id BIGSERIAL PRIMARY KEY, 
-paciente_id BIGINT, 
-condicion_id BIGINT,
+paciente_id BIGINT NOT NULL, 
+condicion_id BIGINT NOT NULL,
 
 FOREIGN KEY (paciente_id) references raw.paciente (id) ON DELETE CASCADE,
-FOREIGN KEY (condicion_id) references raw.condicion (id) ON DELETE CASCADE
+FOREIGN KEY (condicion_id) references raw.condicion (id) ON DELETE CASCADE, 
+CONSTRAINT _un_paciente_condicion UNIQUE (paciente_id, condicion_id)
 );
 
 
@@ -215,8 +186,28 @@ WITH condicion_paciente AS (
 	        'embarazo' as condicion_nombre
 	    FROM raw.casoscovid2021 c
 	    WHERE c.embarazo = 'SI'
-	    
+
 	UNION ALL
+    
+    SELECT c.id_registro, 'hipertension' as condicion_nombre
+    FROM raw.casoscovid2021 c
+    WHERE c.hipertension = 'SI'
+	
+	UNION ALL
+
+	SELECT c.id_registro, 'asma' as condicion_nombre
+    FROM raw.casoscovid2021 c
+    WHERE c.asma = 'SI'
+    
+    UNION ALL
+
+	SELECT 
+        c.id_registro,
+        'diabetes' as condicion_nombre
+    FROM raw.casoscovid2021 c
+    WHERE c.diabetes = 'SI'
+    
+    UNION ALL
 	
 	SELECT c.id_registro,
 	        'obesidad' as condicion_nombre
@@ -229,6 +220,18 @@ WITH condicion_paciente AS (
 	        'tabaquismo' as condicion_nombre
 	    FROM raw.casoscovid2021 c
 	    WHERE c.tabaquismo = 'SI'
+
+	UNION ALL
+    
+    SELECT c.id_registro, 'cardiovascular' AS condicion_nombre
+    FROM raw.casoscovid2021 c
+    WHERE c.cardiovascular = 'SI'
+    
+    UNION ALL
+    
+    SELECT c.id_registro, 'renal_cronica' AS condicion_nombre
+    FROM raw.casoscovid2021 c
+    WHERE c.renal_cronica = 'SI'
 
 )
 
