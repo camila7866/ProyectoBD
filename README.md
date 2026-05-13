@@ -50,9 +50,9 @@
 | indigena | categórico | Nos dice si el paciente es de origen indígena. |
 | fecha_actualización | date | Nos dice la última fecha en la que se actualizó la información del paciente. |
 | asma | categórico | Nos indica si el paciente padece de asma. |
-| inmusupr | categórico | Nos indica si el paciente padece de inmunosupresión. |
+| inmusupr | categórico | Nos indica si el paciente padeció de inmunosupresión. |
 | hipertension | categórico | Nos indica si el paciente padece hipertensión. |
-| otra_com | texto | Nos indica si el paciente padece de otra complicación. |
+| otra_com | texto | Nos indica si el paciente padeció de otra complicación. |
 | cardiovascular | categórico | Nos indica si el paciente padece de problemas cardiovasculares. |
 | obesidad | categórico | Nos indica si el paciente padece de obesidad. |
 | renal_cronica | categórico | Nos indica si el paciente padece de enfermedad renal crónica. |
@@ -120,7 +120,7 @@ Después:
 
 En la carpeta de CreaciónTablasyEsquemas encontraremos el archivo raw_data_creation_and_load.sql, para crear el esquema hay que descargarlo y ejecutarlo con el siguiente comando, cambiando lo que está entre comillas por la ruta del archivo: 
 ```
-\i '.../data/raw_data_creation_and_load.sql'
+\i 'CreacionTablasyEsquema/raw_data_creation_and_load.sql'
 ```
 3. Copia de los datos de archivo csv a sql: <br>
 
@@ -217,7 +217,7 @@ Las inconsistencias que sí encontramos fueron casos con fecha_def anterior a fe
 Para iniciar la limpieza descarga el archivo Limpieza1.sql en data y ejecuta el siguiente programa en tu terminal cambiando lo que esta después de la i por la ruta donde tienes descargado el archivo 
 
 ```
-\i '.../Limpieza1.sql'
+\i 'Limpieza/Limpieza1.sql'
 ```
 
 A continuación esta todo el proceso de lo que hacemos en ese archivo:
@@ -252,7 +252,7 @@ Eliminamos las siguientes columnas que consideramos irrelevantes para nuestro an
 Para tener los datos divididos en las tablas mostradas en el ERD descarga el archivo CreacionTablas en data y ejecuta en terminal el siguiente código cambiando lo que esta entre comillas después de la i por la ruta de tu archivo descargado.
 
 ```
-\i '.../CreacionTablas.sql'
+\i 'CreacionTablasyEsquemas/CreacionTablas.sql'
 ```
 
 > Valores únicos
