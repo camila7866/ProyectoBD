@@ -511,7 +511,7 @@ Al no existir dependencias multivaluadas no triviales en ninguna relvar, todas l
 
 Para realizar este mapa lo hicimos a través de Jupyter notebook descargando un archivo shp con la información georeferencial de los municipios en (http://geoportal.conabio.gob.mx/metadatos/doc/html/mun22gw.html)
 
-Luego ejecutamos el codigo que se encuentra en MapaCorpletico.ipynb
+Luego ejecutamos el codigo que se encuentra en MapaCorpletico.ipynb en la carpeta data
 
 Los demás resultados los ejecutamos en postgres y las gráficas las realizamos con Excel
 
