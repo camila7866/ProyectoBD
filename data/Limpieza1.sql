@@ -18,13 +18,6 @@ UPDATE raw.casoscovid2021
 SET fecha_def = NULL
 WHERE fecha_def = 'NA';
 
-UPDATE raw.casoscovid2021
-SET entidad_res = NULL
-WHERE entidad_res= 'NA';
-
-UPDATE raw.casoscovid2021
-SET municipio_res = NULL
-WHERE municipio_res= 'NA';
 
 
 --Contamos nulos
