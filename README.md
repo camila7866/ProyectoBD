@@ -572,72 +572,41 @@ WITH total_muertos AS(
 	FROM resultado
 	);
 ```
-### 5. Análisis de mortalidad por enfermedad
-Esta consulta calcula todos los pacientes que tenían una enfermedad y que salieron postitivos a COVID, calcula entre estos cuantos murieron y saca un porcentaje de mortalidad para cada caso. 
+### Aálisis de mortalidad por enfermedad
+Esta consulta da el porcentaje de mortalidad de los pacientes con cada una de las enfermedades. La enfermedad con la que más mueren los pacientes es neumonía, seguida por una diferencia muy grande con la enfermedad pulmonar obstructiva crónica(epoc).
+
 ```sql
-WITH pacientes_con_enfermedad AS (
-    SELECT 
-        enf.nombre AS enfermedad,
-        pa.id AS paciente_id,
-        CASE 
-            -- Contabiliza como muerte si la fecha no es nula Y tampoco es '9999-99-99'
-            WHEN resu.fecha_def IS NOT NULL THEN 1 
-            ELSE 0 
-        END AS fallecido
-    FROM raw.enfermedad enf
-    -- Conectamos la enfermedad con la tabla intermedia
-    LEFT JOIN raw.paciente_enfermedad pe ON pe.enfermedad_id = enf.id
-    -- Conectamos la tabla intermedia con el paciente
-    LEFT JOIN raw.paciente pa ON pa.id = pe.paciente_id
-    -- Conectamos al paciente con sus resultados
-    LEFT JOIN raw.resultado resu ON resu.paciente_id = pa.id
-    WHERE resu.clasificacion_final IN (
-        'CASO DE COVID-19 CONFIRMADO POR ASOCIACIÓN CLÍNICA EPIDEMIOLÓGICA',
-        'CASO DE COVID-19 CONFIRMADO POR COMITÉ DE DICTAMINACIÓN', 
-        'CASO DE SARS-COV-2 CONFIRMADO'
-    )
-)
-SELECT 
-    enfermedad,
-    COUNT(DISTINCT paciente_id) AS total_pacientes_confirmados,
-    SUM(fallecido) AS total_defunciones,
-    (SUM(fallecido) * 100.0 / NULLIF(COUNT(DISTINCT paciente_id), 0)) AS tasa_letalidad_porcentaje
-FROM pacientes_con_enfermedad
-GROUP BY enfermedad
-ORDER BY tasa_letalidad_porcentaje DESC;
-```
-### 6. Análisis de mortalidad por condición
-Esta consulta hace lo mismo que la anterior pero en vez de enfermedades, lo hace por condiciones 
+--Porcentaje de mortalidad por enfermedad
+SELECT
+    enfermedad.nombre AS enfermedad,
+    COUNT(*) AS total_pacientes_con_enfermedad,
+    SUM(CASE WHEN resultado.fecha_def IS NOT NULL THEN 1 ELSE 0 END) AS total_defunciones,
+    ROUND(100.0 * SUM(CASE WHEN resultado.fecha_def IS NOT NULL THEN 1 ELSE 0 END) / COUNT(*), 2) AS porcentaje_mortalidad
+FROM raw.paciente_enfermedad 
+JOIN raw.enfermedad 
+    ON paciente_enfermedad.enfermedad_id = enfermedad.id
+JOIN raw.resultado 
+    ON paciente_enfermedad.paciente_id = resultado.paciente_id
+GROUP BY enfermedad.nombre
+ORDER BY porcentaje_mortalidad DESC;
+````
+### Análisis de mortalidad por condición
+Similarmente, la siguiente consulta calcula la tasa de mortalidad de los pacientes con cada condición. La obesidad fue la condición con mayor porcentaje de defunciones respecto a la cantidad de pacientes que la padecen, aunque el porcentaje no es tan alto como las otras enfermedades de la consulta anterior.
+
 ```sql
-WITH pacientes_con_condicion AS (
-    SELECT 
-        con.nombre AS condicion,
-        pa.id AS paciente_id,
-        CASE 
-            -- Contabiliza como muerte si la fecha no es nula Y tampoco es '9999-99-99'
-            WHEN resu.fecha_def IS NOT NULL THEN 1 
-            ELSE 0 
-        END AS fallecido
-    FROM raw.condicion con
-    -- Conectamos la condición con la tabla intermedia
-    JOIN raw.paciente_condicion pc ON pc.condicion_id = con.id
-    -- Conectamos la tabla intermedia con el paciente
-    JOIN raw.paciente pa ON pa.id = pc.paciente_id
-    -- Conectamos al paciente con sus resultados
-    JOIN raw.resultado resu ON resu.paciente_id = pa.id
-    WHERE resu.clasificacion_final IN (
-        'CASO DE COVID-19 CONFIRMADO POR ASOCIACIÓN CLÍNICA EPIDEMIOLÓGICA',
-        'CASO DE COVID-19 CONFIRMADO POR COMITÉ DE DICTAMINACIÓN', 
-        'CASO DE SARS-COV-2 CONFIRMADO'
-    )
-)
-SELECT 
-    condicion,
-    COUNT(DISTINCT paciente_id) AS total_pacientes_confirmados,
-    SUM(fallecido) AS total_defunciones,
-    (SUM(fallecido) * 100.0 / NULLIF(COUNT(DISTINCT paciente_id), 0)) AS tasa_letalidad_porcentaje
-FROM pacientes_con_condicion
-GROUP BY condicion
-ORDER BY tasa_letalidad_porcentaje DESC;
+--Porcentaje de mortalidad por condicion
+SELECT
+    condicion.nombre AS condicion,
+    COUNT(*) AS total_pacientes_con_condicion,
+    SUM(CASE WHEN resultado.fecha_def IS NOT NULL THEN 1 ELSE 0 END) AS total_defunciones,
+    ROUND(100.0 * SUM(CASE WHEN resultado.fecha_def IS NOT NULL THEN 1 ELSE 0 END) / COUNT(*),2) AS porcentaje_mortalidad
+FROM raw.paciente_condicion
+JOIN raw.condicion
+    ON paciente_condicion.condicion_id = condicion.id
+JOIN raw.resultado
+    ON paciente_condicion.paciente_id = resultado.paciente_id
+GROUP BY condicion.nombre
+ORDER BY porcentaje_mortalidad DESC;
 ```
+
 
