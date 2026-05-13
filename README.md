@@ -509,7 +509,7 @@ Al no existir dependencias multivaluadas no triviales en ninguna relvar, todas l
 ⚠️Para el siguiente mapa es importante considerar que no todas las personas a las que se les hizo prueba dieron su lugar de residencia, por lo que los lugares pueden no ser tan representativos de los lugares con mayor contagio⚠️
 ![Mapa de México](images/mapa_mexico.png)
 
-Para realizar este mapa lo hicimos a través de Jupyter notebook descargando un archivo shp con la información georeferencial de los municipios en ![ShapeFileMunicipiosMexico](http://geoportal.conabio.gob.mx/metadatos/doc/html/mun22gw.html)
+Para realizar este mapa lo hicimos a través de Jupyter notebook descargando un archivo shp con la información georeferencial de los municipios en (http://geoportal.conabio.gob.mx/metadatos/doc/html/mun22gw.html)
 
 Luego ejecutamos el codigo que se encuentra en MapaCorpletico.ipynb
 
@@ -548,6 +548,7 @@ GROUP BY raw.residencia.entidad_res;
 ```
 
 ### 2. Tasa de mortalidad por rango de edad
+![Tasa Mortalidad](images/ContagioMortalidadGrupoEtario.jpeg)
 
 La consulta a continuación nos da el total de casos positivos, porcentaje de casos confirmados positivos y la tasa de mortalidad de cada rango de edad. Podemos notar que la mayor cantidad de pruebas positivas se dieron en el rango de 21-30 años aunque con la menor tasa de mortalidad, y el mayor porcentaje en el grupo de >70,  al igual que la mayor tasa de mortalidad
 
@@ -648,6 +649,7 @@ ORDER BY grupo_etario;
 ```
 
 ### 3. Análisis de mortalidad por entidad de residencia 
+![Analisis Mortalidad](images/porcentaje_muertos_entidad.jpeg)
 Esta consulta calcula el número de casos positivos por entidad de residencia, calcula el número de muertos y saca un porcentaje de la tasa de mortalidad. 
 ```sql
 WITH casos_confirmados AS (
@@ -710,6 +712,7 @@ GROUP BY sexo
 ORDER BY tasa_letalidad_porcentaje DESC;
 ```
 ### 5. Análisis de mortalidad por complicacion
+![Mortalidad Complicacion](images/mortalidad_complicacion.jpeg)
 Esta consulta da el porcentaje de mortalidad de los pacientes con cada una de las complicaciones. La complicacion con la que más mueren los pacientes es neumonía, seguida por una diferencia muy grande con la enfermedad pulmonar obstructiva crónica(epoc).
 
 ```sql
@@ -728,6 +731,7 @@ GROUP BY complicacion.nombre
 ORDER BY porcentaje_mortalidad DESC;
 ````
 ### 6. Análisis de mortalidad por condición
+![Mortalidad Condicion](images/mortalidad_condicion.jpeg)
 Similarmente, la siguiente consulta calcula la tasa de mortalidad de los pacientes con cada condición. La obesidad fue la condición con mayor porcentaje de defunciones respecto a la cantidad de pacientes que la padecen, aunque el porcentaje no es tan alto como las otras enfermedades de la consulta anterior.
 
 ```sql
