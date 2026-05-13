@@ -572,7 +572,7 @@ WITH total_muertos AS(
 	FROM resultado
 	);
 ```
-### 4. Análisis de mortalidad por enfermedad
+### 5. Análisis de mortalidad por enfermedad
 Esta consulta calcula todos los pacientes que tenían una enfermedad y que salieron postitivos a COVID, calcula entre estos cuantos murieron y saca un porcentaje de mortalidad para cada caso. 
 ```sql
 WITH pacientes_con_enfermedad AS (
@@ -606,7 +606,7 @@ FROM pacientes_con_enfermedad
 GROUP BY enfermedad
 ORDER BY tasa_letalidad_porcentaje DESC;
 ```
-### 4. Análisis de mortalidad por condición
+### 6. Análisis de mortalidad por condición
 Esta consulta hace lo mismo que la anterior pero en vez de enfermedades, lo hace por condiciones 
 ```sql
 WITH pacientes_con_condicion AS (
