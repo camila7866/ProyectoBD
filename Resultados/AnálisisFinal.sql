@@ -191,72 +191,30 @@ WITH total_muertos AS(
 	FROM resultado
 	);
 	
--- 3. TASA DE LETALIDAD POR COMORBILIDAD (ENFERMEDAD)
--- Analiza el porcentaje de muerte en pacientes positivos a COVID-19 que padecían cada enfermedad
+-- 3. TASA DE LETALIDAD POR ENFERMEDAD
+SELECT
+    enfermedad.nombre AS enfermedad,
+    COUNT(*) AS total_pacientes_con_enfermedad,
+    SUM(CASE WHEN resultado.fecha_def IS NOT NULL THEN 1 ELSE 0 END) AS total_defunciones,
+    ROUND(100.0 * SUM(CASE WHEN resultado.fecha_def IS NOT NULL THEN 1 ELSE 0 END) / COUNT(*), 2) AS porcentaje_mortalidad
+FROM raw.paciente_enfermedad 
+JOIN raw.enfermedad 
+    ON paciente_enfermedad.enfermedad_id = enfermedad.id
+JOIN raw.resultado 
+    ON paciente_enfermedad.paciente_id = resultado.paciente_id
+GROUP BY enfermedad.nombre
+ORDER BY porcentaje_mortalidad DESC;
 
-WITH pacientes_con_enfermedad AS (
-    SELECT 
-        enf.nombre AS enfermedad,
-        pa.id AS paciente_id,
-        CASE 
-            -- Contabiliza como muerte si la fecha no es nula Y tampoco es '9999-99-99'
-            WHEN resu.fecha_def IS NOT NULL THEN 1 
-            ELSE 0 
-        END AS fallecido
-    FROM raw.enfermedad enf
-    -- Conectamos la enfermedad con la tabla intermedia
-    LEFT JOIN raw.paciente_enfermedad pe ON pe.enfermedad_id = enf.id
-    -- Conectamos la tabla intermedia con el paciente
-    LEFT JOIN raw.paciente pa ON pa.id = pe.paciente_id
-    -- Conectamos al paciente con sus resultados
-    LEFT JOIN raw.resultado resu ON resu.paciente_id = pa.id
-    WHERE resu.clasificacion_final IN (
-        'CASO DE COVID-19 CONFIRMADO POR ASOCIACIÓN CLÍNICA EPIDEMIOLÓGICA',
-        'CASO DE COVID-19 CONFIRMADO POR COMITÉ DE DICTAMINACIÓN', 
-        'CASO DE SARS-COV-2 CONFIRMADO'
-    )
-)
-SELECT 
-    enfermedad,
-    COUNT(DISTINCT paciente_id) AS total_pacientes_confirmados,
-    SUM(fallecido) AS total_defunciones,
-    (SUM(fallecido) * 100.0 / NULLIF(COUNT(DISTINCT paciente_id), 0)) AS tasa_letalidad_porcentaje
-FROM pacientes_con_enfermedad
-GROUP BY enfermedad
-ORDER BY tasa_letalidad_porcentaje DESC;
-
--- 4. TASA DE LETALIDAD POR CONDICIÓN DEL PACIENTE
--- Analiza el porcentaje de muerte en pacientes positivos a COVID-19 bajo diferentes condiciones (ej. UCI, Intubado, Embarazo)
-
-WITH pacientes_con_condicion AS (
-    SELECT 
-        con.nombre AS condicion,
-        pa.id AS paciente_id,
-        CASE 
-            -- Contabiliza como muerte si la fecha no es nula Y tampoco es '9999-99-99'
-            WHEN resu.fecha_def IS NOT NULL THEN 1 
-            ELSE 0 
-        END AS fallecido
-    FROM raw.condicion con
-    -- Conectamos la condición con la tabla intermedia
-    JOIN raw.paciente_condicion pc ON pc.condicion_id = con.id
-    -- Conectamos la tabla intermedia con el paciente
-    JOIN raw.paciente pa ON pa.id = pc.paciente_id
-    -- Conectamos al paciente con sus resultados
-    JOIN raw.resultado resu ON resu.paciente_id = pa.id
-    WHERE resu.clasificacion_final IN (
-        'CASO DE COVID-19 CONFIRMADO POR ASOCIACIÓN CLÍNICA EPIDEMIOLÓGICA',
-        'CASO DE COVID-19 CONFIRMADO POR COMITÉ DE DICTAMINACIÓN', 
-        'CASO DE SARS-COV-2 CONFIRMADO'
-    )
-)
-SELECT 
-    condicion,
-    COUNT(DISTINCT paciente_id) AS total_pacientes_confirmados,
-    SUM(fallecido) AS total_defunciones,
-    (SUM(fallecido) * 100.0 / NULLIF(COUNT(DISTINCT paciente_id), 0)) AS tasa_letalidad_porcentaje
-FROM pacientes_con_condicion
-GROUP BY condicion
-ORDER BY tasa_letalidad_porcentaje DESC;
-	
-FROM raw.resultado;
+-- 4. TASA DE LETALIDAD POR CONDICIÓN
+SELECT
+    condicion.nombre AS condicion,
+    COUNT(*) AS total_pacientes_con_condicion,
+    SUM(CASE WHEN resultado.fecha_def IS NOT NULL THEN 1 ELSE 0 END) AS total_defunciones,
+    ROUND(100.0 * SUM(CASE WHEN resultado.fecha_def IS NOT NULL THEN 1 ELSE 0 END) / COUNT(*),2) AS porcentaje_mortalidad
+FROM raw.paciente_condicion
+JOIN raw.condicion
+    ON paciente_condicion.condicion_id = condicion.id
+JOIN raw.resultado
+    ON paciente_condicion.paciente_id = resultado.paciente_id
+GROUP BY condicion.nombre
+ORDER BY porcentaje_mortalidad DESC;
