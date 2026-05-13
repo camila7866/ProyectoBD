@@ -573,16 +573,16 @@ Esta consulta da el porcentaje de mortalidad de los pacientes con cada una de la
 ```sql
 --Porcentaje de mortalidad por enfermedad
 SELECT
-    enfermedad.nombre AS enfermedad,
-    COUNT(*) AS total_pacientes_con_enfermedad,
+    complicacion.nombre AS complicacion,
+    COUNT(*) AS total_pacientes_con_complicacion,
     SUM(CASE WHEN resultado.fecha_def IS NOT NULL THEN 1 ELSE 0 END) AS total_defunciones,
     ROUND(100.0 * SUM(CASE WHEN resultado.fecha_def IS NOT NULL THEN 1 ELSE 0 END) / COUNT(*), 2) AS porcentaje_mortalidad
-FROM raw.paciente_enfermedad 
-JOIN raw.enfermedad 
-    ON paciente_enfermedad.enfermedad_id = enfermedad.id
+FROM raw.paciente_complicacion
+JOIN raw.complicacion 
+    ON paciente_complicacion.complicacion_id = complicacion.id
 JOIN raw.resultado 
-    ON paciente_enfermedad.paciente_id = resultado.paciente_id
-GROUP BY enfermedad.nombre
+    ON paciente_complicacion.paciente_id = resultado.paciente_id
+GROUP BY complicacion.nombre
 ORDER BY porcentaje_mortalidad DESC;
 ````
 ### 6. Análisis de mortalidad por condición
