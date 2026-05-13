@@ -1,0 +1,8 @@
+-- Minimos y maximos de edad
+SELECT MAX(edad) FROM raw.casoscovid2021;
+
+SELECT MIN(edad) FROM raw.casoscovid2021;
+
+SELECT AVG(edad) FROM raw.casoscovid2021;
+
+
