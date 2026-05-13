@@ -194,11 +194,11 @@ Después, verificamos la cantidad de veces que aparecía 'NA', 'NO APLICA' y 'NO
 
 | Columna | NA | NO ESPECIFICADO | NO APLICA
 | :--- | :--- | :--- | :--- |
-| entidad_res | 1,501,056 |||
-| municipio_res | 1,501,056 |||
-| fecha_def | 1,723,067 |||
-| migrante || 1,734,910 ||
-| pais_origen | 1924 || 1,743,507 |
+| entidad_res | 1,501,056 | 0 | 0 |
+| municipio_res | 1,501,056 | 0 | 0 |
+| fecha_def | 1,723,067 | 0 | 0 |
+| migrante | 0 | 1,734,910 | 0 |
+| pais_origen | 1924 | 0 | 1,743,507 |
 
 La mayoría de columnas tenían valores o muy bajos o muy altos de esos resultados:
 * Notamos que la columna pais_origen tiene registrado 1,924 veces ‘NA’ y 1,743,507 ‘NO APLICA’ como únicos resultados, que además de ser repetidos no dan información alguna.
