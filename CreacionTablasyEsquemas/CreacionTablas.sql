@@ -281,7 +281,3 @@ p.id, c.fecha_def, c.resultado_lab, c.resultado_antigeno, c.clasificacion_final
 FROM raw.casoscovid2021 c
 JOIN raw.paciente p 
 ON c.id_registro = p.registro_id;
-
-
-ALTER TABLE paciente DROP COLUMN registro_id;
-ALTER TABLE persona DROP COLUMN registro_id;
