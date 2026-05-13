@@ -363,7 +363,7 @@ LEFT JOIN raw.resultado ON
 resultado.paciente_id = paciente.id
 WHERE raw.resultado.clasificacion_final IN ('CASO DE COVID-19 CONFIRMADO POR ASOCIACIÓN CLÍNICA EPIDEMIOLÓGICA', 'CASO DE COVID-19 CONFIRMADO POR COMITÉ DE  DICTAMINACIÓN', 'CASO DE SARS-COV-2  CONFIRMADO') AND municipio_res LIKE '%TLA%'
 GROUP BY raw.residencia.entidad_res;
-```
+\```
 Lo mismo hacemos para ver los casos negativos y nuevamente Ciudad de México es la entidad de residencia más repetida. Podemos notar que a la población que reside en CDMX fue la que mas pruebas se hizo en la CDMX.
 
 ```sql
@@ -379,7 +379,7 @@ LEFT JOIN raw.resultado ON
 resultado.paciente_id = paciente.id
 WHERE raw.resultado.clasificacion_final IN ('INVÁLIDO POR LABORATORIO', 'NEGATIVO A SARS-COV-2')
 GROUP BY raw.residencia.entidad_res;
-```
+\```
 
 ### 2. Tasa de mortalidad por rango de edad
 
