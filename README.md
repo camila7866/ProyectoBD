@@ -136,7 +136,7 @@ En el conjunto de datos se cuenta con 4 columnas de tipo fecha. En seguida hay u
 | :--- | :--- | :--- |
 | fecha_def | NA | 2020-05-06 |
 | fecha_ingreso | 2021-06-30 | 2021-01-01 |
-| fecha_sintomas | 2020-06-12 | 2021-06-30 |
+| fecha_sintomas | 2021-06-30 | 2020-06-12 |
 | fecha_actualizacion | 2021-11-29 | 2021-11-29 |
 
 Las columnas fecha_def, fecha_ingreso y fecha_sintomas tienen registros a lo largo del primer semestre de 2021, aunque fecha_def y fecha_sintomas cuentan con algunos registros del 2020 también.  
