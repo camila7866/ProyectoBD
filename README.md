@@ -538,7 +538,7 @@ GROUP BY entidad_res
 ORDER BY tasa_letalidad_porcentaje DESC;
 ```
 ### 4. Análisis de mortalidad por sexo
-Esta consulta calcula el número de casos positivos, el número de muertos y la tasa de mortalidad para cada sexo. 
+Esta consulta calcula el número de casos positivos, el número de muertos y la tasa de mortalidad para cada sexo. Se puede determinar que los hombres tienen una cantidad mayor de defunciones y un porcentaje de mortalidad mayor que las mujeres.
 ```sql
 WITH casos_confirmados_sexo AS (
     SELECT 
@@ -566,11 +566,6 @@ FROM casos_confirmados_sexo
 WHERE sexo IS NOT NULL
 GROUP BY sexo
 ORDER BY tasa_letalidad_porcentaje DESC;
-
-WITH total_muertos AS(
-	SELECT COUNT(fecha_def)
-	FROM resultado
-	);
 ```
 ### 5. Análisis de mortalidad por enfermedad
 Esta consulta da el porcentaje de mortalidad de los pacientes con cada una de las enfermedades. La enfermedad con la que más mueren los pacientes es neumonía, seguida por una diferencia muy grande con la enfermedad pulmonar obstructiva crónica(epoc).
