@@ -279,6 +279,7 @@ Centraliza los atributos demográficos del individuo (edad, sexo, sector, condic
 ---
 
 * PACIENTE
+  
 Modela el episodio de atención médica separado de la identidad de la persona, permitiendo que en un futuro un mismo individuo pueda tener múltiples ingresos. La FK hacia `PERSONA` usa `ON DELETE RESTRICT` deliberadamente: no tiene sentido eliminar una persona si aún existen episodios clínicos vinculados. Se añadió `UNIQUE (persona_id)` para reflejar que, en este dataset, cada persona tiene exactamente un episodio registrado.
 
 ---
@@ -339,7 +340,7 @@ Contiene los desenlaces diagnósticos y clínicos asociados a cada episodio de a
 
 * COMPLICACION
   
-  Es un catálogo normalizado de diagnósticos.
+Es un catálogo normalizado de diagnósticos.
   
 * PACIENTE_COMPLICACION
   
