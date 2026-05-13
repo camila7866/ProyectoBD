@@ -370,6 +370,7 @@ A continuación se listan, para cada relvar, sus dependencias funcionales no tri
 ### RESIDENCIA
   
 Atributos
+
     {id, entidad_res, municipio_res}
 
 * Dependencias funcionales no triviales
@@ -385,6 +386,7 @@ Ninguna
 ### PERSONA
   
 Atributos
+
     {id, registro_id, edad, sexo, migrante, indigena, sector, residencia_id}
   
 * Dependencias funcionales no triviales
@@ -400,6 +402,7 @@ Ninguna
 ### PACIENTE
   
 Atributos
+
     {id, registro_id, persona_id, origen, entidad_um, tipo_paciente, fecha_ingreso, fecha_sintomas}
   
 * Dependencias funcionales no triviales
@@ -415,6 +418,7 @@ Ninguna
 ### RESULTADO
   
 Atributos
+
     {id, paciente_id, fecha_def, resultado_lab, resultado_antig, clasificacion_final}
   
 * Dependencias funcionales no triviales
@@ -430,6 +434,7 @@ Ninguna
 ### COMPLICACION
   
 Atributos
+
     {id, nombre}
   
 * Dependencias funcionales no triviales
@@ -445,6 +450,7 @@ Ninguna
 ### CONDICION
   
 Atributos
+
     {id, nombre}
   
 * Dependencias funcionales no triviales
@@ -460,6 +466,7 @@ Ninguna
 ### PACIENTE_COMPLICACION
   
 Atributos
+
     {id, paciente_id, enfermedad_id}
   
 * Dependencias funcionales no triviales
@@ -475,6 +482,7 @@ Ninguna
 ### PACIENTE_CONDICION
   
 Atributos
+
     {id, paciente_id, condicion_id}
   
 * Dependencias funcionales no triviales
