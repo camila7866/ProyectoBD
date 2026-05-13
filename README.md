@@ -1,4 +1,4 @@
-# Proyecto BD: Casos Nacionales COVID 2° Semestre 2022
+# Proyecto Bases de Datos: Casos Nacionales COVID 1° Semestre 2021
 
 ## Integrantes
 
