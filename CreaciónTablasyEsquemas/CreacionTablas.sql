@@ -73,7 +73,7 @@ CREATE INDEX idx_casos_entidad_municipio ON raw.casoscovid2021(entidad_res, muni
 
 INSERT INTO raw.paciente(persona_id, registro_id, origen, entidad_um, tipo_paciente, fecha_ingreso, fecha_sintomas, intubado, uci)
 SELECT
-   p.id,c.id_registro, c.origen, c.entidad_um, c.tipo_paciente, c.fecha_ingreso, c.fecha_sintomas, c.intubado, c.uci  
+   p.id,c.id_registro, c.origen, c.entidad_um, c.tipo_paciente, c.fecha_ingreso, c.fecha_sintomas
 FROM raw.casoscovid2021 c
 JOIN raw.residencia r 
     ON r.entidad_res = c.entidad_res 
