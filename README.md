@@ -239,7 +239,7 @@ Eliminamos las siguientes columnas que consideramos irrelevantes para nuestro an
 *   pais_origen: Esta columna solo tenía 'NA' o 'No aplica' como valores, por lo que no aportaba información.
 *   migrante: Su único valor encontrado fue 'No especificado', por lo que era irrelevante. 
 
-
+### Limpieza adicional
  * **Estandarización de valores nulos:** Reemplazamos los valores faltantes (que originalmente aparecían como NA) por valores nulos (NULL) en las columnas fecha_def, entidad_res y municipio_res. Posteriormente, contabilizamos la cantidad de registros nulos en cada una de ellas. No obstante nos dimos cuenta que al hacer esto, por la forma que separamos las tablas, nos eliminaba la mayor parte de las tuplas. Esto fue porque nuestra tabla residencia contiene a la tabla persona, que a su vez contiene a paciente. Por lo que al hacerlos nulos, borrabamos gran parte de los datos. Así que revertimos esta operación. 
 *  **Creación de tipos de datos personalizados (ENUM):** Dado que gran parte de las columnas contenían información categórica, decidimos crear tres tipos de datos 
     *   estado_categorico: Es el tipo de dato más frecuente en la base. Sus valores permitidos son: 'SI', 'NO', 'SE IGNORA', 'NO ESPECIFICADO' y 'NO APLICA'.
