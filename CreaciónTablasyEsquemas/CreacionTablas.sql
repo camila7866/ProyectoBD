@@ -22,7 +22,6 @@ WHERE entidad_res IS NOT NULL AND municipio_res IS NOT NULL;
 
 CREATE TABLE raw.persona ( 
 id BIGSERIAL PRIMARY KEY,
-registro_id text,
 edad INT, 
 sexo sexoT,
 migrante ESTADO_CATEGORICO,
@@ -54,7 +53,6 @@ JOIN raw.residencia r
 
 CREATE TABLE raw.paciente (
 id BIGSERIAL PRIMARY KEY,
-registro_id text,
 persona_id BIGINT, 
 origen VARCHAR(100), 
 entidad_um VARCHAR(100),
