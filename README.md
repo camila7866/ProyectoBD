@@ -243,13 +243,42 @@ Eliminamos las siguientes columnas que consideramos irrelevantes para nuestro an
 
 ## Creación de tablas
 
-> ERD
 Se realiza la descomposición intuitiva de datos para el diseño del modelo entidad-relación (ERD). El sistema registra información sobre personas, su condición clínica, diagnósticos de laboratorio y enfermedades preexistentes, con el objetivo de apoyar el análisis estadístico y la toma de decisiones en salud pública.
->
-> La descomposición se guió por tres principios fundamentales:
+
+La descomposición se guió por tres principios fundamentales:
 •	Separación de responsabilidades: cada entidad modela un único concepto del dominio.
 •	Minimización de redundancia: los datos se almacenan una sola vez y se referencian mediante claves foráneas.
 •	Extensibilidad: el diseño permite añadir nuevas enfermedades, condiciones y resultados sin alterar la estructura central.
+
+* RESIDENCIA
+Almacena la ubicación geográfica donde habita una persona. Se desacopla de PERSONA para normalizar los datos de localización y facilitar consultas geográficas agregadas (p. ej., casos por municipio).
+> Separar la residencia evita repetir las cadenas de texto cada vez que varias personas comparten el mismo municipio, y permite actualizar un nombre de localidad en un único registro.
+
+* PERSONA
+Representa al individuo biológico con sus características demográficas y socioeconómicas. Es el núcleo del modelo; todas las demás entidades se relacionan directa o indirectamente con ella.
+> Centralizar los atributos demográficos en PERSONA permite reutilizarlos en múltiples episodios de atención (PACIENTE) sin duplicar información. Un mismo individuo puede generar varios registros de paciente a lo largo del tiempo.
+
+* PACIENTE
+Modela un episodio de atención médica específico.
+> Se distingue de PERSONA porque un individuo puede ser atendido en múltiples ocasiones, en distintas unidades médicas o con diferentes diagnósticos.
+
+* RESULTADO
+Contiene los desenlaces diagnósticos y clínicos asociados a cada episodio de atención. Se separa de PACIENTE para mantener la cohesión: PACIENTE describe la atención recibida, mientras que RESULTADO describe lo que se encontró.
+> Aislar los resultados facilita consultas analíticas puras (tasas de mortalidad, positividad) sin escanear toda la tabla PACIENTE, mejorando el rendimiento en conjuntos de datos de gran volumen.
+
+* ENFERMEDAD
+  Es un catálogo normalizado de diagnósticos.
+  
+* PACIENTE_ENFERMEDAD
+La relación muchos-a-muchos de PACIENTE con ENFERMEDAD se resuelve mediante la tabla intermedia PACIENTE_ENFERMEDAD.
+> Un paciente puede presentar múltiples enfermedades concomitantes, y una enfermedad puede afectar a múltiples pacientes. El uso de un catálogo permite añadir nuevas enfermedades sin modificar el esquema.
+
+* CONDICION
+Cataloga las comorbilidades o condiciones preexistentes del paciente (diabetes, hipertensión, obesidad, etc.).
+
+* PACIENTE_CONDICION
+La relación muchos-a-muchos de PACIENTE con CONDICION se resuelve mediante la tabla intermedia PACIENTE_CONDICION.
+> Un paciente puede presentar múltiples condiciones, y una condicion puede afectar a múltiples pacientes.
 
 
 Para tener los datos divididos en las tablas mostradas en el ERD descarga el archivo CreacionTablas en data y ejecuta en terminal el siguiente código cambiando lo que esta entre comillas después de la i por la ruta de tu archivo descargado.
