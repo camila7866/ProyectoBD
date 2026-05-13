@@ -186,11 +186,6 @@ WHERE sexo IS NOT NULL
 GROUP BY sexo
 ORDER BY tasa_letalidad_porcentaje DESC;
 
-WITH total_muertos AS(
-	SELECT COUNT(fecha_def)
-	FROM resultado
-	);
-	
 -- 3. TASA DE LETALIDAD POR ENFERMEDAD
 SELECT
     enfermedad.nombre AS enfermedad,
