@@ -139,7 +139,7 @@ WITH complicaciones AS (
     
     SELECT c.id_registro, 'intubado' AS complicacion_nombre
     FROM raw.casoscovid2021 c
-    WHERE c.itubado = 'SI'
+    WHERE c.intubado = 'SI'
 
 	UNION ALL
     
