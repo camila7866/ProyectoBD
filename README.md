@@ -567,8 +567,8 @@ WHERE sexo IS NOT NULL
 GROUP BY sexo
 ORDER BY tasa_letalidad_porcentaje DESC;
 ```
-### 5. Análisis de mortalidad por enfermedad
-Esta consulta da el porcentaje de mortalidad de los pacientes con cada una de las enfermedades. La enfermedad con la que más mueren los pacientes es neumonía, seguida por una diferencia muy grande con la enfermedad pulmonar obstructiva crónica(epoc).
+### 5. Análisis de mortalidad por complicacion
+Esta consulta da el porcentaje de mortalidad de los pacientes con cada una de las complicaciones. La complicacion con la que más mueren los pacientes es neumonía, seguida por una diferencia muy grande con la enfermedad pulmonar obstructiva crónica(epoc).
 
 ```sql
 --Porcentaje de mortalidad por enfermedad
