@@ -572,7 +572,7 @@ WITH total_muertos AS(
 	FROM resultado
 	);
 ```
-### Aálisis de mortalidad por enfermedad
+### 5. Análisis de mortalidad por enfermedad
 Esta consulta da el porcentaje de mortalidad de los pacientes con cada una de las enfermedades. La enfermedad con la que más mueren los pacientes es neumonía, seguida por una diferencia muy grande con la enfermedad pulmonar obstructiva crónica(epoc).
 
 ```sql
@@ -590,7 +590,7 @@ JOIN raw.resultado
 GROUP BY enfermedad.nombre
 ORDER BY porcentaje_mortalidad DESC;
 ````
-### Análisis de mortalidad por condición
+### 6. Análisis de mortalidad por condición
 Similarmente, la siguiente consulta calcula la tasa de mortalidad de los pacientes con cada condición. La obesidad fue la condición con mayor porcentaje de defunciones respecto a la cantidad de pacientes que la padecen, aunque el porcentaje no es tan alto como las otras enfermedades de la consulta anterior.
 
 ```sql
