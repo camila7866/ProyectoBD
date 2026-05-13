@@ -70,10 +70,10 @@ SELECT
     COUNT(DISTINCT paciente_id) AS total_pacientes,
     SUM(es_caso_confirmado) AS casos_confirmados,
     -- RAZÓN: casos confirmados / total pacientes
-    SUM(es_caso_confirmado) *1.000 / COUNT(DISTINCT paciente_id) AS razon_casos_por_paciente,
+    SUM(es_caso_confirmado) * 1.000 / NULLIF(COUNT(DISTINCT paciente_id),0) AS razon_casos_por_paciente,
     -- Porcentaje
-    (SUM(es_caso_confirmado) *1.000/ COUNT(DISTINCT paciente_id)) * 100 AS porcentaje_confirmados, 
-    (SUM(murio_por_covid) * 1.000/ SUM(es_caso_confirmado)) *100  AS porcentaje_muertos_por_covid
+    (SUM(es_caso_confirmado) * 1.000 / NULLIF(COUNT(DISTINCT paciente_id),0)) * 100 AS porcentaje_confirmados, 
+    (SUM(murio_por_covid) * 1.000 / NULLIF(SUM(es_caso_confirmado),0)) * 100 AS porcentaje_muertos_por_covid
 FROM pacientes_con_resultados
 WHERE grupo_etario IS NOT NULL
 GROUP BY grupo_etario
@@ -111,9 +111,9 @@ SELECT
     COUNT(DISTINCT paciente_id) AS total_pacientes,
     SUM(es_caso_confirmado) AS casos_confirmados,
     -- RAZÓN: casos confirmados / total pacientes
-    SUM(es_caso_confirmado) *1.000 / COUNT(DISTINCT paciente_id) AS razon_casos_por_paciente,
+    SUM(es_caso_confirmado) * 1.000 / NULLIF(COUNT(DISTINCT paciente_id),0) AS razon_casos_por_paciente,
     -- Porcentaje
-    (SUM(es_caso_confirmado) *1.000/ COUNT(DISTINCT paciente_id)) * 100 AS porcentaje_confirmados
+    (SUM(es_caso_confirmado) * 1.000 / NULLIF(COUNT(DISTINCT paciente_id),0)) * 100 AS porcentaje_confirmados
 FROM pacientes_con_resultados
 WHERE grupo_etario IS NOT NULL
 GROUP BY grupo_etario
