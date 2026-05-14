@@ -95,9 +95,12 @@ Para cargar los datos fue necesario poner todas las columnas en tipo text, lo cu
     │
     ├── Resultados                           
     │   └── AnalisisFinal.sql
+    |
+    ├── data                          
+    │   └── MapaCoropletico.py                            <- Replicación de mapa coroplético con resultados en python
     └── images
         ├── ERD.png     
-        └── mapa_mexico.png
+        └── mapa_mexico.png ...
 
   
 ## Requerimientos para replicación del proyecto
