@@ -653,7 +653,7 @@ ORDER BY grupo_etario;
 
 ### 3. Análisis de mortalidad por entidad de residencia 
 ![Analisis Mortalidad](images/porcentaje_muertos_entidad.jpeg)
-Esta consulta calcula el número de casos positivos por entidad de residencia, calcula el número de muertos y saca un porcentaje de la tasa de mortalidad. 
+>Esta consulta calcula el número de casos positivos por entidad de residencia, calcula el número de muertos y saca un porcentaje de la tasa de mortalidad. 
 ```sql
 WITH casos_confirmados AS (
     SELECT 
@@ -716,7 +716,7 @@ ORDER BY tasa_letalidad_porcentaje DESC;
 ```
 ### 5. Análisis de mortalidad por complicacion
 ![Mortalidad Complicacion](images/mortalidad_complicacion.jpeg)
-Esta consulta da el porcentaje de mortalidad de los pacientes con cada una de las complicaciones. La complicacion con la que más mueren los pacientes es neumonía, seguida por una diferencia muy grande con la enfermedad pulmonar obstructiva crónica(epoc).
+>Esta consulta da el porcentaje de mortalidad de los pacientes con cada una de las complicaciones. La complicacion con la que más mueren los pacientes es neumonía, seguida por una diferencia muy grande con la enfermedad pulmonar obstructiva crónica(epoc).
 
 ```sql
 --Porcentaje de mortalidad por enfermedad
@@ -735,7 +735,7 @@ ORDER BY porcentaje_mortalidad DESC;
 ````
 ### 6. Análisis de mortalidad por condición
 ![Mortalidad Condicion](images/mortalidad_condicion.jpeg)
-Similarmente, la siguiente consulta calcula la tasa de mortalidad de los pacientes con cada condición. La obesidad fue la condición con mayor porcentaje de defunciones respecto a la cantidad de pacientes que la padecen, aunque el porcentaje no es tan alto como las otras enfermedades de la consulta anterior.
+>Similarmente, la siguiente consulta calcula la tasa de mortalidad de los pacientes con cada condición. La obesidad fue la condición con mayor porcentaje de defunciones respecto a la cantidad de pacientes que la padecen, aunque el porcentaje no es tan alto como las otras enfermedades de la consulta anterior.
 
 ```sql
 --Porcentaje de mortalidad por condicion
