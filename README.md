@@ -245,7 +245,7 @@ Eliminamos las siguientes columnas que consideramos irrelevantes para nuestro an
     *   estado_categorico: Es el tipo de dato más frecuente en la base. Sus valores permitidos son: 'SI', 'NO', 'SE IGNORA', 'NO ESPECIFICADO' y 'NO APLICA'.
     *   sexoT: Sus valores permitidos son 'HOMBRE' y 'MUJER'.
     *   tipo_pacienteT: Sus valores permitidos son 'AMBULATORIO' y 'HOSPITALIZADO'.
-    **Asignación de tipos de datos:** Actualizamos la estructura de la tabla para asignar a cada columna su tipo de dato correspondiente (incluyendo los ENUMs recién creados).
+* **Asignación de tipos de datos:** Actualizamos la estructura de la tabla para asignar a cada columna su tipo de dato correspondiente (incluyendo los ENUMs recién creados).
 *  **Limpieza de datos**: La columna clasificacion_final tenía espacios dobles que eliminamos. 
   
 * **Eliminación de duplicados**: Creamos una tabla y la poblamos con los valores únicos de cada tupla. Luego remplazamos la tabla original por esta nueva tabla, para asegurarnos que nada esté duplicado.
