@@ -211,7 +211,7 @@ La mayoría de columnas tenían valores o muy bajos o muy altos de esos resultad
 * El rango de edad de los pacientes va de 0 a 121 años, con el promedio siendo 39-40 años.
 
 
-Finalmente, buscamos inconsistencias tales como una fecha de ingreso antes del inicio de síntomas, o fecha de ingreso después de la fecha del registro, hombres embarazados, migrantes mexicanos, confirmados sin pruebas positivas, entre otras que no fueron encontradas.
+Finalmente buscamos inconsistencias tales como una fecha de ingreso antes del inicio de síntomas, fecha de ingreso después de la fecha del registro, hombres embarazados, migrantes mexicanos, confirmados sin pruebas positivas, entre otras que no fueron encontradas.
 Las inconsistencias que sí encontramos fueron casos con fecha_def anterior a fecha_ingreso y casos con fecha_def anterior a fecha_sintomas, lo cual es lógicamente imposible. 
 
 
