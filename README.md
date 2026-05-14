@@ -652,7 +652,7 @@ ORDER BY grupo_etario;
 ```
 
 ### 3. Análisis de mortalidad por entidad de residencia 
-![Analisis Mortalidad](images/porcentaje_muertos_entidad.jpeg)
+![Analisis Mortalidad](images/mortal_entidad.jpeg)
 >Esta consulta calcula el número de casos positivos por entidad de residencia, calcula el número de muertos y saca un porcentaje de la tasa de mortalidad. La entidad con mayor tasa de mortalidad es Guanajuato, pero hay que tomar en cuenta que la cantidad de datos de fuera de la Ciudad de México es muy baja por lo que está sesgado el resultado. 
 ```sql
 WITH casos_confirmados AS (
