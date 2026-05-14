@@ -158,7 +158,6 @@ Luego, revisamos los diferentes valores de las siguientes columnas de tipo categ
 
 * intubado
 * neumonia
-* indigena
 * diabetes
 * epoc
 * asma
