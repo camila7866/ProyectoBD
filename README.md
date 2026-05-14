@@ -281,7 +281,7 @@ La tabla fuente `casoscovid2021` repetía la combinación `entidad_res / municip
 
 * PERSONA
   
-Centraliza los atributos demográficos del individuo (edad, sexo, sector, condición migrante e indígena). No se usó `DISTINCT` en el INSERT porque se asumió que cada `id_registro` de la fuente corresponde a una persona única — no existe criterio claro para fusionar registros duplicados. Se añadió un `CHECK` en `edad` para descartar valores biológicamente implausibles. La FK con `RESIDENCIA` usa `ON DELETE CASCADE` porque si se elimina una localidad, los registros de personas asociados pierden validez geográfica.
+Centraliza los atributos demográficos del individuo (edad, sexo, sector, condición migrante e indígena). Se añadió un `CHECK` en `edad` para descartar valores biológicamente implausibles. La FK con `RESIDENCIA` usa `ON DELETE CASCADE` porque si se elimina una localidad, los registros de personas asociados pierden validez geográfica.
 
 ---
 
@@ -395,11 +395,11 @@ Ninguna
   
 Atributos
 
-    {id, registro_id, edad, sexo, migrante, indigena, sector, residencia_id}
+    {id, edad, sexo, migrante, indigena, sector, residencia_id}
   
 * Dependencias funcionales no triviales
 
-{id} → {registro_id, edad, sexo, migrante, indigena, sector, residencia_id}
+{id} → {edad, sexo, migrante, indigena, sector, residencia_id}
 
 * Dependencias multivaluadas no triviales
 
@@ -411,11 +411,11 @@ Ninguna
   
 Atributos
 
-    {id, registro_id, persona_id, origen, entidad_um, tipo_paciente, fecha_ingreso, fecha_sintomas}
+    {id, persona_id, origen, entidad_um, tipo_paciente, fecha_ingreso, fecha_sintomas}
   
 * Dependencias funcionales no triviales
 
-{id} → {registro_id, persona_id, origen, entidad_um, tipo_paciente, fecha_ingreso, fecha_sintomas}
+{id} → {persona_id, origen, entidad_um, tipo_paciente, fecha_ingreso, fecha_sintomas}
 
 * Dependencias multivaluadas no triviales
 
