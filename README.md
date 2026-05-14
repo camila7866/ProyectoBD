@@ -237,6 +237,7 @@ Eliminamos las siguientes columnas que consideramos irrelevantes para nuestro an
 *   fecha_actualizacion: Contenía la misma fecha para todas las tuplas (la última actualización de la base de datos), por lo que era un valor constante e irrelevante.
 *   column: Solo representaba el número de cada tupla. Como nos presentó problemas durante la carga inicial, decidimos eliminarla desde esa etapa.
 *   pais_origen: Esta columna era en su mayoría 'NA' o 'No aplica' y aparte ya tenemos el atributo "migrante" para ver como afectó a extranjeros.
+*   id_registro: Un id propio de la base de datos. Lo conservamos en la mayoría del proceso para mantener la integridad referencial y fue borrado al terminar de crear y poblar las tablas.
 
 
 ### Limpieza adicional
