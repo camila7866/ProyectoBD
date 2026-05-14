@@ -553,7 +553,7 @@ GROUP BY raw.residencia.entidad_res;
 ### 2. Tasa de mortalidad por rango de edad
 ![Tasa Mortalidad](images/ContagioMortalidadGrupoEtario.jpeg)
 
-La consulta a continuación nos da el total de casos positivos, porcentaje de casos confirmados positivos y la tasa de mortalidad de cada rango de edad. Podemos notar que la mayor cantidad de pruebas positivas se dieron en el rango de 21-30 años aunque con la menor tasa de mortalidad, y el mayor porcentaje en el grupo de >70,  al igual que la mayor tasa de mortalidad
+La consulta a continuación nos da el total de casos positivos, porcentaje de casos confirmados positivos y la tasa de mortalidad de cada rango de edad. Podemos notar que la mayor cantidad de casos confirmados se dieron en el rango de 41-50 años aunque con la menor tasa de mortalidad, y el mayor porcentaje en el grupo de >70,  al igual que la mayor tasa de mortalidad
 
 ```sql
 -- CASOS POSITIVOS POR RANGO DE EDAD
@@ -653,7 +653,7 @@ ORDER BY grupo_etario;
 
 ### 3. Análisis de mortalidad por entidad de residencia 
 ![Analisis Mortalidad](images/porcentaje_muertos_entidad.jpeg)
->Esta consulta calcula el número de casos positivos por entidad de residencia, calcula el número de muertos y saca un porcentaje de la tasa de mortalidad. 
+>Esta consulta calcula el número de casos positivos por entidad de residencia, calcula el número de muertos y saca un porcentaje de la tasa de mortalidad. La entidad con mayor tasa de mortalidad es Guanajuato, pero hay que tomar en cuenta que la cantidad de datos de fuera de la Ciudad de México es muy baja por lo que está sesgado el resultado. 
 ```sql
 WITH casos_confirmados AS (
     SELECT 
@@ -716,7 +716,7 @@ ORDER BY tasa_letalidad_porcentaje DESC;
 ```
 ### 5. Análisis de mortalidad por complicacion
 ![Mortalidad Complicacion](images/mortalidad_complicacion.jpeg)
->Esta consulta da el porcentaje de mortalidad de los pacientes con cada una de las complicaciones. La complicacion con la que más mueren los pacientes es neumonía, seguida por una diferencia muy grande con la enfermedad pulmonar obstructiva crónica(epoc).
+>Esta consulta da el porcentaje de mortalidad de los pacientes con cada una de las complicaciones. La complicacion con la que más mueren los pacientes es intubación, seguida por el ingreso a la unidad de cuidados intensivos.
 
 ```sql
 --Porcentaje de mortalidad por enfermedad
@@ -750,8 +750,7 @@ ORDER BY tasa_letalidad_porcentaje DESC;
 ````
 ### 6. Análisis de mortalidad por condición
 ![Mortalidad Condicion](images/mortalidad_condicion.jpeg)
->Similarmente, la siguiente consulta calcula la tasa de mortalidad de los pacientes con cada condición. La obesidad fue la condición con mayor porcentaje de defunciones respecto a la cantidad de pacientes que la padecen, aunque el porcentaje no es tan alto como las otras enfermedades de la consulta anterior.
-
+>Similarmente, la siguiente consulta calcula la tasa de mortalidad de los pacientes con cada condición. La enfermedad renal crónica fue la condición con mayor porcentaje de defunciones respecto a la cantidad de pacientes con covid que la padecen. Sorprendentemente, el tabaquismo es de las tasas de mortalidad más bajas.
 ```sql
 --Porcentaje de mortalidad por condicion
 WITH casos_confirmados_condicion AS (
