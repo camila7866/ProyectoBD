@@ -282,6 +282,6 @@ FROM raw.casoscovid2021 c
 JOIN raw.paciente p 
 ON c.id_registro = p.registro_id;
 
-ALTER TABLE paciente DROP COLUMN registro_id;
-ALTER TABLE persona DROP COLUMN registro_id;
+ALTER TABLE raw.paciente DROP COLUMN registro_id;
+ALTER TABLE raw.persona DROP COLUMN registro_id;
 
