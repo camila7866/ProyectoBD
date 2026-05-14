@@ -750,7 +750,8 @@ GROUP BY complicacion
 ORDER BY tasa_letalidad_porcentaje DESC;
 ````
 ### 6. Análisis de mortalidad por condición
-![Mortalidad Condicion](images/mortalidad_condicion.jpeg)
+<img width="752" height="452" alt="condicion_mortalidad" src="https://github.com/user-attachments/assets/c5279f8c-37e9-437a-b2a5-17ddd1fab3b1" />
+
 >Similarmente, la siguiente consulta calcula la tasa de mortalidad de los pacientes con cada condición. La enfermedad renal crónica fue la condición con mayor porcentaje de defunciones respecto a la cantidad de pacientes con covid que la padecen. Sorprendentemente, el tabaquismo es de las tasas de mortalidad más bajas.
 ```sql
 --Porcentaje de mortalidad por condicion
