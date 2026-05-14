@@ -720,18 +720,33 @@ ORDER BY tasa_letalidad_porcentaje DESC;
 
 ```sql
 --Porcentaje de mortalidad por enfermedad
+WITH casos_confirmados_complicacion AS (
+    SELECT
+        complicacion.nombre AS complicacion,
+        paciente.id AS paciente_id,
+        CASE
+            WHEN resultado.fecha_def IS NOT NULL THEN 1
+            ELSE 0
+        END AS fallecido
+    FROM raw.paciente
+    LEFT JOIN raw.resultado ON resultado.paciente_id = paciente.id
+    LEFT JOIN raw.paciente_complicacion ON paciente_complicacion.paciente_id = paciente.id
+    LEFT JOIN raw.complicacion ON complicacion.id = paciente_complicacion.complicacion_id
+    WHERE resultado.clasificacion_final IN (
+        'CASO DE COVID-19 CONFIRMADO POR ASOCIACIÓN CLÍNICA EPIDEMIOLÓGICA',
+        'CASO DE COVID-19 CONFIRMADO POR COMITÉ DE  DICTAMINACIÓN',
+        'CASO DE SARS-COV-2 CONFIRMADO'
+    )
+)
 SELECT
-    complicacion.nombre AS complicacion,
-    COUNT(*) AS total_pacientes_con_complicacion,
-    SUM(CASE WHEN resultado.fecha_def IS NOT NULL THEN 1 ELSE 0 END) AS total_defunciones,
-    ROUND(100.0 * SUM(CASE WHEN resultado.fecha_def IS NOT NULL THEN 1 ELSE 0 END) / COUNT(*), 2) AS porcentaje_mortalidad
-FROM raw.paciente_complicacion
-JOIN raw.complicacion 
-    ON paciente_complicacion.complicacion_id = complicacion.id
-JOIN raw.resultado 
-    ON paciente_complicacion.paciente_id = resultado.paciente_id
-GROUP BY complicacion.nombre
-ORDER BY porcentaje_mortalidad DESC;
+    complicacion,
+    COUNT(DISTINCT paciente_id) AS total_casos_confirmados,
+    SUM(fallecido) AS total_defunciones,
+    (SUM(fallecido) * 100.0 / COUNT(DISTINCT paciente_id)) AS tasa_letalidad_porcentaje
+FROM casos_confirmados_complicacion
+WHERE complicacion IS NOT NULL
+GROUP BY complicacion
+ORDER BY tasa_letalidad_porcentaje DESC;
 ````
 ### 6. Análisis de mortalidad por condición
 ![Mortalidad Condicion](images/mortalidad_condicion.jpeg)
@@ -739,18 +754,33 @@ ORDER BY porcentaje_mortalidad DESC;
 
 ```sql
 --Porcentaje de mortalidad por condicion
+WITH casos_confirmados_condicion AS (
+    SELECT
+        condicion.nombre AS condicion,
+        paciente.id AS paciente_id,
+        CASE
+            WHEN resultado.fecha_def IS NOT NULL THEN 1
+            ELSE 0
+        END AS fallecido
+    FROM raw.paciente
+    LEFT JOIN raw.resultado ON resultado.paciente_id = paciente.id
+    LEFT JOIN raw.paciente_condicion ON paciente_condicion.paciente_id = paciente.id
+    LEFT JOIN raw.condicion ON condicion.id = paciente_condicion.condicion_id
+    WHERE resultado.clasificacion_final IN (
+        'CASO DE COVID-19 CONFIRMADO POR ASOCIACIÓN CLÍNICA EPIDEMIOLÓGICA',
+        'CASO DE COVID-19 CONFIRMADO POR COMITÉ DE  DICTAMINACIÓN',
+        'CASO DE SARS-COV-2 CONFIRMADO'
+    )
+)
 SELECT
-    condicion.nombre AS condicion,
-    COUNT(*) AS total_pacientes_con_condicion,
-    SUM(CASE WHEN resultado.fecha_def IS NOT NULL THEN 1 ELSE 0 END) AS total_defunciones,
-    ROUND(100.0 * SUM(CASE WHEN resultado.fecha_def IS NOT NULL THEN 1 ELSE 0 END) / COUNT(*),2) AS porcentaje_mortalidad
-FROM raw.paciente_condicion
-JOIN raw.condicion
-    ON paciente_condicion.condicion_id = condicion.id
-JOIN raw.resultado
-    ON paciente_condicion.paciente_id = resultado.paciente_id
-GROUP BY condicion.nombre
-ORDER BY porcentaje_mortalidad DESC;
+    condicion,
+    COUNT(DISTINCT paciente_id) AS total_casos_confirmados,
+    SUM(fallecido) AS total_defunciones,
+    (SUM(fallecido) * 100.0 / COUNT(DISTINCT paciente_id)) AS tasa_letalidad_porcentaje
+FROM casos_confirmados_condicion
+WHERE condicion IS NOT NULL
+GROUP BY condicion
+ORDER BY tasa_letalidad_porcentaje DESC;
 ```
 
 
