@@ -715,7 +715,8 @@ GROUP BY sexo
 ORDER BY tasa_letalidad_porcentaje DESC;
 ```
 ### 5. Análisis de mortalidad por complicacion
-![Mortalidad Complicacion](images/mortalidad_comp.jpeg)
+<img width="752" height="452" alt="mortalidad_complicacion" src="https://github.com/user-attachments/assets/8bb65e7c-6e45-485d-a0ff-9408eadd14c5" />
+
 >Esta consulta da el porcentaje de mortalidad de los pacientes con cada una de las complicaciones. La complicacion con la que más mueren los pacientes es intubación, seguida por el ingreso a la unidad de cuidados intensivos.
 
 ```sql
